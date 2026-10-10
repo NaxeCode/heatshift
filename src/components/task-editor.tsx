@@ -1,5 +1,7 @@
 import { Sun, Leaf, ChevronDown } from 'lucide-react';
+import { useId } from 'react';
 import type { DraftTask } from '@/lib/contracts';
+import { displayTime, minutes } from '@/lib/contracts';
 import TimeField from './time-field';
 export default function TaskEditor({
   task,
@@ -13,6 +15,8 @@ export default function TaskEditor({
   onChange: (task: DraftTask) => void;
 }) {
   const update = (value: Partial<DraftTask>) => onChange({ ...task, ...value });
+  const fieldId = useId();
+  const invalidDuration = !task.duration || task.duration % 30 !== 0 || task.duration > 480;
   return (
     <article className="task-card">
       <div className="task-top">
@@ -34,17 +38,26 @@ export default function TaskEditor({
           <span>Work environment</span>
           <select
             value={task.environment}
+            aria-invalid={task.environment === 'unknown'}
+            aria-describedby={task.environment === 'unknown' ? `${fieldId}-environment` : undefined}
             onChange={(e) => update({ environment: e.target.value as DraftTask['environment'] })}
           >
             <option value="unknown">Confirm environment</option>
             <option value="outdoor">Outdoors</option>
             <option value="indoor">Indoors</option>
           </select>
+          {task.environment === 'unknown' && (
+            <small className="field-error" id={`${fieldId}-environment`}>
+              Confirm indoors or outdoors.
+            </small>
+          )}
         </label>
         <label className="field">
           <span>Duration</span>
           <select
             value={task.duration || ''}
+            aria-invalid={invalidDuration}
+            aria-describedby={invalidDuration ? `${fieldId}-duration` : undefined}
             onChange={(e) => update({ duration: Number(e.target.value) || null })}
           >
             <option value="">Confirm duration</option>
@@ -57,6 +70,11 @@ export default function TaskEditor({
               </option>
             ))}
           </select>
+          {invalidDuration && (
+            <small className="field-error" id={`${fieldId}-duration`}>
+              Confirm 30–480 minutes in 30-minute steps.
+            </small>
+          )}
         </label>
         <TimeField
           label="Original start"
@@ -64,6 +82,19 @@ export default function TaskEditor({
           onChange={(v) => update({ originalStart: v })}
         />
       </div>
+      {(task.fixedStart || task.dependencies.length > 0) && (
+        <div className="constraint-summary">
+          {task.fixedStart && <p>Fixed appointment: {displayTime(minutes(task.fixedStart))}</p>}
+          {task.dependencies.length > 0 && (
+            <p>
+              Must follow:{' '}
+              {task.dependencies
+                .map((id) => tasks.find((item) => item.id === id)?.title ?? id)
+                .join(', ')}
+            </p>
+          )}
+        </div>
+      )}
       {task.sourceText && (
         <details className="source-excerpt">
           <summary>View work-order source</summary>

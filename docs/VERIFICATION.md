@@ -2,6 +2,19 @@
 
 Recorded October 10, 2026. This is observed implementation evidence, not event submission or field validation.
 
+## Soft Signal and resident-page integration
+
+Locally verified October 10 at approximately 1:40 PM Eastern; deployment of this integration is still pending:
+
+- Faye's PR #14 supplies the Soft Signal palette, typography and forecast-color direction. The app now applies those tokens, emphasizes the before/after measure, exposes task-field errors and puts the selected work date in both briefing languages and exports. Final name and logo remain Faye's decision.
+- The approved `/community` route renders today's remaining Miami forecast hours at request time, including source/retrieval/check timestamps, explicit gaps, fixed-grid limitations and official county guidance/cooling links. The production build identifies the route as dynamic.
+- **39 tests, TypeScript, formatting and the production build pass.** New tests cover temperature-color mapping, work-date formatting across host timezones, bilingual export headers, and community hours around missing coverage and Miami midnight.
+- The local browser completed real Gemma extraction, live-NWS comparison and bilingual briefing generation. This forecast-dependent example again returned 150 → 0 minutes in the three hottest hours, preserving 150 outdoor minutes and the eight-hour shift. The downloaded Spanish file contains the correct October 11 date and inspected schedule times.
+- Responsive inspection found and corrected a narrow comparison-number selector and a clipped resident table. The resident page fits 320 and 768 CSS-pixel widths; the crew comparison and dated briefing fit 320 pixels. Detailed crew timelines intentionally scroll horizontally.
+- A separate local production process simulated an NWS outage. `/community` returned HTTP 200 with the unavailable state, no forecast number, and both official resource links still present.
+
+This adds a bounded public information view, not a personal safety score, PPE assessment or live site-availability service. Production verification and final rehearsal remain release gates.
+
 ## Released build
 
 - Public app: https://heatshift-naxecodes-projects.vercel.app

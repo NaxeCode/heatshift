@@ -1,0 +1,223 @@
+.main {
+  max-width: 1200px;
+  padding-bottom: 48px;
+}
+.intro {
+  padding: 48px 0 32px;
+}
+.intro > p:not(:first-child) {
+  max-width: 680px;
+  margin-top: 20px;
+  color: var(--hs-text-secondary);
+}
+.intro .date {
+  font-size: var(--hs-type-label);
+}
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(280px, 1fr);
+  gap: 32px;
+  align-items: start;
+}
+.forecast,
+.resources {
+  min-width: 0;
+}
+.sectionHeading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.sectionHeading h2,
+.resources h2 {
+  font-size: var(--hs-type-section);
+  font-weight: 500;
+}
+.backLink,
+.refresh,
+.sourceLink {
+  min-height: var(--hs-control-height);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--hs-type-label);
+}
+.refresh {
+  flex-shrink: 0;
+  padding-inline: 8px;
+}
+.provenance {
+  font-size: var(--hs-type-meta);
+  color: var(--hs-text-secondary);
+  margin: 16px 0;
+}
+.provenance p + p {
+  margin-top: 8px;
+}
+.explanation {
+  font-size: var(--hs-type-label);
+  color: var(--hs-text-secondary);
+  margin-bottom: 20px;
+}
+.tableWrap {
+  border: 1px solid var(--hs-divider);
+  background: var(--hs-surface);
+  border-radius: var(--hs-radius-card);
+  overflow: hidden;
+}
+.table {
+  width: 100%;
+  min-width: 0;
+  table-layout: fixed;
+  border-collapse: collapse;
+  font-size: var(--hs-type-label);
+  text-align: left;
+}
+.table th,
+.table td {
+  padding: 14px 12px;
+  border-bottom: 1px solid var(--hs-divider);
+  vertical-align: top;
+  overflow-wrap: anywhere;
+}
+.table th:first-child {
+  width: 28%;
+}
+.table th:nth-child(2) {
+  width: 24%;
+}
+.table thead {
+  background: var(--hs-surface-secondary);
+}
+.table th {
+  font-weight: 500;
+}
+.table tbody th {
+  white-space: nowrap;
+}
+.table tbody tr:last-child th,
+.table tbody tr:last-child td {
+  border-bottom: 0;
+}
+.table td:nth-child(2) {
+  font-variant-numeric: tabular-nums;
+}
+.sourceLink {
+  margin-top: 12px;
+}
+.resources {
+  background: var(--hs-surface);
+  border: 1px solid var(--hs-divider);
+  border-radius: var(--hs-radius-card);
+  box-shadow: var(--hs-shadow);
+  padding: 24px;
+  margin-top: 64px;
+}
+.resources h2 {
+  margin: 16px 0 12px;
+}
+.resources h3 {
+  font-size: var(--hs-type-body);
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+.resources > p:not(:first-child) {
+  color: var(--hs-text-secondary);
+}
+.action,
+.secondaryAction {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: var(--hs-control-height);
+  padding: 14px 16px;
+  border-radius: var(--hs-radius-pill);
+  border: 1px solid var(--hs-control-border);
+  font-size: var(--hs-type-label);
+  text-decoration: none;
+  text-align: center;
+  margin-top: 20px;
+}
+.action {
+  background: var(--hs-primary);
+  color: var(--hs-on-primary);
+}
+.secondaryAction {
+  background: var(--hs-surface);
+  color: var(--hs-text);
+}
+.action:hover,
+.secondaryAction:hover {
+  background: var(--hs-surface-secondary);
+}
+.resourceDivider {
+  border-top: 1px solid var(--hs-divider);
+  margin: 24px 0;
+}
+.meta {
+  font-size: var(--hs-type-meta);
+  color: var(--hs-text-secondary);
+  margin-top: 16px;
+}
+.unavailable {
+  padding: 32px;
+  border: 1px solid var(--hs-divider);
+  border-radius: var(--hs-radius-card);
+  background: var(--hs-surface-secondary);
+}
+.unavailable h3 {
+  font-size: var(--hs-type-section);
+  font-weight: 500;
+  margin: 16px 0;
+}
+.unavailable p {
+  color: var(--hs-text-secondary);
+}
+.unavailable .action {
+  max-width: 280px;
+}
+.footer {
+  border-top: 1px solid var(--hs-divider);
+  margin-top: 32px;
+  padding-top: 24px;
+  font-size: var(--hs-type-label);
+  color: var(--hs-text-secondary);
+}
+.footer p {
+  max-width: 850px;
+  margin-bottom: 12px;
+}
+@media (max-width: 800px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .resources {
+    margin-top: 0;
+  }
+  .intro {
+    padding-top: 32px;
+  }
+}
+@media (max-width: 520px) {
+  .main {
+    padding-inline: 20px;
+  }
+  .table th,
+  .table td {
+    padding: 12px 8px;
+  }
+  .table tbody th {
+    white-space: normal;
+  }
+  .resources,
+  .unavailable {
+    padding: 20px;
+  }
+  .sectionHeading {
+    align-items: start;
+  }
+}

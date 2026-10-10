@@ -28,6 +28,7 @@ import {
 import TimeField from './time-field';
 import TaskEditor from './task-editor';
 import ComparisonView, { type Envelope } from './comparison-view';
+import { crewBriefText } from '@/lib/presentation';
 const initialShift = {
   shiftStart: '08:00',
   shiftEnd: '16:00',
@@ -144,9 +145,11 @@ export default function Planner() {
     });
   }
   async function copyBrief() {
-    if (!briefing) return;
+    if (!briefing || !envelope) return;
     try {
-      await navigator.clipboard.writeText(briefing[language]);
+      await navigator.clipboard.writeText(
+        crewBriefText(envelope.result.plan.date, language, briefing[language]),
+      );
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch {
@@ -154,9 +157,11 @@ export default function Planner() {
     }
   }
   function downloadBrief() {
-    if (!briefing) return;
+    if (!briefing || !envelope) return;
     const url = URL.createObjectURL(
-      new Blob([briefing[language]], { type: 'text/plain;charset=utf-8' }),
+      new Blob([crewBriefText(envelope.result.plan.date, language, briefing[language])], {
+        type: 'text/plain;charset=utf-8',
+      }),
     );
     const link = document.createElement('a');
     link.href = url;
@@ -178,9 +183,7 @@ export default function Planner() {
           heatshift<span className="prototype">PROTOTYPE</span>
         </a>
         <div className="header-right">
-          <span>
-            <MapPin size={15} /> Built for Miami crews
-          </span>
+          <a href="/community">Miami heat guide</a>
           <a
             href="https://github.com/NaxeCode/heatshift"
             target="_blank"
@@ -345,7 +348,7 @@ export default function Planner() {
                   ? 'Gemma is reading your work order…'
                   : tasks.length
                     ? 'Extract tasks again'
-                    : 'Turn work into a plan'}
+                    : 'Review tasks'}
                 {busy !== 'extract' && <ArrowRight size={17} />}
               </button>
               <div className="model-credit">
@@ -421,7 +424,12 @@ export default function Planner() {
               </section>
             )}
             {envelope && (
-              <button className="review-toggle" onClick={() => setReviewExpanded((v) => !v)}>
+              <button
+                className="review-toggle"
+                aria-expanded={reviewExpanded}
+                aria-controls="task-review"
+                onClick={() => setReviewExpanded((v) => !v)}
+              >
                 <CheckCircle2 size={17} />
                 {tasks.length} confirmed tasks ·{' '}
                 {reviewExpanded ? 'Hide details' : 'Review details'}
@@ -429,7 +437,7 @@ export default function Planner() {
               </button>
             )}
             {tasks.length > 0 && (!envelope || reviewExpanded) && (
-              <section ref={reviewRef} className="review-section">
+              <section ref={reviewRef} className="review-section" id="task-review">
                 <div className="section-eyebrow">
                   <Sparkles size={13} /> GEMMA 4 · EXTRACTED FROM YOUR WORK ORDER
                 </div>
@@ -486,7 +494,7 @@ export default function Planner() {
                     ) : (
                       <ThermometerSun size={18} />
                     )}
-                    Compare with the forecast
+                    Compare schedules
                     <ArrowRight size={17} />
                   </button>
                 </fieldset>

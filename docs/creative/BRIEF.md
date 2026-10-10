@@ -69,7 +69,7 @@ Use 160ms feedback for buttons and selection, and 240ms for expanding cards, wit
 - Unavailable or stale forecast: show the reason and retry action; do not leave stale values looking current.
 - No improvement: neutral result with an explanation and original plan retained.
 - Infeasible schedule: name the conflicting constraints and point back to editing.
-- Demo: persistent “Demo data” label adjacent to forecast and result content.
+- Illustrative/demo fixtures: persistent “Demo data” label adjacent to forecast and result content. When demonstrating live NWS data, show its actual source and timestamp instead; do not label live weather as a fixture.
 
 ## Implementation handoff
 

@@ -21,6 +21,10 @@ The full input-to-result flow has been exercised with real Gemma calls and live 
 
 The scope is one crew, one Miami forecast location, one date and up to four tasks. The supervisor makes the final decision. This is forecast planning support, not a medical safety determination or a proven reduction in injuries.
 
+The **Miami heat guide** at `/community` gives residents a second entry point: today's available forecast hours for the same Miami grid point, source timestamps, and official county heat-guidance and cooling-site links. It requires no work order or account. It does not assess personal risk, provide active alerts, or confirm that a cooling site is open. Official resource links remain available if the forecast cannot be retrieved.
+
+The interface implements Faye's [Soft Signal design direction](docs/creative/BRIEF.md), with readable controls and a temperature-driven forecast panel. Gradient colors illustrate apparent temperature; they are not safety thresholds. The final name and logo remain Faye's decision.
+
 ## Run locally
 
 Requirements: Node.js 24 LTS recommended, npm, and a Gemini API key with access to `gemma-4-26b-a4b-it`.

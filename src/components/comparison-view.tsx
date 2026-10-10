@@ -12,6 +12,8 @@ import {
   Download,
 } from 'lucide-react';
 import { Briefing, Comparison, displayTime, minutes } from '@/lib/contracts';
+import { crewBriefText, forecastColor, formatWorkDate } from '@/lib/presentation';
+import ForecastSummary from './forecast-summary';
 export type Envelope = { result: Comparison; signature: string };
 function Timeline({ result, kind }: { result: Comparison; kind: 'original' | 'proposed' }) {
   const start = minutes(result.plan.shiftStart),
@@ -111,7 +113,7 @@ export default function ComparisonView({
               ? 'Same work. Better timing.'
               : r.status === 'alternative'
                 ? 'An optional cooler arrangement.'
-                : 'Your plan holds up.'}
+                : 'No reduction found.'}
           </h2>
           <p>
             {r.status === 'unchanged'
@@ -123,33 +125,38 @@ export default function ComparisonView({
           <ShieldCheck size={16} /> Constraints preserved
         </span>
       </div>
-      <div className="metrics">
-        <div className="metric-feature">
-          <span>Less outdoor time in the hottest hours</span>
-          <strong>
-            {removed}
-            <small> min</small>
-          </strong>
-          <p>
-            {r.before.hotMinutes} min → {r.after.hotMinutes} min
-          </p>
+      <div className="result-overview">
+        <div className="metrics">
+          <div className="metric-feature">
+            <span>Outdoor minutes in the three hottest forecast hours</span>
+            <strong>
+              {r.before.hotMinutes} → {r.after.hotMinutes}
+              <small> min</small>
+            </strong>
+            <p>
+              {removed > 0
+                ? `${removed} fewer minutes · Original → proposed`
+                : 'No reduction in this measure · Original → proposed'}
+            </p>
+          </div>
+          <div>
+            <span>Outdoor work preserved</span>
+            <strong>
+              {r.after.outdoorMinutes}
+              <small> min</small>
+            </strong>
+            <p>Every confirmed task stays</p>
+          </div>
+          <div>
+            <span>Paid shift preserved</span>
+            <strong>
+              {(end - start) / 60}
+              <small> hrs</small>
+            </strong>
+            <p>Including your fixed break</p>
+          </div>
         </div>
-        <div>
-          <span>Outdoor work preserved</span>
-          <strong>
-            {r.after.outdoorMinutes}
-            <small> min</small>
-          </strong>
-          <p>Every confirmed task stays</p>
-        </div>
-        <div>
-          <span>Paid shift preserved</span>
-          <strong>
-            {(end - start) / 60}
-            <small> hrs</small>
-          </strong>
-          <p>Including your fixed break</p>
-        </div>
+        <ForecastSummary forecast={r.forecast} hours={hours} />
       </div>
       <div className="chart-card">
         <div className="chart-title">
@@ -190,6 +197,7 @@ export default function ComparisonView({
                     <div
                       style={{
                         height: `${35 + ((h.apparentF - low) / Math.max(1, peak - low)) * 45}px`,
+                        background: forecastColor(h.apparentF) ?? undefined,
                       }}
                     />
                   </div>
@@ -297,7 +305,7 @@ export default function ComparisonView({
           </div>
           <div>
             <h3>Bring the crew with you.</h3>
-            <p>A clear briefing, in English and Spanish.</p>
+            <p>{formatWorkDate(r.plan.date)} · English and Spanish</p>
           </div>
           {!briefing && (
             <button className="primary" onClick={onBrief} disabled={!!busy}>
@@ -331,15 +339,20 @@ export default function ComparisonView({
               <div className="brief-actions">
                 <button className="icon-button" onClick={onCopy} aria-label="Copy briefing">
                   {copied ? <Check size={18} /> : <Copy size={18} />}
+                  {copied ? 'Copied' : 'Copy'}
                 </button>
                 <button className="icon-button" onClick={onDownload} aria-label="Download briefing">
                   <Download size={18} />
+                  Download
                 </button>
               </div>
             </div>
             <p className="brief-text" lang={language === 'spanish' ? 'es' : 'en'}>
-              {briefing[language]}
+              {crewBriefText(r.plan.date, language, briefing[language])}
             </p>
+            <span role="status" className="sr-only">
+              {copied ? 'Briefing copied' : ''}
+            </span>
             <p className="fine-print">
               Prepared by Gemma 4. Review the wording and confirmed schedule before sharing.
             </p>

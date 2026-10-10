@@ -1,0 +1,70 @@
+/* Soft Signal design by Faye. Source: docs/creative/BRIEF.md (PR #14). */
+:root {
+  color-scheme: light;
+  --hs-canvas: #f8f9f5;
+  --hs-surface: #fffffd;
+  --hs-surface-secondary: #eef1e6;
+  --hs-text: #30372f;
+  --hs-text-secondary: #5d6659;
+  --hs-divider: #e2e7dc;
+  --hs-control-border: #7d8771;
+  --hs-primary: #dde5cf;
+  --hs-on-primary: #30372f;
+  --hs-warm: #f1d8b9;
+  --hs-warm-wash: #fbf5e9;
+  --hs-cool: #e8f0ed;
+  --hs-warning-text: #76501f;
+  --hs-warning-surface: #fff0d6;
+  --hs-error-text: #a13228;
+  --hs-error-surface: #fbe9e5;
+  --hs-focus: #53643e;
+  --hs-font-body: 'DM Sans', system-ui, sans-serif;
+  --hs-font-heading: 'Manrope', system-ui, sans-serif;
+  --hs-type-meta: 0.75rem;
+  --hs-type-label: 0.875rem;
+  --hs-type-body: 1rem;
+  --hs-type-section: 1.375rem;
+  --hs-type-heading: clamp(2rem, 4vw, 3rem);
+  --hs-type-display: clamp(3.5rem, 8vw, 4.5rem);
+  --hs-space-1: 4px;
+  --hs-space-2: 8px;
+  --hs-space-3: 12px;
+  --hs-space-4: 16px;
+  --hs-space-5: 24px;
+  --hs-space-6: 32px;
+  --hs-space-7: 48px;
+  --hs-radius-field: 12px;
+  --hs-radius-card: 24px;
+  --hs-radius-hero: 32px;
+  --hs-radius-pill: 999px;
+  --hs-control-height: 48px;
+  --hs-shadow: 0 8px 28px rgb(41 55 43 / 3%);
+  --hs-duration-feedback: 160ms;
+  --hs-duration-expand: 240ms;
+  --hs-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  /* Visual anchors for feels-like temperature, not safety thresholds. */
+  --hs-sun-yellow: #f2cf65; /* 75°F / 23.9°C */
+  --hs-sun-orange: #f2a34f; /* 90°F / 32.2°C */
+  --hs-sun-red: #e9826d; /* 105°F / 40.6°C */
+  --hs-forecast-color: var(--hs-sun-orange);
+  --hs-forecast-text: #382b22;
+  --hs-forecast-glow:
+    radial-gradient(ellipse at 85% 85%, var(--hs-forecast-color), transparent 78%),
+    linear-gradient(145deg, #fff1c9, var(--hs-forecast-color));
+}
+.hs-surface {
+  background: var(--hs-surface);
+  color: var(--hs-text);
+  border-radius: var(--hs-radius-card);
+}
+.hs-forecast {
+  background: var(--hs-forecast-glow);
+  color: var(--hs-forecast-text);
+  border-radius: var(--hs-radius-hero);
+}
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --hs-duration-feedback: 0ms;
+    --hs-duration-expand: 0ms;
+  }
+}
