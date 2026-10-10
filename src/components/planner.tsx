@@ -11,10 +11,11 @@ import {
   MapPin,
   ShieldCheck,
   Sparkles,
-  Sun,
   Sunrise,
   ThermometerSun,
-  Trees,
+  Clock3,
+  CalendarDays,
+  ClipboardList,
 } from 'lucide-react';
 import {
   Briefing,
@@ -26,10 +27,11 @@ import {
   planSchema,
 } from '@/lib/contracts';
 import TimeField from './time-field';
+import WeatherPanel from './weather-panel';
+import Brand from './brand';
+import { crewBriefText } from '@/lib/presentation';
 import TaskEditor from './task-editor';
 import ComparisonView, { type Envelope } from './comparison-view';
-import { crewBriefText } from '@/lib/presentation';
-import Brand from './brand';
 const initialShift = {
   shiftStart: '08:00',
   shiftEnd: '16:00',
@@ -55,6 +57,7 @@ export default function Planner() {
     [questions, setQuestions] = useState<string[]>([]),
     [confirmed, setConfirmed] = useState(false);
   const [reviewExpanded, setReviewExpanded] = useState(false);
+  const [inputExpanded, setInputExpanded] = useState(true);
   const [envelope, setEnvelope] = useState<Envelope | null>(null),
     [briefing, setBriefing] = useState<Briefing | null>(null),
     [language, setLanguage] = useState<'english' | 'spanish'>('english');
@@ -65,6 +68,19 @@ export default function Planner() {
     [draftSaved, setDraftSaved] = useState(false);
   const reviewRef = useRef<HTMLElement>(null),
     resultRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLElement>(null);
+  const errorRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (error) errorRef.current?.focus();
+  }, [error]);
+  function scrollTo(element: HTMLElement | null) {
+    element?.scrollIntoView({
+      behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches
+        ? 'instant'
+        : 'smooth',
+      block: 'start',
+    });
+  }
   useEffect(() => {
     setDate(miamiDate(1));
     try {
@@ -116,10 +132,8 @@ export default function Planner() {
       setTasks(parsed.tasks);
       setQuestions(parsed.questions);
       invalidate();
-      setTimeout(
-        () => reviewRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }),
-        100,
-      );
+      setInputExpanded(false);
+      setTimeout(() => scrollTo(reviewRef.current), 100);
     });
   }
   function compare() {
@@ -133,10 +147,7 @@ export default function Planner() {
       setEnvelope(data);
       setBriefing(null);
       setReviewExpanded(false);
-      setTimeout(
-        () => resultRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }),
-        100,
-      );
+      setTimeout(() => scrollTo(resultRef.current), 100);
     });
   }
   function prepareBrief() {
@@ -192,32 +203,34 @@ export default function Planner() {
           </a>
         </div>
       </header>
-      <main id="workspace">
+      <main id="workspace" className={tasks.length ? 'has-plan' : undefined}>
         <section className="page-intro">
           <div>
-            <div className="eyebrow">A BETTER TIME FOR OUTDOOR WORK</div>
+            <div className="eyebrow">THE CREW PLANNER</div>
             <h1>
               Plan the work.
               <br />
               <span>Work around the heat.</span>
             </h1>
             <p>
-              Give your crew a better-timed day. Same work, same paid shift,
-              <br className="desktop-break" /> with the weather taken into account.
+              A little planning. A better-timed day.
+              <br className="desktop-break" /> Same crew, same work, with the forecast in view.
             </p>
           </div>
-          <div className="intro-art" aria-hidden="true">
-            <div className="orbit orbit-one" />
-            <div className="orbit orbit-two" />
-            <div className="intro-sun">
-              <Sun size={48} strokeWidth={1.3} />
-            </div>
-            <div className="intro-leaf">
-              <Trees size={55} strokeWidth={1.2} />
-            </div>
-            <div className="art-caption">
-              <span /> PEOPLE FIRST. WEATHER AWARE.
-            </div>
+          <div className="day-label">
+            <CalendarDays size={18} />
+            <span>
+              YOUR NEXT WORKDAY
+              <strong>
+                {date
+                  ? new Date(`${date}T12:00:00`).toLocaleDateString('en-US', {
+                      weekday: 'short',
+                      month: 'short',
+                      day: 'numeric',
+                    })
+                  : 'Plan ahead'}
+              </strong>
+            </span>
           </div>
         </section>
         <nav className="steps" aria-label="Planner progress">
@@ -226,82 +239,125 @@ export default function Planner() {
             ['02', 'Confirm the details'],
             ['03', 'Compare & brief'],
           ].map(([n, title], i) => (
-            <div className={stage === i + 1 ? 'active' : stage > i + 1 ? 'done' : ''} key={n}>
+            <button
+              type="button"
+              className={stage === i + 1 ? 'active' : stage > i + 1 ? 'done' : ''}
+              key={n}
+              aria-current={stage === i + 1 ? 'step' : undefined}
+              disabled={!!busy || i + 1 > stage}
+              onClick={() => {
+                if (i === 0) {
+                  setInputExpanded(true);
+                  scrollTo(inputRef.current);
+                } else if (i === 1) {
+                  setReviewExpanded(true);
+                  setTimeout(() => scrollTo(reviewRef.current), 0);
+                } else scrollTo(resultRef.current);
+              }}
+            >
               <span>{stage > i + 1 ? <Check size={15} /> : n}</span>
               {title}
               {i < 2 && <ArrowRight size={16} />}
-            </div>
+            </button>
           ))}
         </nav>
+        {error && (
+          <div role="alert" className="error-box" ref={errorRef} tabIndex={-1}>
+            <strong>Let’s resolve this before continuing.</strong>
+            <p>{error}</p>
+          </div>
+        )}
         <div className="workspace-grid">
-          <aside className="input-panel">
+          <section className="input-panel" ref={inputRef} aria-label="Work order and shift">
             <div className="panel-heading">
               <span className="mini-icon">
-                <Trees size={21} />
+                <ClipboardList size={21} />
               </span>
               <div>
-                <h2>The work ahead</h2>
+                <h2>The work ahead.</h2>
                 <p>One crew. One day. Up to four tasks.</p>
               </div>
             </div>
-            <fieldset disabled={!!busy} className="input-fieldset">
-              <div className="location-box">
-                <MapPin size={17} />
-                <div>
-                  <strong>Miami, Florida</strong>
-                  <span>National Weather Service forecast</span>
-                </div>
-                <span className="live-dot" />
+            {tasks.length > 0 && (
+              <button
+                className="input-toggle secondary"
+                aria-expanded={inputExpanded}
+                aria-controls="input-fields"
+                onClick={() => setInputExpanded((value) => !value)}
+              >
+                {inputExpanded ? 'Collapse work order' : 'Edit work order & shift'}
+                <ChevronDown size={16} />
+              </button>
+            )}
+            {!inputExpanded && (
+              <div className="order-summary">
+                <span>
+                  <Clock3 size={17} />
+                  {shift.shiftStart}–{shift.shiftEnd}
+                </span>
+                <span>
+                  {tasks.length} {confirmed ? 'confirmed tasks' : 'tasks to review'}
+                </span>
+                <p>Your work order and shift are saved here. Editing them resets the comparison.</p>
               </div>
-              <label className="field date-field">
-                <span>Work date</span>
-                <input
-                  type="date"
-                  value={date}
-                  min={loaded ? miamiDate() : undefined}
-                  max={loaded ? miamiDate(6) : undefined}
-                  onChange={(e) => {
-                    setDate(e.target.value);
-                    invalidate();
-                  }}
-                />
-              </label>
-              <div className="shift-grid">
-                <TimeField
-                  label="Paid shift starts"
-                  value={shift.shiftStart}
-                  onChange={(v) => {
-                    setShift((s) => ({ ...s, shiftStart: v! }));
-                    invalidate();
-                  }}
-                />
-                <TimeField
-                  label="Paid shift ends"
-                  value={shift.shiftEnd}
-                  onChange={(v) => {
-                    setShift((s) => ({ ...s, shiftEnd: v! }));
-                    invalidate();
-                  }}
-                />
-                <TimeField
-                  label="Fixed break starts"
-                  value={shift.breakStart}
-                  onChange={(v) => {
-                    setShift((s) => ({ ...s, breakStart: v! }));
-                    invalidate();
-                  }}
-                />
-                <TimeField
-                  label="Fixed break ends"
-                  value={shift.breakEnd}
-                  onChange={(v) => {
-                    setShift((s) => ({ ...s, breakEnd: v! }));
-                    invalidate();
-                  }}
-                />
+            )}
+            <fieldset
+              disabled={!!busy}
+              className="input-fieldset"
+              id="input-fields"
+              hidden={!inputExpanded}
+            >
+              <div className="shift-settings">
+                <label className="field date-field">
+                  <span>Work date</span>
+                  <input
+                    type="date"
+                    value={date}
+                    min={loaded ? miamiDate() : undefined}
+                    max={loaded ? miamiDate(6) : undefined}
+                    onChange={(e) => {
+                      setDate(e.target.value);
+                      invalidate();
+                    }}
+                  />
+                </label>
+                <div className="shift-grid">
+                  <TimeField
+                    label="Paid shift starts"
+                    value={shift.shiftStart}
+                    onChange={(v) => {
+                      setShift((s) => ({ ...s, shiftStart: v! }));
+                      invalidate();
+                    }}
+                  />
+                  <TimeField
+                    label="Paid shift ends"
+                    value={shift.shiftEnd}
+                    onChange={(v) => {
+                      setShift((s) => ({ ...s, shiftEnd: v! }));
+                      invalidate();
+                    }}
+                  />
+                  <TimeField
+                    label="Fixed break starts"
+                    value={shift.breakStart}
+                    onChange={(v) => {
+                      setShift((s) => ({ ...s, breakStart: v! }));
+                      invalidate();
+                    }}
+                  />
+                  <TimeField
+                    label="Fixed break ends"
+                    value={shift.breakEnd}
+                    onChange={(v) => {
+                      setShift((s) => ({ ...s, breakEnd: v! }));
+                      invalidate();
+                    }}
+                  />
+                </div>
               </div>
               <div className="work-order-label">
-                <label htmlFor="work-order">Work order</label>
+                <label htmlFor="work-order">Describe the work</label>
                 <button
                   className="text-button"
                   onClick={() => {
@@ -316,9 +372,10 @@ export default function Planner() {
               </div>
               <textarea
                 id="work-order"
+                aria-describedby="work-order-help work-order-kind"
                 value={workOrder}
                 maxLength={6000}
-                rows={11}
+                rows={8}
                 onChange={(e) => {
                   setWorkOrder(e.target.value);
                   setTasks([]);
@@ -326,7 +383,13 @@ export default function Planner() {
                   invalidate();
                 }}
               />
-              <p className="input-help">
+              <div className="work-order-meta" id="work-order-kind">
+                <span>
+                  {workOrder === SAMPLE ? 'Editable fictional example' : 'Your work order'}
+                </span>
+                <span>{workOrder.length.toLocaleString()} / 6,000</span>
+              </div>
+              <p className="input-help" id="work-order-help">
                 Include each task’s duration, original start, indoor/outdoor setting, and any
                 constraints. Leave out personal details.
               </p>
@@ -356,161 +419,149 @@ export default function Planner() {
               <ShieldCheck size={18} />
               <p>Your crew’s work, break, and paid shift stay intact.</p>
             </div>
-          </aside>
-          <div className="main-panel">
-            {error && (
-              <div role="alert" className="error-box">
-                <strong>Let’s resolve this before continuing.</strong>
-                <p>{error}</p>
-              </div>
-            )}
-            {busy && (
-              <div role="status" className="busy-status">
-                <LoaderCircle className="spin" size={17} />
-                {busy === 'extract'
-                  ? 'Reading the work order with Gemma 4…'
-                  : busy === 'plan'
-                    ? 'Fetching the NWS forecast and checking feasible schedules…'
-                    : 'Preparing both crew briefings with Gemma 4…'}
-              </div>
-            )}
-            {!tasks.length && !busy && (
-              <section className="empty-state">
-                <div className="empty-icon">
-                  <Sunrise size={39} strokeWidth={1.3} />
-                </div>
-                <div className="section-eyebrow">SMALL SHIFTS. A MORE THOUGHTFUL DAY.</div>
-                <h2>
-                  The right work,
-                  <br />
-                  at a better time.
-                </h2>
+          </section>
+          <aside className="weather-column-wrap">
+            <WeatherPanel
+              date={date}
+              shiftStart={shift.shiftStart}
+              shiftEnd={shift.shiftEnd}
+              verifiedForecast={envelope?.result.forecast}
+            />
+            <div className="planning-note">
+              <ShieldCheck size={21} />
+              <div>
+                <h3>A shift that stays yours.</h3>
                 <p>
-                  Start with a work order. We’ll help you find room
-                  <br className="desktop-break" /> to move outdoor tasks around the hottest hours.
+                  Tasks, appointments, breaks, and paid hours stay in place. You decide which plan
+                  works for your crew.
                 </p>
-                <div className="how-it-works">
-                  <div>
-                    <span>1</span>
-                    <div>
-                      <strong>You set the boundaries</strong>
-                      <p>Confirm the tasks, appointments, and break.</p>
-                    </div>
-                  </div>
-                  <div>
-                    <span>2</span>
-                    <div>
-                      <strong>The forecast informs the plan</strong>
-                      <p>Compare arrangements using live NWS data.</p>
-                    </div>
-                  </div>
-                  <div>
-                    <span>3</span>
-                    <div>
-                      <strong>Your crew gets a clear briefing</strong>
-                      <p>Review and share in English or Spanish.</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="example-note">
-                  The prefilled work order is a fictional example.
-                  <br />
-                  Your comparison will use real forecast data.
-                </div>
-              </section>
-            )}
-            {envelope && (
-              <button
-                className="review-toggle"
-                aria-expanded={reviewExpanded}
-                aria-controls="task-review"
-                onClick={() => setReviewExpanded((v) => !v)}
-              >
-                <CheckCircle2 size={17} />
-                {tasks.length} confirmed tasks ·{' '}
-                {reviewExpanded ? 'Hide details' : 'Review details'}
-                <ChevronDown size={15} />
-              </button>
-            )}
-            {tasks.length > 0 && (!envelope || reviewExpanded) && (
-              <section ref={reviewRef} className="review-section" id="task-review">
-                <div className="section-eyebrow">
-                  <Sparkles size={13} /> GEMMA 4 · EXTRACTED FROM YOUR WORK ORDER
-                </div>
-                <div className="review-heading">
-                  <div>
-                    <h2>Make sure we got it right.</h2>
-                    <p>Review each task before the weather enters the picture.</p>
-                  </div>
-                  <span className="count-badge">{tasks.length} tasks</span>
-                </div>
-                {questions.length > 0 && (
-                  <div className="questions-box">
-                    <strong>Details to confirm</strong>
-                    <ul>
-                      {questions.map((q, i) => (
-                        <li key={i}>{q}</li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-                <fieldset disabled={!!busy} className="review-fieldset">
-                  <div className="task-list">
-                    {tasks.map((t, i) => (
-                      <TaskEditor
-                        key={t.id}
-                        task={t}
-                        index={i}
-                        tasks={tasks}
-                        onChange={(next) => {
-                          setTasks((ts) => ts.map((t) => (t.id === next.id ? next : t)));
-                          invalidate();
-                        }}
-                      />
-                    ))}
-                  </div>
-                  <label className="confirmation">
-                    <input
-                      type="checkbox"
-                      checked={confirmed}
-                      onChange={(e) => setConfirmed(e.target.checked)}
-                    />
-                    <span>
-                      I’ve checked every task and resolved any questions. These details reflect the
-                      original work plan.
-                    </span>
-                  </label>
-                  <button
-                    className="primary compare-button"
-                    onClick={compare}
-                    disabled={!confirmed || !!busy}
-                  >
-                    {busy === 'plan' ? (
-                      <LoaderCircle className="spin" size={18} />
-                    ) : (
-                      <ThermometerSun size={18} />
-                    )}
-                    Compare schedules
-                    <ArrowRight size={17} />
-                  </button>
-                </fieldset>
-              </section>
-            )}
-            <div ref={resultRef}>
-              {envelope && (
-                <ComparisonView
-                  envelope={envelope}
-                  onBrief={prepareBrief}
-                  busy={busy}
-                  briefing={briefing}
-                  language={language}
-                  setLanguage={setLanguage}
-                  copied={copied}
-                  onCopy={() => void copyBrief()}
-                  onDownload={downloadBrief}
-                />
-              )}
+              </div>
             </div>
+          </aside>
+        </div>
+        <div className="main-panel">
+          {busy && (
+            <div role="status" className="busy-status">
+              <LoaderCircle className="spin" size={17} />
+              {busy === 'extract'
+                ? 'Reading the work order with Gemma 4…'
+                : busy === 'plan'
+                  ? 'Fetching the NWS forecast and checking feasible schedules…'
+                  : 'Preparing both crew briefings with Gemma 4…'}
+            </div>
+          )}
+          {!tasks.length && !busy && (
+            <section className="workflow-note" aria-label="How planning works">
+              <div>
+                <span>01</span>
+                <h3>Start with the work</h3>
+                <p>Add your work order and the hours you need to keep.</p>
+              </div>
+              <div>
+                <span>02</span>
+                <h3>Make it your plan</h3>
+                <p>Review the extracted tasks, timing, and constraints.</p>
+              </div>
+              <div>
+                <span>03</span>
+                <h3>Bring the crew along</h3>
+                <p>Compare schedules and prepare a bilingual briefing.</p>
+              </div>
+              <p className="sample-note">
+                The prefilled work order is a fictional example. Forecast values come from NWS.
+              </p>
+            </section>
+          )}
+          {envelope && (
+            <button
+              className="review-toggle"
+              aria-expanded={reviewExpanded}
+              aria-controls="task-review"
+              onClick={() => setReviewExpanded((v) => !v)}
+            >
+              <CheckCircle2 size={17} />
+              {tasks.length} confirmed tasks · {reviewExpanded ? 'Hide details' : 'Review details'}
+              <ChevronDown size={15} />
+            </button>
+          )}
+          {tasks.length > 0 && (!envelope || reviewExpanded) && (
+            <section ref={reviewRef} className="review-section" id="task-review">
+              <div className="section-eyebrow">
+                <Sparkles size={13} /> GEMMA 4 · EXTRACTED FROM YOUR WORK ORDER
+              </div>
+              <div className="review-heading">
+                <div>
+                  <h2>Make sure we got it right.</h2>
+                  <p>Confirm the extracted details before comparing schedules.</p>
+                </div>
+                <span className="count-badge">{tasks.length} tasks</span>
+              </div>
+              {questions.length > 0 && (
+                <div className="questions-box">
+                  <strong>Details to confirm</strong>
+                  <ul>
+                    {questions.map((q, i) => (
+                      <li key={i}>{q}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+              <fieldset disabled={!!busy} className="review-fieldset">
+                <div className="task-list">
+                  {tasks.map((t, i) => (
+                    <TaskEditor
+                      key={t.id}
+                      task={t}
+                      index={i}
+                      tasks={tasks}
+                      onChange={(next) => {
+                        setTasks((ts) => ts.map((t) => (t.id === next.id ? next : t)));
+                        invalidate();
+                      }}
+                    />
+                  ))}
+                </div>
+                <label className="confirmation">
+                  <input
+                    type="checkbox"
+                    checked={confirmed}
+                    onChange={(e) => setConfirmed(e.target.checked)}
+                  />
+                  <span>
+                    I’ve checked every task and resolved any questions. These details reflect the
+                    original work plan.
+                  </span>
+                </label>
+                <button
+                  className="primary compare-button"
+                  onClick={compare}
+                  disabled={!confirmed || !!busy}
+                >
+                  {busy === 'plan' ? (
+                    <LoaderCircle className="spin" size={18} />
+                  ) : (
+                    <ThermometerSun size={18} />
+                  )}
+                  Compare schedules
+                  <ArrowRight size={17} />
+                </button>
+              </fieldset>
+            </section>
+          )}
+          <div ref={resultRef}>
+            {envelope && (
+              <ComparisonView
+                envelope={envelope}
+                onBrief={prepareBrief}
+                busy={busy}
+                briefing={briefing}
+                language={language}
+                setLanguage={setLanguage}
+                copied={copied}
+                onCopy={() => void copyBrief()}
+                onDownload={downloadBrief}
+              />
+            )}
           </div>
         </div>
         <footer className="footer">
