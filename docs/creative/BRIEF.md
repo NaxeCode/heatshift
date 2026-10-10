@@ -1,13 +1,23 @@
-# Soft Signal — HeatShift design language
+# Soft Signal — Kruu warm-neutral design language
 
 Light, airy, tactile, and clear enough to use outside. A warm utility for people coordinating real work.
 
-This is a proposed design system, derived from the five supplied references and HeatShift's planning workflow. HeatShift remains the prototype name; this guide does not prescribe a final product name. It describes visual and interaction decisions, not new product capabilities. The accompanying specimen uses illustrative data.
+This is a proposed design system, derived from the five supplied references and HeatShift's planning workflow. Kruu is the name used in this approved visual direction; repository and deployment naming are outside this handoff. It describes visual and interaction decisions, not new product capabilities. The accompanying specimen uses illustrative data.
+
+## Approved logo direction — October 10, 2026
+
+![Kruu ripple-sun logo with smaller orange lettering on warm ivory, white, and cream](assets/kruu-warm-neutral-logo.png)
+
+Use the ripple sun with exactly three separated, progressively shorter reflection bands. Pair it with the smaller lowercase **kruu** wordmark, vertically centered beside the symbol. Match the coral-to-orange treatment in the approved image; keep the icon and wordmark proportions, generous space, and quiet rounded surfaces.
+
+The attached PNG is the approved visual mockup, including its presentation cards and background. It is not a transparent logo or production vector; do not use the whole board as an application header. Its lettering is illustrative rather than a verified font rendering. Manrope remains the heading font direction, with DM Sans for interface copy. A production logo export and application integration are separate work.
+
+The foundation values below translate the approved no-green direction into reusable tokens. Keep the brand gradient fixed; temperature-driven colors belong to the forecast component only. Use dark text for small labels and controls rather than extending the logo gradient to operational text.
 
 ## The reference synthesis
 
 - **Autonomous finance reference:** generous negative space and one dominant number. Borrow that hierarchy within the light palette.
-- **Auro overview and settings references:** milk-colored surfaces, soft sage, compact rounded controls, human typography. These are the primary visual anchors: milky white, pale sage, and gently diffused daylight.
+- **Auro overview and settings references:** light surfaces, compact rounded controls, human typography, and gently diffused daylight. The latest direction replaces the earlier sage palette with warm ivory, white, and cream.
 - **Thermostat reference:** a contained warm glow and a large temperature with a clearly selected control. Use the glow only in the forecast panel, with explicit units and labels.
 - **Daily-summary reference:** conversational introductions and a clear next action. Make the next task or planning action easy to find.
 
@@ -17,23 +27,23 @@ Do not inherit tiny labels, faint text, hidden double-tap gestures, decorative m
 
 | Role | Value | Use |
 | --- | --- | --- |
-| Canvas / chalk | #F8F9F5 | Full-page background |
-| Surface / milk | #FFFFFD | Forms, task cards, dialogs |
-| Secondary / sage mist | #EEF1E6 | Selected groups, supporting areas |
-| Primary ink / charcoal | #30372F | Text and icons |
-| Primary action / pale sage | #DDE5CF | Button fill with charcoal text |
-| Secondary ink / olive gray | #5D6659 | Helper text and metadata |
-| Control boundary | #7D8771 | Essential input and control boundaries |
-| Divider | #E2E7DC | Decorative separators only |
+| Canvas / ivory | #FCFAF7 | Full-page background |
+| Surface / white | #FFFFFF | Forms, task cards, dialogs |
+| Secondary / warm cream | #F7F2EB | Selected groups, supporting areas |
+| Primary ink / charcoal | #38322E | Text and icons |
+| Primary action / soft peach | #F0DDC9 | Button fill with charcoal text |
+| Secondary ink / warm gray | #6B625B | Helper text and metadata |
+| Control boundary | #8C7E72 | Essential input and control boundaries |
+| Divider | #E6DFD7 | Decorative separators only |
 | Warm accent / oat | #F1D8B9 | Forecast illustration, never small text |
 | Warm wash | #FBF5E9 | Forecast background |
-| Cool accent / mist blue | #E8F0ED | Comparative weather illustration |
+| Comparison accent / neutral stone | #EEEAE5 | Comparative weather illustration |
 | Warning ink / ochre | #76501F | Warning text on #FFF0D6 |
 | Error ink / brick | #A13228 | Error text on #FBE9E5 |
 
-Keep the overall interface predominantly white and off-white with pale sage controls. The weather panel is the concentrated warm-color area. Keep this direction light regardless of system appearance. This is a composition guide, not a quota. White or pale text must not sit directly on a pale gradient. Keep a solid text zone inside atmospheric cards.
+Keep the overall interface predominantly white and off-white with soft peach controls. The weather panel is the concentrated warm-color area; the logo uses a restrained coral-to-orange gradient. Avoid green, sage, olive, or mint undertones in surfaces, ink, shadows, and controls. Keep this direction light regardless of system appearance. This is a composition guide, not a quota. White or pale text must not sit directly on a pale gradient. Keep a solid text zone inside atmospheric cards.
 
-Use semantic color names in code. Oat is forecast context, not a universal warning. Sage indicates selection or an ordinary completed action, never a guarantee of safe working conditions. Pair every status with a label and, where useful, an icon.
+Use semantic color names in code. Oat is forecast context, not a universal warning. A neutral selected surface indicates selection or an ordinary completed action, never a guarantee of safe working conditions. Pair every status with a label and, where useful, an icon.
 
 ## Typography and spacing
 
@@ -51,7 +61,7 @@ Cards use 24px corners; featured forecast panels use 32px; fields use 12px; shor
 
 **Schedule comparison.** Keep Original and Proposed on the same time scale with the same task identities. Use solid, readable blocks with direct labels. Breaks and paid availability remain visible. Show the actual metric as “Outdoor minutes in the three hottest forecast hours,” followed by original → proposed. Show “No reduction found” when appropriate. Never replace this measure with “safety score,” “risk reduced,” or an unsupported percentage.
 
-**Primary action.** Pale sage fill (#DDE5CF) with charcoal text (#30372F), 48px minimum height, one primary action per stage. Use concrete labels: “Review tasks,” “Compare schedules,” “Review crew briefing,” and “Copy briefing.” Loading keeps the button width stable and replaces its label with the actual operation. Secondary actions use neutral surfaces and a visible boundary.
+**Primary action.** Soft peach fill (#F0DDC9) with charcoal text (#38322E), 48px minimum height, one primary action per stage. Use concrete labels: “Review tasks,” “Compare schedules,” “Review crew briefing,” and “Copy briefing.” Loading keeps the button width stable and replaces its label with the actual operation. Secondary actions use neutral surfaces and a visible boundary.
 
 **Crew briefing.** Put the date and approved schedule first. Make English and Español explicit text choices. Present times and tasks in a scan-friendly list; maintain room for Spanish copy expansion. Keep copy/download actions near the content. A success message must describe what actually happened: “Briefing copied,” not “Crew notified.”
 
@@ -77,17 +87,18 @@ Use 160ms feedback for buttons and selection, and 240ms for expanding cards, wit
 
 Review final screens at 320px, 390px, 768px and desktop widths, at 200% text zoom, and with keyboard focus. Verify contrast on actual rendered gradients, not only token pairs. The palette's small-text pairs are intended to meet at least 4.5:1; essential control boundaries should meet 3:1. This guide is not a claim that the existing app has passed an accessibility audit.
 
-Reusable direction: “Use Soft Signal: chalk canvas, milk cards, sage selections, charcoal typography, a contained yellow-to-orange-to-red temperature-driven forecast glow, generous spacing, readable operational text, 24px cards, 48px controls, and one clear next action. Preserve all scheduling facts and label forecast uncertainty.”
+Reusable direction: “Use Soft Signal: warm ivory canvas, white cards, cream selections, charcoal typography, a contained yellow-to-orange-to-red temperature-driven forecast glow, generous spacing, readable operational text, 24px cards, 48px controls, and one clear next action. Preserve all scheduling facts and label forecast uncertainty.”
 
 ## Review assets and checks
 
 - [Standalone visual specimen](preview.html): open the downloaded file in a browser. Values are illustrative. The task button expands example details; the demo temperature slider previews the sun spectrum. The specimen stays light in both system appearances.
 - [CSS tokens](tokens.css): proposed variables, not imported by the application.
-- Specimen checked with Chrome at 320, 390, 768 and 1100px: no horizontal overflow; task expansion passed. Desktop screenshot visually reviewed.
-- Calculated light-theme contrast: primary text/canvas 11.59:1, secondary text/canvas 5.66:1, secondary text/sage 5.23:1, primary button text/fill 9.45:1, control boundary/milk 3.76:1. These checks do not replace a rendered application accessibility review.
+- Revised warm-neutral specimen visually inspected in the desktop browser; the approved PNG was verified byte-for-byte against the selected image.
+- Prior sage version: Chrome layout and task-expansion checks passed at 320, 390, 768 and 1100px. Those historical checks do not verify the revised palette.
+- Revised palette calculated contrast: text/canvas 12.11:1; text-secondary/canvas 5.72:1; text-secondary/surface-secondary 5.35:1; on-primary/primary 9.55:1; control-border/surface 3.93:1; focus/canvas 6.34:1. These calculations do not replace a rendered application accessibility review.
 
 ### Temperature-color implementation
 
 Linearly interpolate each RGB channel between the two surrounding temperature anchors and round to the nearest integer. Assign the resulting color to `--hs-forecast-color` on the forecast component. Keep the original value and unit in the numeric label, even outside the visual range. Do not apply this scale to error messages or imply that yellow conditions are safe. The specimen slider changes illustrative values only; it does not change the forecast.
 
-Temperature specimen checks: 75°F, 90°F and 105°F map to the specified anchor colors and update the displayed value. Responsive layouts passed at 320, 390, 768 and 1100px. Dark-brown weather text contrast is 9.04:1 on yellow, 6.59:1 on orange, 5.13:1 on red and 12.15:1 on the pale gradient endpoint.
+Temperature specimen checks: 75°F, 90°F and 105°F map to the specified anchor colors and update the displayed value. Responsive layout checks above refer to the prior version. Dark-brown weather text contrast is 9.04:1 on yellow, 6.59:1 on orange, 5.13:1 on red and 12.15:1 on the pale gradient endpoint.

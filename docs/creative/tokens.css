@@ -1,23 +1,26 @@
-/* Proposed HeatShift / kruu design tokens. Import only when applying the design. */
+/* Kruu warm-neutral direction. Opt-in tokens; not imported by the app. */
 :root {
   color-scheme: light;
-  --hs-canvas: #f8f9f5;
-  --hs-surface: #fffffd;
-  --hs-surface-secondary: #eef1e6;
-  --hs-text: #30372f;
-  --hs-text-secondary: #5d6659;
-  --hs-divider: #e2e7dc;
-  --hs-control-border: #7d8771;
-  --hs-primary: #dde5cf;
-  --hs-on-primary: #30372f;
+  --hs-canvas: #fcfaf7;
+  --hs-surface: #ffffff;
+  --hs-surface-secondary: #f7f2eb;
+  --hs-text: #38322e;
+  --hs-text-secondary: #6b625b;
+  --hs-divider: #e6dfd7;
+  --hs-control-border: #8c7e72;
+  --hs-primary: #f0ddc9;
+  --hs-on-primary: #38322e;
+  --hs-brand-coral: #e9826d;
+  --hs-brand-orange: #f2a34f;
+  --hs-brand-gradient: linear-gradient(90deg, var(--hs-brand-coral), var(--hs-brand-orange));
   --hs-warm: #f1d8b9;
   --hs-warm-wash: #fbf5e9;
-  --hs-cool: #e8f0ed;
+  --hs-cool: #eeeae5;
   --hs-warning-text: #76501f;
   --hs-warning-surface: #fff0d6;
   --hs-error-text: #a13228;
   --hs-error-surface: #fbe9e5;
-  --hs-focus: #53643e;
+  --hs-focus: #805237;
   --hs-font-body: 'DM Sans', system-ui, sans-serif;
   --hs-font-heading: 'Manrope', system-ui, sans-serif;
   --hs-type-meta: 0.75rem;
@@ -38,7 +41,7 @@
   --hs-radius-hero: 32px;
   --hs-radius-pill: 999px;
   --hs-control-height: 48px;
-  --hs-shadow: 0 8px 28px rgb(41 55 43 / 3%);
+  --hs-shadow: 0 8px 28px rgb(56 50 46 / 3%);
   --hs-duration-feedback: 160ms;
   --hs-duration-expand: 240ms;
   --hs-ease: cubic-bezier(0.2, 0.8, 0.2, 1);

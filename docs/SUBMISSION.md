@@ -40,3 +40,7 @@ Allow one minute for questions. Record a backup demonstration while the working 
 ## Judging
 
 The on-site slide supplied by the team scores each criterion from 1–10: community impact 30%, working build 25%, AI/data 20%, originality/craft 15%, and demo clarity 10%. Its scoring scale supersedes the earlier written guide. Prioritize the specific user, a live core flow, and verifiable AI/data work.
+
+## Creative asset disclosure notes
+
+The Kruu ripple-sun brand mockup in `docs/creative/assets/kruu-warm-neutral-logo.png` was produced with the built-in OpenAI image generation tool, using user-supplied visual references and iterative direction from Faye. It is a visual concept, not a production vector or verified font rendering. Include this asset workflow when completing organizer-required tooling disclosures; the disclosure checklist remains pending.
