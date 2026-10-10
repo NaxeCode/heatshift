@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import {
   ArrowRight,
   ArrowUpRight,
+  ClipboardList,
   Check,
   CheckCircle2,
   ChevronDown,
@@ -300,36 +301,61 @@ export default function Planner() {
                   }}
                 />
               </div>
-              <div className="work-order-label">
-                <label htmlFor="work-order">Work order</label>
-                <button
-                  className="text-button"
-                  onClick={() => {
-                    setWorkOrder(SAMPLE);
+              <section className="work-order-card" aria-labelledby="work-order-title">
+                <div className="work-order-intro">
+                  <span className="work-order-icon" aria-hidden="true">
+                    <ClipboardList size={21} />
+                  </span>
+                  <div>
+                    <span className="work-order-step">01 / THE WORK</span>
+                    <h3 id="work-order-title">Describe the work</h3>
+                  </div>
+                </div>
+                <p className="work-order-lead">
+                  Paste a work order or edit the example. You will review every task before comparing schedules.
+                </p>
+                <div className="work-order-guide" aria-label="What to include">
+                  <span><Check size={14} aria-hidden="true" />Task and time</span>
+                  <span><Check size={14} aria-hidden="true" />Inside or outside</span>
+                  <span><Check size={14} aria-hidden="true" />Fixed commitments</span>
+                </div>
+                <div className="work-order-label">
+                  <label htmlFor="work-order">Work order</label>
+                  <button
+                    type="button"
+                    className="text-button"
+                    onClick={() => {
+                      setWorkOrder(SAMPLE);
+                      setTasks([]);
+                      setQuestions([]);
+                      invalidate();
+                    }}
+                  >
+                    Use example
+                  </button>
+                </div>
+                <textarea
+                  id="work-order"
+                  aria-describedby="work-order-help"
+                  value={workOrder}
+                  maxLength={6000}
+                  rows={11}
+                  placeholder="For each task, add its start time, duration, location, and any timing limits."
+                  onChange={(e) => {
+                    setWorkOrder(e.target.value);
                     setTasks([]);
                     setQuestions([]);
                     invalidate();
                   }}
-                >
-                  Use example
-                </button>
-              </div>
-              <textarea
-                id="work-order"
-                value={workOrder}
-                maxLength={6000}
-                rows={11}
-                onChange={(e) => {
-                  setWorkOrder(e.target.value);
-                  setTasks([]);
-                  setQuestions([]);
-                  invalidate();
-                }}
-              />
-              <p className="input-help">
-                Include each task’s duration, original start, indoor/outdoor setting, and any
-                constraints. Leave out personal details.
-              </p>
+                />
+                <div className="work-order-meta">
+                  <span>{workOrder === SAMPLE ? 'Fictional example · editable' : 'Your work order'}</span>
+                  <span>{workOrder.length.toLocaleString()} / 6,000</span>
+                </div>
+                <p className="input-help" id="work-order-help">
+                  Include original times, task durations and constraints. Leave out worker names and client details.
+                </p>
+              </section>
               <button
                 className="primary extract-button"
                 onClick={extract}
