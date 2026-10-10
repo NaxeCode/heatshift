@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HeatShift — cooling-site finder concept</title>
+  <style>
+    :root { color-scheme:light; --ink:#1e302c; --muted:#52645f; --cream:#f5f3ea; --paper:#fffcf5; --line:#d8dfd6; --sun:#f47748; --pale:#fff0e1; --sea:#dceef0; --deep:#22464c; --shadow:0 18px 55px rgba(35,55,47,.09); }
+    * { box-sizing:border-box; }
+    [hidden] { display:none !important; }
+    body { margin:0; background:var(--cream); color:var(--ink); font:16px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif; }
+    a { color:var(--deep); }
+    button,input { font:inherit; }
+    button:focus-visible,input:focus-visible,a:focus-visible { outline:3px solid #ab4d20; outline-offset:3px; }
+    .study { padding:9px 18px; text-align:center; color:#fff; background:#223c37; font-size:.76rem; font-weight:800; letter-spacing:.07em; text-transform:uppercase; }
+    .study b { color:#ffd9bb; }
+    .wrap { max-width:1160px; margin:auto; padding:0 24px 70px; }
+    header { display:flex; justify-content:space-between; align-items:center; gap:15px; padding:22px 0; }
+    .brand { display:flex; gap:10px; align-items:center; font-size:1.2rem; font-weight:900; letter-spacing:-.04em; }
+    .mark { width:29px; height:29px; background:var(--sun); border-radius:50%; box-shadow:inset -7px -6px 0 #cb532e; }
+    header a { text-decoration:none; font-size:.85rem; font-weight:750; }
+    .hero { display:grid; grid-template-columns:1.4fr .6fr; gap:25px; align-items:end; padding:38px; border-radius:30px; background:linear-gradient(135deg,#fff4e5 5%,#ffe5d0 65%,#f5bd99); border:1px solid #f2ceb5; }
+    .eyebrow { margin:0 0 11px; color:#853e24; font-size:.8rem; font-weight:850; letter-spacing:.12em; text-transform:uppercase; }
+    h1 { margin:0; max-width:680px; font-size:clamp(2.35rem,5vw,4.5rem); line-height:1.02; letter-spacing:-.065em; }
+    .hero p:last-child { max-width:660px; margin:16px 0 0; color:#5f493e; font-size:1.04rem; }
+    .hero-note { padding:18px; background:rgba(255,255,255,.65); border:1px solid rgba(136,84,58,.24); border-radius:17px; font-size:.87rem; color:#63483c; }
+    .hero-note strong { display:block; margin-bottom:5px; color:#593a2c; }
+    .panel { margin-top:23px; padding:27px; background:var(--paper); border:1px solid var(--line); border-radius:24px; box-shadow:var(--shadow); }
+    .panel-head { display:flex; align-items:start; justify-content:space-between; gap:22px; }
+    h2 { margin:0; font-size:1.4rem; line-height:1.15; letter-spacing:-.035em; }
+    .sub { margin:6px 0 0; color:var(--muted); font-size:.91rem; }
+    .source { white-space:nowrap; font-size:.82rem; font-weight:750; }
+    .controls { display:flex; flex-wrap:wrap; align-items:end; gap:15px; margin-top:24px; }
+    label { display:grid; gap:7px; flex:1 1 290px; font-size:.79rem; font-weight:850; color:var(--muted); }
+    input { width:100%; min-height:48px; padding:10px 14px; color:var(--ink); background:#fff; border:1px solid #bccbc2; border-radius:12px; }
+    .filters { display:flex; flex-wrap:wrap; gap:7px; }
+    .filter { min-height:42px; border:1px solid #b9c8be; border-radius:100px; padding:8px 14px; color:var(--ink); background:#fff; font-size:.85rem; font-weight:800; cursor:pointer; }
+    .filter[aria-pressed="true"] { background:#24443e; color:#fff; border-color:#24443e; }
+    .status { display:flex; flex-wrap:wrap; justify-content:space-between; gap:8px; margin:21px 0 12px; color:var(--muted); font-size:.82rem; }
+    .status strong { color:var(--ink); }
+    .sites { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
+    article { min-width:0; display:flex; flex-direction:column; padding:20px; background:#fff; border:1px solid var(--line); border-radius:19px; }
+    .badge { width:max-content; padding:5px 9px; border-radius:100px; background:var(--sea); color:#24545a; font-size:.73rem; font-weight:850; }
+    .badge.seasonal { background:#ffeadc; color:#90452a; }
+    article h3 { margin:12px 0 3px; font-size:1.19rem; line-height:1.18; letter-spacing:-.025em; }
+    .address { margin:0; color:var(--muted); font-size:.87rem; }
+    .hours { margin:17px 0 0; padding-top:14px; border-top:1px solid #e4e9e1; font-size:.84rem; }
+    .hours b { display:block; margin-bottom:5px; }
+    .hours span { color:#42564d; }
+    .actions { display:flex; flex-wrap:wrap; gap:8px; margin-top:auto; padding-top:18px; }
+    .actions a { display:inline-block; padding:9px 11px; border-radius:10px; background:#eff5f2; text-decoration:none; font-size:.82rem; font-weight:850; }
+    .actions a:first-child { color:#fff; background:var(--deep); }
+    .empty { padding:28px; text-align:center; border:1px dashed #b6c8ba; border-radius:16px; color:var(--muted); }
+    .caution { display:flex; gap:12px; align-items:start; margin-top:18px; padding:15px; border-radius:14px; background:var(--pale); color:#684234; font-size:.87rem; }
+    .caution b { white-space:nowrap; }
+    footer { padding:23px 3px; color:var(--muted); font-size:.78rem; }
+    @media(max-width:760px) { .hero { grid-template-columns:1fr; padding:27px; } .panel-head { display:block; } .source { display:inline-block; margin-top:11px; } .sites { grid-template-columns:1fr; } }
+    @media(max-width:460px) { .wrap { padding:0 14px 40px; } header { padding:17px 0; } .hero { padding:22px; border-radius:21px; } .panel { padding:18px; border-radius:19px; } .caution { display:block; } .caution b { display:block; margin-bottom:4px; } }
+  </style>
+</head>
+<body>
+  <div class="study"><b>Interactive design study</b> · Dated sample listings · Not connected to live county data</div>
+  <div class="wrap">
+    <header><div class="brand"><span class="mark" aria-hidden="true"></span>HeatShift</div><a href="https://www.miamidade.gov/initiative/weather-ready/extreme-heat/cooling-sites.page">Official county directory ↗</a></header>
+    <main>
+      <section class="hero" aria-labelledby="title">
+        <div><p class="eyebrow">Miami-Dade · Resident view</p><h1 id="title">Find a place to cool off.</h1><p>Search the county's published cooling-site directory without losing your place in the heat forecast.</p></div>
+        <div class="hero-note"><strong>Before you go</strong>Hours can change for holidays or closures. Call the site to confirm today's hours and access. If you need urgent medical assistance, call 911.</div>
+      </section>
+      <section class="panel" aria-labelledby="finder-title">
+        <div class="panel-head"><div><h2 id="finder-title">Explore cooling sites</h2><p class="sub">Search a name, city or ZIP. This concept includes four examples from the county page checked October 10, 2026, not the full directory.</p></div><a class="source" href="https://www.miamidade.gov/initiative/weather-ready/extreme-heat/cooling-sites.page">View all sites at Miami-Dade ↗</a></div>
+        <div class="controls"><label for="search">Name, city or ZIP<input id="search" type="search" placeholder="Try 33130 or library" autocomplete="off"></label><div class="filters" role="group" aria-label="Filter by site type"><button class="filter" type="button" data-filter="all" aria-pressed="true">All</button><button class="filter" type="button" data-filter="library" aria-pressed="false">Libraries</button><button class="filter" type="button" data-filter="park" aria-pressed="false">Parks</button><button class="filter" type="button" data-filter="other" aria-pressed="false">Other</button></div></div>
+        <div class="status"><span id="count" role="status" aria-live="polite">4 sample sites</span><span>Sample checked: Oct 10, 2026 · Live sync not implemented</span></div>
+        <div class="sites" id="sites">
+          <article data-type="library" data-search="arcola lakes library miami 33150"><span class="badge">Public library</span><h3>Arcola Lakes</h3><p class="address">8240 NW 7th Avenue · Miami, FL 33150</p><p class="hours"><b>Published hours</b><span>Mon–Thu 9:30 AM–8 PM; Fri–Sat 9:30 AM–6 PM; Sunday closed</span></p><div class="actions"><a href="tel:+13056942707">Call 305-694-2707</a><a href="https://www.google.com/maps/search/?api=1&amp;query=8240+NW+7th+Avenue+Miami+FL+33150">Directions ↗</a></div></article>
+          <article data-type="library" data-search="main library miami 33130"><span class="badge">Public library</span><h3>Main Library</h3><p class="address">101 West Flagler Street · Miami, FL 33130</p><p class="hours"><b>Published hours</b><span>Mon–Sat 9:30 AM–6 PM; Sunday closed</span></p><div class="actions"><a href="tel:+13053752665">Call 305-375-2665</a><a href="https://www.google.com/maps/search/?api=1&amp;query=101+West+Flagler+Street+Miami+FL+33130">Directions ↗</a></div></article>
+          <article data-type="park" data-search="tropical park mary abreu community center miami 33155"><span class="badge">County park</span><h3>Tropical Park · Mary Abreu Community Center</h3><p class="address">7900 SW 40th Street · Miami, FL 33155</p><p class="hours"><b>Published hours</b><span>Daily 10 AM–8 PM</span></p><div class="actions"><a href="tel:+13052268315">Call 305-226-8315</a><a href="https://www.google.com/maps/search/?api=1&amp;query=7900+SW+40th+Street+Miami+FL+33155">Directions ↗</a></div></article>
+          <article data-type="park" data-search="grapeland water park miami 33125"><span class="badge seasonal">Seasonal · confirm first</span><h3>Grapeland Water Park</h3><p class="address">1550 NW 37th Avenue · Miami, FL 33125</p><p class="hours"><b>Published season and hours</b><span>May 23–Aug 16, daily 10 AM–5 PM. Outside that stated season in October.</span></p><div class="actions"><a href="tel:+13059602950">Call 305-960-2950</a><a href="https://www.google.com/maps/search/?api=1&amp;query=1550+NW+37th+Avenue+Miami+FL+33125">Directions ↗</a></div></article>
+        </div>
+        <p class="empty" id="empty" hidden>No sample site matches. <a href="https://www.miamidade.gov/initiative/weather-ready/extreme-heat/cooling-sites.page">Search the full county directory ↗</a></p>
+        <div class="caution"><b>Check before travel</b><span>These four cards are a static design sample. They do not confirm a site is open, accessible or has space. A released finder must sync and validate the official directory, show its check time, and keep the county source link.</span></div>
+      </section>
+    </main>
+    <footer>Concept for team review, October 10, 2026. Interactive search and type filters operate on four dated sample entries only. Read the <a href="COOLING_SITE_FINDER.md">data and release proposal</a>.</footer>
+  </div>
+  <script>
+    const search = document.querySelector('#search');
+    const filters = [...document.querySelectorAll('.filter')];
+    const cards = [...document.querySelectorAll('#sites article')];
+    const count = document.querySelector('#count');
+    const empty = document.querySelector('#empty');
+    let type = 'all';
+    function render() {
+      const q = search.value.trim().toLocaleLowerCase();
+      let visible = 0;
+      for (const card of cards) {
+        const match = (type === 'all' || card.dataset.type === type) && card.dataset.search.includes(q);
+        card.hidden = !match;
+        if (match) visible++;
+      }
+      count.textContent = `${visible} sample ${visible === 1 ? 'site' : 'sites'}`;
+      empty.hidden = visible > 0;
+    }
+    search.addEventListener('input', render);
+    for (const button of filters) button.addEventListener('click', () => {
+      type = button.dataset.filter;
+      for (const item of filters) item.setAttribute('aria-pressed', String(item === button));
+      render();
+    });
+  </script>
+</body>
+</html>
+

@@ -3,8 +3,10 @@ import { connection } from 'next/server';
 import { ArrowLeft, ArrowUpRight, MapPin, RefreshCw, ThermometerSun } from 'lucide-react';
 import Brand from '@/components/brand';
 import ForecastSummary from '@/components/forecast-summary';
+import CoolingSiteFinder from './cooling-site-finder';
 import { displayTime, type Forecast, ZONE } from '@/lib/contracts';
 import { remainingCommunityHours } from '@/lib/community-hours';
+import { getCoolingDirectory } from '@/lib/cooling-sites';
 import { getForecast, localTime } from '@/lib/weather';
 import styles from './community.module.css';
 
@@ -30,12 +32,12 @@ export default async function CommunityPage() {
   await connection();
   const requestedAt = new Date();
   const date = localTime(requestedAt.toISOString()).date;
-  let forecast: Forecast | null = null;
-  try {
-    forecast = await getForecast(date);
-  } catch {
-    // Official resources remain usable when weather is unavailable, incomplete or stale.
-  }
+  const [forecastResult, directoryResult] = await Promise.allSettled([
+    getForecast(date),
+    getCoolingDirectory(),
+  ]);
+  const forecast: Forecast | null = forecastResult.status === 'fulfilled' ? forecastResult.value : null;
+  const directory = directoryResult.status === 'fulfilled' ? directoryResult.value : null;
   const renderedAt = new Date();
   const periods = forecast ? remainingCommunityHours(forecast, renderedAt.getTime()) : [];
   const hours = periods.flatMap((period) => (period.forecast ? [period.forecast] : []));
@@ -77,6 +79,8 @@ export default async function CommunityPage() {
             <time dateTime={date}>{dateLabel}</time> · Eastern time
           </p>
         </section>
+
+        <CoolingSiteFinder directory={directory} />
 
         <div className={styles.grid}>
           <section
@@ -221,3 +225,4 @@ export default async function CommunityPage() {
     </>
   );
 }
+
