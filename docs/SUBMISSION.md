@@ -13,8 +13,8 @@ Prepared handoff: [submission text for team review](SUBMISSION_DRAFT.md) and [tw
 - [ ] Repository remains public after the event.
 - [ ] README contains final team names, primary track, data sources, exact runtime model and tested run instructions.
 - [ ] Organizer-required AI tooling and model disclosures completed accurately. Development-tool disclosure is pending; keep it in the submission workflow rather than product or team messaging.
-- [x] Four Forces, One City / Fire prepared in the unsaved browser form.
-- [x] Best Open-Source AI Project and Best Use of Gemma 4 prepared in the unsaved browser form; implementation evidence verified.
+- [x] Four Forces, One City / Fire prepared in the saved draft form.
+- [x] Best Open-Source AI Project and Best Use of Gemma 4 prepared in the saved draft form; implementation evidence verified.
 - [ ] Submission receipt verified.
 
 ## Evidence for the partner challenges

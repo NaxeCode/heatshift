@@ -1,8 +1,8 @@
 # Kruu submission draft
 
-Prepared October 10, 2026. **Not saved or submitted.** Aladdin must explicitly authorize final submission. The browser form has the project name, source, description, technologies, live app and three prize categories prepared. A local copy is not a submission receipt.
+Prepared October 10, 2026. **Saved as a draft; not submitted.** Aladdin must explicitly authorize final submission. The saved browser form has the project name, source, description, technologies, live app and three prize categories prepared. Saving a draft is not a submission receipt.
 
-The event page confirms Aladdin is checked in. Other members’ check-in and their association with the entry remain unverified. The form says a draft must be saved before inviting teammates. The published guide locks teams at 10:45 AM; ask the organizer about any unrecorded roster rather than claiming it is approved.
+The event page confirms Aladdin is checked in. Other members’ check-in and their association with the entry remain unverified. Aladdin authorized saving the draft and inviting all three teammates. The private invitation was sent in the team group at approximately 3:18 PM; acceptance remains unverified. The published guide locks teams at 10:45 AM; ask the organizer about any unrecorded roster rather than claiming it is approved.
 
 ## Deadline discrepancy
 
@@ -40,7 +40,7 @@ The production workflow has been exercised with real Gemma calls and live NWS da
 
 - Confirm the four-person registered roster and each member’s check-in.
 - Complete organizer-required development-tool/model disclosures accurately in the entry workflow; runtime technologies alone are not the full disclosure. The form labels coding-tool fields optional, while the guide asks teams to list tools used.
-- Review all fields and obtain Aladdin’s separate authorization before saving a draft or submitting.
+- Review all fields and obtain Aladdin’s separate authorization before submitting.
 - After authorized submission, verify the receipt and final category selections.
 
 The selected backup video is Faye’s cut with the contributor/link ending: 43.6 seconds, H.264/AAC, with corrected Creative Direction and Community Impact titles. It remains a local team handoff, not a hosted video link or a submitted entry.
