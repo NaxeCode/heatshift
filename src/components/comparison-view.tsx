@@ -176,7 +176,13 @@ export default function ComparisonView({
             </span>
           </div>
         </div>
-        <div className="chart-scroll">
+        <p className="scroll-hint">Scroll horizontally to see the full shift.</p>
+        <div
+          className="chart-scroll"
+          tabIndex={0}
+          role="region"
+          aria-label="Scrollable forecast and schedule timelines"
+        >
           <div className="chart-inner">
             <div className="forecast-row">
               <div className="forecast-caption">
@@ -226,7 +232,7 @@ export default function ComparisonView({
           </span>
         </div>
       </div>
-      <details className="method">
+      <details className="method" open>
         <summary>
           See the schedule & how we compare <ChevronDown size={16} />
         </summary>
@@ -253,17 +259,17 @@ export default function ComparisonView({
                     o = r.original.find((o) => o.id === p.id)!;
                   return (
                     <tr key={p.id}>
-                      <td>
+                      <td data-label="Task">
                         {t.title}
                         <small>{t.environment}</small>
                       </td>
-                      <td>
+                      <td data-label="Original">
                         {displayTime(o.start)}–{displayTime(o.end)}
                       </td>
-                      <td>
+                      <td data-label="Proposed">
                         {displayTime(p.start)}–{displayTime(p.end)}
                       </td>
-                      <td>{t.duration}</td>
+                      <td data-label="Minutes">{t.duration}</td>
                     </tr>
                   );
                 })}

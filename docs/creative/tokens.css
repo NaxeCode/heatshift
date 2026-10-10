@@ -1,26 +1,31 @@
-/* Kruu warm-neutral direction. Opt-in tokens; not imported by the app. */
+/* kruu Soft Signal / Warm design tokens. Canonical copy: src/app/tokens.css. */
 :root {
   color-scheme: only light;
-  --hs-canvas: #fcfaf7;
-  --hs-surface: #ffffff;
-  --hs-surface-secondary: #f7f2eb;
-  --hs-text: #38322e;
-  --hs-text-secondary: #6b625b;
-  --hs-divider: #e6dfd7;
-  --hs-control-border: #8c7e72;
-  --hs-primary: #f0ddc9;
-  --hs-on-primary: #38322e;
+  --hs-canvas: #fbf6ef;
+  --hs-surface: #fffcf7;
+  --hs-surface-secondary: #f3e5d6;
+  --hs-text: #3e2c23;
+  --hs-text-secondary: #766052;
+  --hs-divider: #e7d6c6;
+  --hs-control-border: #a18470;
+  --hs-primary: #f2c4a8;
+  --hs-primary-hover: #eab18d;
+  --hs-accent: #985336;
+  --hs-outdoor: #f2c4a8;
+  --hs-indoor: #e5d6c4;
+  --hs-break: #d9c8b8;
   --hs-brand-coral: #e9826d;
   --hs-brand-orange: #f2a34f;
   --hs-brand-gradient: linear-gradient(90deg, var(--hs-brand-coral), var(--hs-brand-orange));
-  --hs-warm: #f1d8b9;
-  --hs-warm-wash: #fbf5e9;
-  --hs-cool: #eeeae5;
+  --hs-on-primary: #3e2c23;
+  --hs-warm: #f2c4a8;
+  --hs-warm-wash: #fff1dc;
+  --hs-cool: #e5d6c4;
   --hs-warning-text: #76501f;
   --hs-warning-surface: #fff0d6;
   --hs-error-text: #a13228;
   --hs-error-surface: #fbe9e5;
-  --hs-focus: #805237;
+  --hs-focus: #985336;
   --hs-font-body: 'DM Sans', system-ui, sans-serif;
   --hs-font-heading: 'Manrope', system-ui, sans-serif;
   --hs-type-meta: 0.75rem;
@@ -41,7 +46,7 @@
   --hs-radius-hero: 32px;
   --hs-radius-pill: 999px;
   --hs-control-height: 48px;
-  --hs-shadow: 0 8px 28px rgb(56 50 46 / 3%);
+  --hs-shadow: 0 8px 28px rgb(62 44 35 / 3%);
   --hs-duration-feedback: 160ms;
   --hs-duration-expand: 240ms;
   --hs-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
@@ -51,10 +56,23 @@
   --hs-sun-red: #e9826d; /* 105°F / 40.6°C */
   --hs-forecast-color: var(--hs-sun-orange);
   --hs-forecast-text: #382b22;
-  --hs-forecast-glow: radial-gradient(ellipse at 85% 85%, var(--hs-forecast-color), transparent 78%), linear-gradient(145deg, #fff1c9, var(--hs-forecast-color));
+  --hs-forecast-glow:
+    radial-gradient(ellipse at 85% 85%, var(--hs-forecast-color), transparent 78%),
+    linear-gradient(145deg, #fff1c9, var(--hs-forecast-color));
 }
-.hs-surface { background: var(--hs-surface); color: var(--hs-text); border-radius: var(--hs-radius-card); }
-.hs-forecast { background: var(--hs-forecast-glow); color: var(--hs-forecast-text); border-radius: var(--hs-radius-hero); }
+.hs-surface {
+  background: var(--hs-surface);
+  color: var(--hs-text);
+  border-radius: var(--hs-radius-card);
+}
+.hs-forecast {
+  background: var(--hs-forecast-glow);
+  color: var(--hs-forecast-text);
+  border-radius: var(--hs-radius-hero);
+}
 @media (prefers-reduced-motion: reduce) {
-  :root { --hs-duration-feedback: 0ms; --hs-duration-expand: 0ms; }
+  :root {
+    --hs-duration-feedback: 0ms;
+    --hs-duration-expand: 0ms;
+  }
 }
