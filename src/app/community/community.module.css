@@ -2,6 +2,183 @@
   max-width: 1200px;
   padding-bottom: 48px;
 }
+.finder {
+  margin: 0 0 40px;
+  padding: 28px;
+  border: 1px solid var(--hs-divider);
+  border-radius: var(--hs-radius-card);
+  background: var(--hs-surface);
+  box-shadow: var(--hs-shadow);
+}
+.finderHeader,
+.finderStatus {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 20px;
+}
+.finderHeader h2 {
+  margin: 10px 0;
+  font-size: var(--hs-type-section);
+  font-weight: 500;
+}
+.finderHeader p:not(:first-child),
+.finderStatus,
+.siteAddress,
+.siteHours,
+.finderCaution {
+  color: var(--hs-text-secondary);
+}
+.finderHeader p:not(:first-child) {
+  max-width: 620px;
+}
+.finderSource {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+  min-height: var(--hs-control-height);
+  font-size: var(--hs-type-label);
+}
+.finderControls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 16px;
+  margin-top: 24px;
+}
+.finderSearch {
+  display: grid;
+  gap: 7px;
+  flex: 1 1 290px;
+  font-size: var(--hs-type-label);
+}
+.finderInputWrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: var(--hs-control-height);
+  padding: 0 12px;
+  border: 1px solid var(--hs-control-border);
+  border-radius: var(--hs-radius-pill);
+  background: var(--hs-surface);
+}
+.finderInputWrap input {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--hs-text);
+  font: inherit;
+}
+.finderInputWrap:focus-within {
+  outline: 2px solid var(--hs-primary);
+  outline-offset: 2px;
+}
+.finderFilters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.finderFilters button,
+.showMore {
+  min-height: var(--hs-control-height);
+  padding: 10px 14px;
+  border: 1px solid var(--hs-control-border);
+  border-radius: var(--hs-radius-pill);
+  background: var(--hs-surface);
+  color: var(--hs-text);
+  font: inherit;
+  font-size: var(--hs-type-label);
+  cursor: pointer;
+}
+.finderFilters button[aria-pressed='true'] {
+  background: var(--hs-primary);
+  color: var(--hs-on-primary);
+}
+.finderStatus {
+  margin: 20px 0 12px;
+  font-size: var(--hs-type-meta);
+}
+.siteGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.siteCard {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 20px;
+  border: 1px solid var(--hs-divider);
+  border-radius: var(--hs-radius-card);
+  background: var(--hs-surface-secondary);
+}
+.siteType {
+  width: fit-content;
+  padding: 4px 10px;
+  border-radius: var(--hs-radius-pill);
+  background: var(--hs-surface);
+  color: var(--hs-text-secondary);
+  font-size: var(--hs-type-meta);
+}
+.siteCard h3 {
+  margin: 12px 0 7px;
+  font-size: var(--hs-type-body);
+  font-weight: 600;
+}
+.siteAddress {
+  display: flex;
+  gap: 7px;
+  align-items: start;
+  font-size: var(--hs-type-label);
+}
+.siteAddress svg { flex-shrink: 0; margin-top: 2px; }
+.siteHours {
+  display: grid;
+  gap: 5px;
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid var(--hs-divider);
+  font-size: var(--hs-type-label);
+}
+.siteHours strong { color: var(--hs-text); }
+.siteActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 18px;
+}
+.siteActions a {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  min-height: 40px;
+  padding: 8px 12px;
+  border-radius: var(--hs-radius-pill);
+  background: var(--hs-surface);
+  color: var(--hs-text);
+  font-size: var(--hs-type-label);
+  text-decoration: none;
+}
+.siteActions a:first-child {
+  background: var(--hs-primary);
+  color: var(--hs-on-primary);
+}
+.showMore { display: block; margin: 18px auto 0; }
+.finderEmpty {
+  margin-top: 20px;
+  padding: 22px;
+  border: 1px dashed var(--hs-control-border);
+  border-radius: var(--hs-radius-card);
+  color: var(--hs-text-secondary);
+}
+.finderCaution {
+  margin-top: 20px;
+  font-size: var(--hs-type-meta);
+}
 .intro {
   padding: 48px 0 32px;
 }
@@ -191,6 +368,8 @@
   margin-bottom: 12px;
 }
 @media (max-width: 800px) {
+  .finderHeader { flex-direction: column; }
+  .siteGrid { grid-template-columns: 1fr; }
   .grid {
     grid-template-columns: 1fr;
     gap: 24px;
@@ -203,6 +382,8 @@
   }
 }
 @media (max-width: 520px) {
+  .finder { padding: 20px; }
+  .finderStatus { display: block; }
   .main {
     padding-inline: 20px;
   }
@@ -221,3 +402,4 @@
     align-items: start;
   }
 }
+
