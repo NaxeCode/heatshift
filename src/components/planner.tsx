@@ -269,13 +269,19 @@ export default function Planner() {
         )}
         <div className="workspace-grid">
           <section className="input-panel" ref={inputRef} aria-label="Work order and shift">
-            <div className="panel-heading">
-              <span className="mini-icon">
-                <ClipboardList size={21} />
-              </span>
-              <div>
-                <h2>The work ahead.</h2>
-                <p>One crew. One day. Up to four tasks.</p>
+            <div className="panel-heading work-ahead-heading">
+              <div className="work-ahead-kicker">
+                <span>YOUR CREW'S DAY</span>
+                <span className="work-ahead-limit">UP TO 4 TASKS</span>
+              </div>
+              <div className="work-ahead-heading-main">
+                <span className="mini-icon" aria-hidden="true">
+                  <ClipboardList size={21} />
+                </span>
+                <div>
+                  <h2>The work ahead.</h2>
+                  <p>Set the hours, then describe the work. You will confirm each task before comparing plans.</p>
+                </div>
               </div>
             </div>
             {tasks.length > 0 && (
@@ -307,113 +313,137 @@ export default function Planner() {
               id="input-fields"
               hidden={!inputExpanded}
             >
-              <div className="shift-settings">
-                <label className="field date-field">
-                  <span>Work date</span>
-                  <input
-                    type="date"
-                    value={date}
-                    min={loaded ? miamiDate() : undefined}
-                    max={loaded ? miamiDate(6) : undefined}
-                    onChange={(e) => {
-                      setDate(e.target.value);
-                      invalidate();
-                    }}
-                  />
-                </label>
-                <div className="shift-grid">
-                  <TimeField
-                    label="Paid shift starts"
-                    value={shift.shiftStart}
-                    onChange={(v) => {
-                      setShift((s) => ({ ...s, shiftStart: v! }));
-                      invalidate();
-                    }}
-                  />
-                  <TimeField
-                    label="Paid shift ends"
-                    value={shift.shiftEnd}
-                    onChange={(v) => {
-                      setShift((s) => ({ ...s, shiftEnd: v! }));
-                      invalidate();
-                    }}
-                  />
-                  <TimeField
-                    label="Fixed break starts"
-                    value={shift.breakStart}
-                    onChange={(v) => {
-                      setShift((s) => ({ ...s, breakStart: v! }));
-                      invalidate();
-                    }}
-                  />
-                  <TimeField
-                    label="Fixed break ends"
-                    value={shift.breakEnd}
-                    onChange={(v) => {
-                      setShift((s) => ({ ...s, breakEnd: v! }));
-                      invalidate();
-                    }}
-                  />
+              <section className="work-ahead-section shift-card" aria-labelledby="shift-card-title">
+                <div className="work-ahead-section-heading">
+                  <div>
+                    <span className="work-ahead-eyebrow">SHIFT DETAILS</span>
+                    <h3 id="shift-card-title">When is the crew working?</h3>
+                  </div>
+                  <Clock3 size={20} aria-hidden="true" />
                 </div>
-              </div>
-              <div className="work-order-label">
-                <label htmlFor="work-order">Describe the work</label>
-                <button
-                  className="text-button"
-                  onClick={() => {
-                    setWorkOrder(SAMPLE);
+                <div className="shift-settings">
+                  <label className="field date-field">
+                    <span>Work date</span>
+                    <input
+                      type="date"
+                      value={date}
+                      min={loaded ? miamiDate() : undefined}
+                      max={loaded ? miamiDate(6) : undefined}
+                      onChange={(e) => {
+                        setDate(e.target.value);
+                        invalidate();
+                      }}
+                    />
+                  </label>
+                  <div className="shift-grid">
+                    <TimeField
+                      label="Paid shift starts"
+                      value={shift.shiftStart}
+                      onChange={(v) => {
+                        setShift((s) => ({ ...s, shiftStart: v! }));
+                        invalidate();
+                      }}
+                    />
+                    <TimeField
+                      label="Paid shift ends"
+                      value={shift.shiftEnd}
+                      onChange={(v) => {
+                        setShift((s) => ({ ...s, shiftEnd: v! }));
+                        invalidate();
+                      }}
+                    />
+                    <TimeField
+                      label="Fixed break starts"
+                      value={shift.breakStart}
+                      onChange={(v) => {
+                        setShift((s) => ({ ...s, breakStart: v! }));
+                        invalidate();
+                      }}
+                    />
+                    <TimeField
+                      label="Fixed break ends"
+                      value={shift.breakEnd}
+                      onChange={(v) => {
+                        setShift((s) => ({ ...s, breakEnd: v! }));
+                        invalidate();
+                      }}
+                    />
+                  </div>
+                </div>
+              </section>
+              <section className="work-ahead-section work-order-card" aria-labelledby="work-order-title">
+                <div className="work-ahead-section-heading">
+                  <div>
+                    <span className="work-ahead-eyebrow">WORK ORDER</span>
+                    <h3 id="work-order-title">What needs to get done?</h3>
+                  </div>
+                  <ClipboardList size={20} aria-hidden="true" />
+                </div>
+                <p className="work-order-intro">Paste the work order or edit the fictional example. Keep the details your crew must work around.</p>
+                <div className="work-order-guide" aria-label="Useful details to include">
+                  <span><Check size={15} aria-hidden="true" />Task and time</span>
+                  <span><Check size={15} aria-hidden="true" />Inside or outside</span>
+                  <span><Check size={15} aria-hidden="true" />Fixed commitments</span>
+                </div>
+                <div className="work-order-label">
+                  <label htmlFor="work-order">Describe the work</label>
+                  <button
+                    className="text-button"
+                    onClick={() => {
+                      setWorkOrder(SAMPLE);
+                      setTasks([]);
+                      setQuestions([]);
+                      invalidate();
+                    }}
+                  >
+                    Use example
+                  </button>
+                </div>
+                <textarea
+                  id="work-order"
+                  aria-describedby="work-order-help work-order-kind"
+                  value={workOrder}
+                  maxLength={6000}
+                  rows={8}
+                  onChange={(e) => {
+                    setWorkOrder(e.target.value);
                     setTasks([]);
                     setQuestions([]);
                     invalidate();
                   }}
+                />
+                <div className="work-order-meta" id="work-order-kind">
+                  <span>
+                    {workOrder === SAMPLE ? 'Editable fictional example' : 'Your work order'}
+                  </span>
+                  <span>{workOrder.length.toLocaleString()} / 6,000</span>
+                </div>
+                <p className="input-help" id="work-order-help">
+                  Include each task’s duration, original start, indoor/outdoor setting, and any
+                  constraints. Leave out personal details.
+                </p>
+                <button
+                  className="primary extract-button"
+                  onClick={extract}
+                  disabled={!!busy || workOrder.trim().length < 20 || !date}
                 >
-                  Use example
+                  {busy === 'extract' ? (
+                    <LoaderCircle className="spin" size={18} />
+                  ) : (
+                    <Sparkles size={18} />
+                  )}{' '}
+                  {busy === 'extract'
+                    ? 'Gemma is reading your work order…'
+                    : tasks.length
+                      ? 'Extract tasks again'
+                      : 'Review tasks'}
+                  {busy !== 'extract' && <ArrowRight size={17} />}
                 </button>
-              </div>
-              <textarea
-                id="work-order"
-                aria-describedby="work-order-help work-order-kind"
-                value={workOrder}
-                maxLength={6000}
-                rows={8}
-                onChange={(e) => {
-                  setWorkOrder(e.target.value);
-                  setTasks([]);
-                  setQuestions([]);
-                  invalidate();
-                }}
-              />
-              <div className="work-order-meta" id="work-order-kind">
-                <span>
-                  {workOrder === SAMPLE ? 'Editable fictional example' : 'Your work order'}
-                </span>
-                <span>{workOrder.length.toLocaleString()} / 6,000</span>
-              </div>
-              <p className="input-help" id="work-order-help">
-                Include each task’s duration, original start, indoor/outdoor setting, and any
-                constraints. Leave out personal details.
-              </p>
-              <button
-                className="primary extract-button"
-                onClick={extract}
-                disabled={!!busy || workOrder.trim().length < 20 || !date}
-              >
-                {busy === 'extract' ? (
-                  <LoaderCircle className="spin" size={18} />
-                ) : (
-                  <Sparkles size={18} />
-                )}{' '}
-                {busy === 'extract'
-                  ? 'Gemma is reading your work order…'
-                  : tasks.length
-                    ? 'Extract tasks again'
-                    : 'Review tasks'}
-                {busy !== 'extract' && <ArrowRight size={17} />}
-              </button>
-              <div className="model-credit">
-                Powered by Gemma 4 <span>·</span>{' '}
-                {draftSaved ? 'Draft saved on this device' : 'Private server connection'}
-              </div>
+                <div className="model-credit">
+                  Powered by Gemma 4 <span>·</span>{' '}
+                  {draftSaved ? 'Draft saved on this device' : 'Private server connection'}
+                </div>
+              </section>
             </fieldset>
             <div className="promise">
               <ShieldCheck size={18} />
