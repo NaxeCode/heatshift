@@ -36,7 +36,8 @@ export default async function CommunityPage() {
     getForecast(date),
     getCoolingDirectory(),
   ]);
-  const forecast: Forecast | null = forecastResult.status === 'fulfilled' ? forecastResult.value : null;
+  const forecast: Forecast | null =
+    forecastResult.status === 'fulfilled' ? forecastResult.value : null;
   const directory = directoryResult.status === 'fulfilled' ? directoryResult.value : null;
   const renderedAt = new Date();
   const periods = forecast ? remainingCommunityHours(forecast, renderedAt.getTime()) : [];
@@ -79,8 +80,6 @@ export default async function CommunityPage() {
             <time dateTime={date}>{dateLabel}</time> · Eastern time
           </p>
         </section>
-
-        <CoolingSiteFinder directory={directory} />
 
         <div className={styles.grid}>
           <section
@@ -212,6 +211,7 @@ export default async function CommunityPage() {
             </p>
           </aside>
         </div>
+        <CoolingSiteFinder directory={directory} />
         <footer className={styles.footer}>
           <p>
             This forecast represents one Miami grid point, not every neighborhood or individual’s
@@ -225,4 +225,3 @@ export default async function CommunityPage() {
     </>
   );
 }
-

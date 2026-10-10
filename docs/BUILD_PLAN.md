@@ -6,7 +6,7 @@ A Miami landscaping supervisor can enter tomorrow's work order, confirm the task
 
 ## Scope
 
-October 10 integration update: the verified crew flow remains the main demonstration. Aladdin approved a bounded `/community` page with today's available Miami forecast and official county guidance/cooling links, using the same forecast adapter and Faye's Soft Signal design. No new model flow, account, map, geolocation or personal safety assessment is included. Clothing/PPE and effort scoring remain proposals. Faye's final name and logo are still pending.
+October 10 integration update: the verified crew flow remains the main demonstration. Aladdin approved a bounded `/community` page with today's available Miami forecast and official county guidance/cooling links, using the same forecast adapter and Faye's Soft Signal design. No new model flow, account, map, geolocation or personal safety assessment is included. Clothing/PPE and effort scoring remain proposals. Faye’s Kruu name, ripple-sun logo and warm visual design are now implemented.
 
 - One crew, one Miami location, one date, one paid shift and at most four tasks.
 - Task fields: title, duration, indoor/outdoor, earliest start, latest finish, fixed start if applicable, and dependencies.
@@ -14,6 +14,8 @@ October 10 integration update: the verified crew flow remains the main demonstra
 - Text work orders and English/Spanish briefing output.
 - One screen with task review, schedule comparison and crew briefing.
 - No authentication, payments, multi-crew routing, automatic messaging, map, image upload or voice interface in the initial build.
+
+October 10 follow-up: Aladdin approved Nelson’s current intake refresh and the on-page county cooling-site finder. The resident page now supports searching published county listings, type filters, phone and directions links, with a directory-check timestamp and an official-directory fallback. No open-now status, geolocation or personal-risk assessment is added.
 
 ## Architecture
 

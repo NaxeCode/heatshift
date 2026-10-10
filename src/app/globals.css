@@ -1871,7 +1871,6 @@ select[aria-invalid='true'] {
   }
 }
 
-
 /* Crew-day intake: group the decision context without shrinking operational controls. */
 .input-panel .work-ahead-heading {
   display: block;
@@ -1952,7 +1951,9 @@ select[aria-invalid='true'] {
   letter-spacing: 0.07em;
 }
 .work-ahead-section-heading h3 {
-  font: 650 18px/1.35 'Manrope', sans-serif;
+  font:
+    650 18px/1.35 'Manrope',
+    sans-serif;
   letter-spacing: -0.02em;
 }
 .shift-card .shift-settings {

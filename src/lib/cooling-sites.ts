@@ -20,16 +20,7 @@ export type CoolingDirectory = {
 let cachedDirectory: Promise<CoolingDirectory> | null = null;
 let cacheExpiresAt = 0;
 
-const HEADERS = [
-  'Name',
-  'Address',
-  'City',
-  'State',
-  'ZIP',
-  'Phone',
-  'Hours of Operation',
-  'Type',
-];
+const HEADERS = ['Name', 'Address', 'City', 'State', 'ZIP', 'Phone', 'Hours of Operation', 'Type'];
 
 function decodeEntities(value: string) {
   const named: Record<string, string> = {
@@ -44,7 +35,8 @@ function decodeEntities(value: string) {
   };
   return value.replace(/&(#x[\da-f]+|#\d+|[a-z]+);/gi, (entity, code: string) => {
     if (code.startsWith('#')) {
-      const point = code[1]?.toLowerCase() === 'x' ? parseInt(code.slice(2), 16) : parseInt(code.slice(1), 10);
+      const point =
+        code[1]?.toLowerCase() === 'x' ? parseInt(code.slice(2), 16) : parseInt(code.slice(1), 10);
       return Number.isInteger(point) && point > 0 && point <= 0x10ffff
         ? String.fromCodePoint(point)
         : entity;
@@ -67,7 +59,9 @@ export function parseCoolingSites(html: string): CoolingSite[] {
   if (!table) throw new Error('Cooling-site table missing');
 
   const headerHtml = table.match(/<thead\b[^>]*>([\s\S]*?)<\/thead>/i)?.[1];
-  const headers = [...(headerHtml ?? '').matchAll(/<th\b[^>]*>([\s\S]*?)<\/th>/gi)].map((m) => cellText(m[1]));
+  const headers = [...(headerHtml ?? '').matchAll(/<th\b[^>]*>([\s\S]*?)<\/th>/gi)].map((m) =>
+    cellText(m[1]),
+  );
   if (headers.length !== HEADERS.length || headers.some((header, i) => header !== HEADERS[i])) {
     throw new Error('Cooling-site columns changed');
   }
@@ -82,8 +76,14 @@ export function parseCoolingSites(html: string): CoolingSite[] {
     if (values.length !== HEADERS.length) throw new Error('Cooling-site row shape changed');
     const [name, address, city, state, zip, phone, hours, type] = values;
     if (
-      !name || !address || !city || state !== 'FL' || !/^\d{5}$/.test(zip) ||
-      phone.replace(/\D/g, '').length !== 10 || !hours || !type
+      !name ||
+      !address ||
+      !city ||
+      state !== 'FL' ||
+      !/^\d{5}$/.test(zip) ||
+      phone.replace(/\D/g, '').length !== 10 ||
+      !hours ||
+      !type
     ) {
       throw new Error('Cooling-site row contains missing or invalid fields');
     }
@@ -120,4 +120,3 @@ export async function getCoolingDirectory(): Promise<CoolingDirectory> {
     throw error;
   }
 }
-

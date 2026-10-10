@@ -280,7 +280,10 @@ export default function Planner() {
                 </span>
                 <div>
                   <h2>The work ahead.</h2>
-                  <p>Set the hours, then describe the work. You will confirm each task before comparing plans.</p>
+                  <p>
+                    Set the hours, then describe the work. You will confirm each task before
+                    comparing plans.
+                  </p>
                 </div>
               </div>
             </div>
@@ -371,7 +374,10 @@ export default function Planner() {
                   </div>
                 </div>
               </section>
-              <section className="work-ahead-section work-order-card" aria-labelledby="work-order-title">
+              <section
+                className="work-ahead-section work-order-card"
+                aria-labelledby="work-order-title"
+              >
                 <div className="work-ahead-section-heading">
                   <div>
                     <span className="work-ahead-eyebrow">WORK ORDER</span>
@@ -379,11 +385,23 @@ export default function Planner() {
                   </div>
                   <ClipboardList size={20} aria-hidden="true" />
                 </div>
-                <p className="work-order-intro">Paste the work order or edit the fictional example. Keep the details your crew must work around.</p>
+                <p className="work-order-intro">
+                  Paste the work order or edit the fictional example. Keep the details your crew
+                  must work around.
+                </p>
                 <div className="work-order-guide" aria-label="Useful details to include">
-                  <span><Check size={15} aria-hidden="true" />Task and time</span>
-                  <span><Check size={15} aria-hidden="true" />Inside or outside</span>
-                  <span><Check size={15} aria-hidden="true" />Fixed commitments</span>
+                  <span>
+                    <Check size={15} aria-hidden="true" />
+                    Task and time
+                  </span>
+                  <span>
+                    <Check size={15} aria-hidden="true" />
+                    Inside or outside
+                  </span>
+                  <span>
+                    <Check size={15} aria-hidden="true" />
+                    Fixed commitments
+                  </span>
                 </div>
                 <div className="work-order-label">
                   <label htmlFor="work-order">Describe the work</label>

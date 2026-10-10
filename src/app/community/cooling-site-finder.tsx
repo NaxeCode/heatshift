@@ -57,9 +57,17 @@ export default function CoolingSiteFinder({ directory }: { directory: CoolingDir
         <div>
           <p className="section-eyebrow">MIAMI-DADE COOLING SITES</p>
           <h2 id="cooling-heading">Find a place to cool off.</h2>
-          <p>Explore the county’s published directory here, then call to confirm today’s hours and access before you go.</p>
+          <p>
+            Explore the county’s published directory here, then call to confirm today’s hours and
+            access before you go.
+          </p>
         </div>
-        <a href={COUNTY_COOLING_SITES_URL} target="_blank" rel="noreferrer" className={styles.finderSource}>
+        <a
+          href={COUNTY_COOLING_SITES_URL}
+          target="_blank"
+          rel="noreferrer"
+          className={styles.finderSource}
+        >
           Official county directory <ArrowUpRight size={16} aria-hidden="true" />
         </a>
       </div>
@@ -83,12 +91,14 @@ export default function CoolingSiteFinder({ directory }: { directory: CoolingDir
               </span>
             </label>
             <div className={styles.finderFilters} role="group" aria-label="Filter by site type">
-              {([
-                ['all', 'All sites'],
-                ['library', 'Libraries'],
-                ['park', 'Parks'],
-                ['other', 'Other'],
-              ] as const).map(([value, label]) => (
+              {(
+                [
+                  ['all', 'All sites'],
+                  ['library', 'Libraries'],
+                  ['park', 'Parks'],
+                  ['other', 'Other'],
+                ] as const
+              ).map(([value, label]) => (
                 <button
                   key={value}
                   type="button"
@@ -122,7 +132,9 @@ export default function CoolingSiteFinder({ directory }: { directory: CoolingDir
                     <h3>{site.name}</h3>
                     <p className={styles.siteAddress}>
                       <MapPin size={16} aria-hidden="true" />
-                      <span>{site.address}, {site.city}, {site.state} {site.zip}</span>
+                      <span>
+                        {site.address}, {site.city}, {site.state} {site.zip}
+                      </span>
                     </p>
                     <div className={styles.siteHours}>
                       <strong>Published hours</strong>
@@ -147,20 +159,23 @@ export default function CoolingSiteFinder({ directory }: { directory: CoolingDir
             </>
           ) : (
             <div className={styles.finderEmpty}>
-              No match here. Try a different ZIP, city or site name, or use the full county directory.
+              No match here. Try a different ZIP, city or site name, or use the full county
+              directory.
             </div>
           )}
         </>
       ) : (
         <div className={styles.finderEmpty}>
-          We could not load the county listings on this page right now. Use the official directory to find a site and confirm details before traveling.
+          We could not load the county listings on this page right now. Use the official directory
+          to find a site and confirm details before traveling.
         </div>
       )}
 
       <p className={styles.finderCaution}>
-        Published hours may change for holidays, seasons or closures. These listings do not confirm that a site is open, accessible or has space right now. If you need urgent medical assistance, call 911.
+        Published hours may change for holidays, seasons or closures. These listings do not confirm
+        that a site is open, accessible or has space right now. If you need urgent medical
+        assistance, call 911.
       </p>
     </section>
   );
 }
-
