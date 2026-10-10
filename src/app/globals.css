@@ -1617,9 +1617,6 @@ td small {
 .has-result .chart-card {
   padding: 24px 32px;
 }
-.has-result .timeline-label {
-  width: 160px;
-}
 .has-result .input-panel[open] .input-fieldset {
   max-width: 760px;
   margin-inline: auto;
