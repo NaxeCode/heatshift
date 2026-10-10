@@ -1,0 +1,367 @@
+{
+  "schema_version": "0.1-proposed",
+  "status": "Proposed evaluation cases. No case has been run against the application. No result in this file is evaluation evidence.",
+  "synthetic": true,
+  "plan": "docs/evaluation/EVAL_PLAN.md",
+  "notes": [
+    "Every work order, crew, client and forecast value here is fictional and written for evaluation. Nothing is field-validated.",
+    "Forecast fixtures are synthetic numbers, not National Weather Service data. Never display them as a live forecast.",
+    "Field names follow the task fields listed in docs/BUILD_PLAN.md and are provisional. Map them to the application's task contract when it exists; do not change the application to fit this file.",
+    "Times are local America/New_York, 24-hour HH:MM. Durations are minutes.",
+    "Expected metric values were derived from the rules in docs/BUILD_PLAN.md under the assumptions below. They are expectations to test against, not measured outcomes."
+  ],
+  "assumptions": [
+    {
+      "id": "A1",
+      "text": "The hottest-hours window is the three clock hours inside the paid shift with the highest hourly apparent temperature. In every fixture those values are distinct, so tie handling is not exercised."
+    },
+    {
+      "id": "A2",
+      "text": "A task is one contiguous block and cannot overlap the break or another task. The expected primary-metric values do not depend on this assumption; the reference schedules do."
+    },
+    {
+      "id": "A3",
+      "text": "The first tie-break (duration-weighted apparent temperature) is computed over outdoor task minutes only. Values marked depends_on A3 change if indoor minutes are included."
+    },
+    {
+      "id": "A4",
+      "text": "The break is a fixed interval that neither schedule may move, and it does not count as outdoor work."
+    },
+    {
+      "id": "A5",
+      "text": "Model wording varies between runs. Extraction is judged field by field; task titles are judged by meaning, not exact text."
+    }
+  ],
+  "forecast_fixtures": {
+    "SYN-FORECAST-A": {
+      "synthetic": true,
+      "live_nws_data": false,
+      "description": "Illustrative hot Miami day with an early-afternoon peak. Values chosen to be distinct per hour; they are not climatology and not a forecast.",
+      "date": "2026-10-12",
+      "timezone": "America/New_York",
+      "field": "apparentTemperature",
+      "unit": "degF",
+      "hourly": [
+        { "start": "07:00", "value": 84 },
+        { "start": "08:00", "value": 86 },
+        { "start": "09:00", "value": 89 },
+        { "start": "10:00", "value": 93 },
+        { "start": "11:00", "value": 97 },
+        { "start": "12:00", "value": 101 },
+        { "start": "13:00", "value": 104 },
+        { "start": "14:00", "value": 103 },
+        { "start": "15:00", "value": 100 }
+      ]
+    }
+  },
+  "cases": [
+    {
+      "id": "EVAL-01",
+      "title": "Normal work order with room to improve",
+      "category": "normal",
+      "synthetic": true,
+      "run_status": "unrun",
+      "why_it_matters": "This is the demo path. It must show a real, correctly computed improvement and nothing more.",
+      "input": {
+        "location": "Miami, Florida",
+        "date": "2026-10-12",
+        "shift": { "start": "08:00", "end": "16:00" },
+        "forecast_fixture": "SYN-FORECAST-A",
+        "work_order_text": "Location: Miami, Florida\nPaid shift: 8:00 AM to 4:00 PM\nFixed break: 12:00 PM to 12:30 PM\n\nOriginal plan:\n8:00 AM to 9:30 AM: Inventory and tool preparation indoors.\n9:30 AM to 11:00 AM: Load and sort supplies in the indoor storage area.\n11:00 AM to 12:00 PM: Prune hedges outdoors.\n12:30 PM to 2:00 PM: Mow the lawn outdoors.\n\nAll four tasks are flexible within the shift. There are no dependencies between these tasks. Preserve all task durations, the fixed break, and the shift end time. Unallocated time is paid availability, not permission to shorten the shift.",
+        "source_note": "Adapted from examples/work-order.txt with a fixed synthetic date."
+      },
+      "expected": {
+        "extraction": {
+          "task_count": 4,
+          "break": { "start": "12:00", "end": "12:30" },
+          "tasks": [
+            { "ref": "T1", "title_meaning": "Inventory and tool preparation", "duration_min": 90, "environment": "indoor", "fixed_start": null, "depends_on": [], "original_start": "08:00" },
+            { "ref": "T2", "title_meaning": "Load and sort supplies", "duration_min": 90, "environment": "indoor", "fixed_start": null, "depends_on": [], "original_start": "09:30" },
+            { "ref": "T3", "title_meaning": "Prune hedges", "duration_min": 60, "environment": "outdoor", "fixed_start": null, "depends_on": [], "original_start": "11:00" },
+            { "ref": "T4", "title_meaning": "Mow the lawn", "duration_min": 90, "environment": "outdoor", "fixed_start": null, "depends_on": [], "original_start": "12:30" }
+          ],
+          "needs_confirmation": []
+        },
+        "scheduling": {
+          "outcome": "improved",
+          "hottest_hours": ["12:00", "13:00", "14:00"],
+          "original": { "outdoor_min_in_hottest_hours": 90, "outdoor_weighted_apparent_temp_f": 100.6, "depends_on": ["A3"] },
+          "proposed": { "outdoor_min_in_hottest_hours": 0, "outdoor_weighted_apparent_temp_f": 88.6, "depends_on": ["A3"] },
+          "reference_schedule": {
+            "note": "One acceptable schedule. Any schedule that meets the pass conditions passes; the order of the two outdoor tasks is not asserted.",
+            "depends_on": ["A2", "A3"],
+            "placements": [
+              { "ref": "T4", "start": "08:00", "end": "09:30" },
+              { "ref": "T3", "start": "09:30", "end": "10:30" },
+              { "ref": "T1", "start": "10:30", "end": "12:00" },
+              { "ref": "T2", "start": "12:30", "end": "14:00" }
+            ]
+          }
+        },
+        "explanation": {
+          "must_state": [
+            "Outdoor minutes in the three hottest forecast hours go from 90 to 0.",
+            "Which tasks moved and their new times, matching the computed schedule.",
+            "Task durations, the break and the paid shift are unchanged."
+          ]
+        }
+      },
+      "pass_conditions": [
+        "P1 Extraction returns exactly four tasks with the durations and indoor/outdoor values above, no dependencies and no fixed starts.",
+        "P2 The supervisor can edit every extracted field before scheduling.",
+        "P3 Proposed schedule: every task keeps its duration, nothing overlaps, the break stays 12:00-12:30, all work is inside 08:00-16:00.",
+        "P4 Computed outdoor minutes in the hottest hours are 90 for the original plan and 0 for the proposed plan.",
+        "P5 Every time and number in the explanation and in both briefings appears in the computed result.",
+        "P6 English and Spanish briefings list the same tasks in the same order with the same times."
+      ],
+      "fail_conditions": [
+        "F1 A task is shortened, split, dropped or duplicated.",
+        "F2 The shift is shortened because 90 minutes are unallocated.",
+        "F3 The explanation states a benefit that was not computed, such as a health outcome, an injury reduction, a percentage of risk, or money saved.",
+        "F4 The synthetic forecast is shown without a label saying it is not a live forecast."
+      ],
+      "actual_result": null
+    },
+    {
+      "id": "EVAL-02",
+      "title": "Fixed appointment, fixed break and a dependency",
+      "category": "fixed_appointment_and_break",
+      "synthetic": true,
+      "run_status": "unrun",
+      "why_it_matters": "The best schedule still leaves 60 outdoor minutes in the hottest hours because the appointment cannot move. The product must improve what it can and say plainly what it could not.",
+      "input": {
+        "location": "Miami, Florida",
+        "date": "2026-10-12",
+        "shift": { "start": "07:00", "end": "15:00" },
+        "forecast_fixture": "SYN-FORECAST-A",
+        "work_order_text": "Miami, Florida. Paid shift 7:00 AM to 3:00 PM. Crew break is fixed at 11:00 to 11:30 AM.\n\nPlan as written:\n7:00 to 8:30 AM - Service the mowers in the shop (indoors).\n8:30 to 10:30 AM - Plant shrubs in the front bed (outdoors).\n11:30 AM to 1:00 PM - Spread mulch on the new bed (outdoors). Mulch goes down only after the shrubs are planted.\n1:00 to 2:00 PM - Irrigation walkthrough outside with the property manager. This is an appointment and cannot move.\n\nEverything except the walkthrough and the break can move."
+      },
+      "expected": {
+        "extraction": {
+          "task_count": 4,
+          "break": { "start": "11:00", "end": "11:30" },
+          "tasks": [
+            { "ref": "T1", "title_meaning": "Service the mowers", "duration_min": 90, "environment": "indoor", "fixed_start": null, "depends_on": [], "original_start": "07:00" },
+            { "ref": "T2", "title_meaning": "Plant shrubs", "duration_min": 120, "environment": "outdoor", "fixed_start": null, "depends_on": [], "original_start": "08:30" },
+            { "ref": "T3", "title_meaning": "Spread mulch", "duration_min": 90, "environment": "outdoor", "fixed_start": null, "depends_on": ["T2"], "original_start": "11:30" },
+            { "ref": "T4", "title_meaning": "Irrigation walkthrough with property manager", "duration_min": 60, "environment": "outdoor", "fixed_start": "13:00", "depends_on": [], "original_start": "13:00" }
+          ],
+          "needs_confirmation": []
+        },
+        "scheduling": {
+          "outcome": "improved",
+          "hottest_hours": ["12:00", "13:00", "14:00"],
+          "original": { "outdoor_min_in_hottest_hours": 120, "outdoor_weighted_apparent_temp_f": 96.0, "depends_on": ["A3"] },
+          "proposed": { "outdoor_min_in_hottest_hours": 60, "outdoor_weighted_apparent_temp_f": 91.0, "depends_on": ["A3"] },
+          "residual_exposure": "The 60 remaining minutes are the fixed 13:00 walkthrough. 60 is the lowest value any valid schedule can reach.",
+          "reference_schedule": {
+            "note": "One acceptable schedule. Any schedule that meets the pass conditions passes.",
+            "depends_on": ["A2", "A3"],
+            "placements": [
+              { "ref": "T2", "start": "07:00", "end": "09:00" },
+              { "ref": "T3", "start": "09:00", "end": "10:30" },
+              { "ref": "T1", "start": "11:30", "end": "13:00" },
+              { "ref": "T4", "start": "13:00", "end": "14:00" }
+            ]
+          }
+        },
+        "explanation": {
+          "must_state": [
+            "Outdoor minutes in the three hottest forecast hours go from 120 to 60.",
+            "The remaining 60 minutes are the walkthrough, which stays at 1:00 PM because it is a fixed appointment.",
+            "Mulch still follows planting."
+          ]
+        }
+      },
+      "pass_conditions": [
+        "P1 Extraction marks the walkthrough as fixed at 13:00, records that mulch depends on planting, and records the 11:00-11:30 break.",
+        "P2 Proposed schedule keeps the walkthrough at 13:00-14:00 and the break at 11:00-11:30.",
+        "P3 Mulch starts at or after the time planting ends.",
+        "P4 Computed outdoor minutes in the hottest hours are 120 for the original plan and 60 for the proposed plan.",
+        "P5 The explanation and both briefings say that 60 outdoor minutes remain in the hottest hours and name the walkthrough as the reason.",
+        "P6 English and Spanish briefings give the same times for all four tasks and the break."
+      ],
+      "fail_conditions": [
+        "F1 The walkthrough or the break moves by any amount.",
+        "F2 Mulch is scheduled before planting finishes.",
+        "F3 The explanation says or implies that all outdoor work now avoids the hottest hours.",
+        "F4 The proposed schedule reports fewer than 60 outdoor minutes in the hottest hours."
+      ],
+      "actual_result": null
+    },
+    {
+      "id": "EVAL-03",
+      "title": "Missing and contradictory details",
+      "category": "missing_or_contradictory",
+      "synthetic": true,
+      "run_status": "unrun",
+      "why_it_matters": "A plausible-looking schedule built on details the supervisor never gave is worse than no schedule. The product must ask, not guess.",
+      "input": {
+        "location": "Miami, Florida",
+        "date": "2026-10-12",
+        "shift": { "start": "08:00", "end": "16:00" },
+        "forecast_fixture": "SYN-FORECAST-A",
+        "work_order_text": "Miami, tomorrow. Shift is 8 to 4, lunch 12 to 12:30.\n- Trim the palms along the entrance.\n- Fertilizer application on the back lawn, about 45 minutes.\n- Repot the lobby planters, 1 hour. Might be on the loading dock or inside, depends on the building manager.\n- Client wants the pool deck pressure washed 3:30 to 5:00 PM.",
+        "planted_issues": [
+          { "id": "I1", "task": "Trim the palms", "issue": "No duration given." },
+          { "id": "I2", "task": "Fertilizer application", "issue": "Duration is approximate and 45 minutes is not on the 30-minute grid. The plan says to reject unsupported precision rather than round." },
+          { "id": "I3", "task": "Repot the lobby planters", "issue": "Indoor or outdoor is explicitly undecided." },
+          { "id": "I4", "task": "Pressure wash the pool deck", "issue": "Requested window ends at 5:00 PM, one hour after the paid shift ends at 4:00 PM." }
+        ]
+      },
+      "expected": {
+        "extraction": {
+          "task_count": 4,
+          "break": { "start": "12:00", "end": "12:30" },
+          "tasks": [
+            { "ref": "T1", "title_meaning": "Trim the palms", "duration_min": null, "environment": "outdoor", "fixed_start": null, "depends_on": [] },
+            { "ref": "T2", "title_meaning": "Fertilizer application", "duration_min": 45, "duration_note": "Kept as stated and flagged. Must not arrive as 30 or 60.", "environment": "outdoor", "fixed_start": null, "depends_on": [] },
+            { "ref": "T3", "title_meaning": "Repot the lobby planters", "duration_min": 60, "environment": null, "fixed_start": null, "depends_on": [] },
+            { "ref": "T4", "title_meaning": "Pressure wash the pool deck", "duration_min": 90, "environment": "outdoor", "fixed_start": "15:30", "depends_on": [] }
+          ],
+          "needs_confirmation": ["I1", "I2", "I3", "I4"]
+        },
+        "scheduling": {
+          "outcome": "blocked_before_scheduling",
+          "note": "No schedule, timeline, metric or briefing exists until the supervisor resolves all four issues."
+        },
+        "explanation": {
+          "must_state": [
+            "What is missing or in conflict for each of the four tasks, in plain language the supervisor can act on."
+          ]
+        }
+      },
+      "pass_conditions": [
+        "P1 All four planted issues are shown to the supervisor before any schedule is produced, each attached to the right task.",
+        "P2 Scheduling cannot start while any of the four issues is unresolved.",
+        "P3 No timeline, exposure metric, explanation of a comparison or crew briefing is produced for the unresolved work order.",
+        "P4 After the supervisor enters values, the schedule uses exactly those values."
+      ],
+      "fail_conditions": [
+        "F1 A duration appears for the palm task that the supervisor did not enter.",
+        "F2 The 45-minute task is rounded to 30 or 60 without the supervisor choosing.",
+        "F3 The planters task is labeled indoor or outdoor without confirmation.",
+        "F4 The pressure-wash task is shortened to end at 4:00 PM, or the shift is extended to 5:00 PM, without the supervisor deciding.",
+        "F5 Any schedule or briefing is produced from the unresolved work order."
+      ],
+      "actual_result": null
+    },
+    {
+      "id": "EVAL-04",
+      "title": "Impossible schedule that passes a capacity check",
+      "category": "impossible",
+      "synthetic": true,
+      "run_status": "unrun",
+      "why_it_matters": "Total task time fits the shift (390 of 450 working minutes), so a capacity-only check would accept it. The conflict is between one task, a dependency and a fixed appointment.",
+      "input": {
+        "location": "Miami, Florida",
+        "date": "2026-10-12",
+        "shift": { "start": "08:00", "end": "16:00" },
+        "forecast_fixture": "SYN-FORECAST-A",
+        "work_order_text": "Miami, Florida. Paid shift 8:00 AM to 4:00 PM, break 12:00 to 12:30 PM.\n\n8:00 to 10:30 AM - Site prep and staging on the front lawn, outdoors, 2.5 hours. Must be finished before the inspection.\n10:00 to 11:00 AM - City irrigation inspection on site, outdoors. Fixed time; the inspector cannot move it.\nAfter the inspection - lay sod, outdoors, 2 hours.\nThen clean and store equipment in the shop, 1 hour."
+      },
+      "expected": {
+        "extraction": {
+          "task_count": 4,
+          "break": { "start": "12:00", "end": "12:30" },
+          "tasks": [
+            { "ref": "T1", "title_meaning": "Site prep and staging", "duration_min": 150, "environment": "outdoor", "fixed_start": null, "depends_on": [] },
+            { "ref": "T2", "title_meaning": "City irrigation inspection", "duration_min": 60, "environment": "outdoor", "fixed_start": "10:00", "depends_on": ["T1"] },
+            { "ref": "T3", "title_meaning": "Lay sod", "duration_min": 120, "environment": "outdoor", "fixed_start": null, "depends_on": ["T2"] },
+            { "ref": "T4", "title_meaning": "Clean and store equipment", "duration_min": 60, "environment": "indoor", "fixed_start": null, "depends_on": ["T3"] }
+          ],
+          "needs_confirmation": [],
+          "nice_to_have": "The model points out that the written plan has site prep overlapping the inspection. The scheduler must catch it either way."
+        },
+        "scheduling": {
+          "outcome": "infeasible",
+          "reason": "Site prep needs 150 minutes and must finish before the 10:00 inspection, but the shift starts at 08:00, leaving 120 minutes.",
+          "original": null,
+          "proposed": null,
+          "note": "The written plan also overlaps (site prep 08:00-10:30, inspection 10:00-11:00), so there is no valid original schedule to compare against."
+        },
+        "explanation": {
+          "must_state": [
+            "No valid schedule exists for the confirmed tasks.",
+            "The specific conflict: 150 minutes of site prep, 120 minutes available before the 10:00 inspection."
+          ]
+        }
+      },
+      "pass_conditions": [
+        "P1 The scheduler reports that no valid schedule exists.",
+        "P2 The reason shown names site prep, the inspection time and the 30-minute shortfall, or states the same conflict in equivalent words.",
+        "P3 No proposed timeline and no exposure comparison is shown.",
+        "P4 The explanation matches the computed reason and leaves the decision to the supervisor."
+      ],
+      "fail_conditions": [
+        "F1 Any proposed schedule is shown.",
+        "F2 Site prep is shortened or split, the inspection moves, or work is placed before 08:00 to make it fit.",
+        "F3 An exposure number or an improvement is reported.",
+        "F4 The failure is shown as a generic error with no reason the supervisor can act on."
+      ],
+      "actual_result": null
+    },
+    {
+      "id": "EVAL-05",
+      "title": "No possible improvement",
+      "category": "no_improvement",
+      "synthetic": true,
+      "run_status": "unrun",
+      "why_it_matters": "The supervisor already planned well. The honest answer is to change nothing. This is where a product built to show improvement is most tempted to invent one.",
+      "input": {
+        "location": "Miami, Florida",
+        "date": "2026-10-12",
+        "shift": { "start": "08:00", "end": "16:00" },
+        "forecast_fixture": "SYN-FORECAST-A",
+        "work_order_text": "Miami, Florida. Paid shift 8:00 AM to 4:00 PM. Break 12:00 to 12:30 PM.\n\n8:00 to 9:30 AM - Mow the front and back lawn, outdoors.\n9:30 to 11:00 AM - Trim the hedges along the fence, outdoors.\n11:00 AM to 12:00 PM - Program the irrigation controller in the garage, indoors.\n12:30 to 2:00 PM - Inventory and restock inside the warehouse, indoors.\n\nAll tasks are flexible. No dependencies."
+      },
+      "expected": {
+        "extraction": {
+          "task_count": 4,
+          "break": { "start": "12:00", "end": "12:30" },
+          "tasks": [
+            { "ref": "T1", "title_meaning": "Mow the front and back lawn", "duration_min": 90, "environment": "outdoor", "fixed_start": null, "depends_on": [], "original_start": "08:00" },
+            { "ref": "T2", "title_meaning": "Trim the hedges", "duration_min": 90, "environment": "outdoor", "fixed_start": null, "depends_on": [], "original_start": "09:30" },
+            { "ref": "T3", "title_meaning": "Program the irrigation controller", "duration_min": 60, "environment": "indoor", "fixed_start": null, "depends_on": [], "original_start": "11:00" },
+            { "ref": "T4", "title_meaning": "Inventory and restock", "duration_min": 90, "environment": "indoor", "fixed_start": null, "depends_on": [], "original_start": "12:30" }
+          ],
+          "needs_confirmation": []
+        },
+        "scheduling": {
+          "outcome": "unchanged",
+          "hottest_hours": ["12:00", "13:00", "14:00"],
+          "original": { "outdoor_min_in_hottest_hours": 0, "outdoor_weighted_apparent_temp_f": 89.3, "depends_on": ["A3"] },
+          "proposed": { "outdoor_min_in_hottest_hours": 0, "outdoor_weighted_apparent_temp_f": 89.3, "depends_on": ["A3"] },
+          "reference_schedule": {
+            "note": "Identical to the original plan. Swapping the two outdoor tasks ties on both metrics, so the fewest-changes rule keeps the original.",
+            "depends_on": ["A2", "A3"],
+            "placements": [
+              { "ref": "T1", "start": "08:00", "end": "09:30" },
+              { "ref": "T2", "start": "09:30", "end": "11:00" },
+              { "ref": "T3", "start": "11:00", "end": "12:00" },
+              { "ref": "T4", "start": "12:30", "end": "14:00" }
+            ]
+          }
+        },
+        "explanation": {
+          "must_state": [
+            "No lower-exposure order was found.",
+            "The plan as written already has 0 outdoor minutes in the three hottest forecast hours."
+          ]
+        }
+      },
+      "pass_conditions": [
+        "P1 The proposed schedule is identical to the original plan.",
+        "P2 Computed outdoor minutes in the hottest hours are 0 for both schedules and the difference shown is 0.",
+        "P3 The result is presented as a normal outcome, not as an error.",
+        "P4 The explanation and both briefings say that nothing changed and why."
+      ],
+      "fail_conditions": [
+        "F1 Any task moves.",
+        "F2 The explanation or interface describes the result as an improvement, a reduction or a safer schedule.",
+        "F3 A percentage change is shown for a 0-to-0 comparison, including 100%, NaN or infinity."
+      ],
+      "actual_result": null
+    }
+  ]
+}
