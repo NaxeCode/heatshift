@@ -1870,3 +1870,142 @@ select[aria-invalid='true'] {
     text-align: center;
   }
 }
+
+
+/* Crew-day intake: group the decision context without shrinking operational controls. */
+.input-panel .work-ahead-heading {
+  display: block;
+  padding: 20px;
+  margin-bottom: 18px;
+  border: 1px solid var(--hs-divider);
+  border-radius: 20px;
+  background:
+    radial-gradient(circle at 100% 0%, rgb(233 130 109 / 12%), transparent 52%),
+    linear-gradient(145deg, #fffaf5, var(--hs-surface-secondary));
+}
+.work-ahead-kicker {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  color: var(--hs-text-secondary);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+}
+.work-ahead-limit {
+  border: 1px solid var(--hs-divider);
+  border-radius: 99px;
+  background: var(--hs-surface);
+  padding: 6px 10px;
+  letter-spacing: 0.03em;
+}
+.work-ahead-heading-main {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-top: 16px;
+}
+.work-ahead-heading-main .mini-icon {
+  flex: none;
+  width: 46px;
+  height: 46px;
+  background: var(--hs-surface);
+  border: 1px solid var(--hs-divider);
+}
+.work-ahead-heading-main h2 {
+  line-height: 1.2;
+}
+.input-panel .work-ahead-heading p {
+  max-width: 48ch;
+  margin-top: 7px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.work-ahead-section {
+  padding: 20px;
+  border: 1px solid var(--hs-divider);
+  border-radius: 20px;
+  background: var(--hs-surface);
+}
+.work-ahead-section + .work-ahead-section {
+  margin-top: 16px;
+}
+.work-ahead-section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+.work-ahead-section-heading > svg {
+  flex: none;
+  color: var(--hs-text-secondary);
+}
+.work-ahead-eyebrow {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--hs-text-secondary);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+}
+.work-ahead-section-heading h3 {
+  font: 650 18px/1.35 'Manrope', sans-serif;
+  letter-spacing: -0.02em;
+}
+.shift-card .shift-settings {
+  padding: 0;
+  border: 0;
+  margin: 0;
+}
+.work-order-card {
+  background: linear-gradient(150deg, #fffaf6, var(--hs-surface-secondary));
+}
+.work-order-intro {
+  color: var(--hs-text-secondary);
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0 0 14px;
+}
+.work-order-guide {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+.work-order-guide span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 10px;
+  border: 1px solid var(--hs-divider);
+  border-radius: 99px;
+  background: var(--hs-surface);
+  color: var(--hs-text);
+  font-size: 13px;
+  line-height: 1.35;
+}
+.work-order-guide svg {
+  flex: none;
+  color: var(--hs-accent);
+}
+.work-order-card textarea {
+  background: var(--hs-surface);
+}
+.work-order-card .input-help {
+  margin-bottom: 18px;
+}
+@media (max-width: 640px) {
+  .input-panel .work-ahead-heading,
+  .work-ahead-section {
+    padding: 16px;
+  }
+  .work-ahead-heading-main {
+    gap: 10px;
+  }
+  .shift-card .shift-settings {
+    grid-template-columns: 1fr;
+  }
+}
