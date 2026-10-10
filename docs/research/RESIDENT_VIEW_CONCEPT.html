@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HeatShift — resident view concept</title>
+  <style>
+    :root { color-scheme: light; --ink:#242822; --muted:#596159; --cream:#f7f5ee; --paper:#fffdf8; --line:#dadfd4; --orange:#e86435; --orange-ink:#85351d; --peach:#fff0e4; --blue:#dcecf0; --blue-ink:#244d5b; --green:#edf3de; --green-ink:#42562c; --shadow:0 12px 38px rgba(54,51,36,.08); }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--cream); color:var(--ink); font:16px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif; }
+    a { color:inherit; }
+    button { font:inherit; }
+    .wrap { max-width:1160px; margin:auto; padding:22px 24px 80px; }
+    .study { background:#25312e; color:#fff; text-align:center; padding:9px 18px; font-size:.82rem; letter-spacing:.07em; text-transform:uppercase; font-weight:750; }
+    .study strong { color:#ffd5a5; }
+    header { display:flex; justify-content:space-between; align-items:center; gap:24px; padding:19px 0 34px; border-bottom:1px solid var(--line); }
+    .logo { display:flex; align-items:center; gap:10px; font-weight:900; font-size:1.25rem; letter-spacing:-.045em; }
+    .logo-mark { width:30px; height:30px; border-radius:50%; background:var(--orange); box-shadow:inset -7px -6px 0 rgba(118,38,14,.18); }
+    nav { display:flex; gap:10px; flex-wrap:wrap; }
+    nav a { text-decoration:none; font-size:.85rem; font-weight:700; padding:9px 13px; border-radius:100px; }
+    nav a.current { background:#24352e; color:#fff; }
+    main { display:grid; grid-template-columns:minmax(0,1.35fr) minmax(300px,.65fr); gap:22px; padding-top:38px; }
+    .intro { grid-column:1/-1; display:flex; justify-content:space-between; gap:32px; align-items:end; }
+    .eyebrow { margin:0 0 8px; color:var(--orange-ink); font-weight:850; font-size:.78rem; text-transform:uppercase; letter-spacing:.12em; }
+    h1 { max-width:730px; margin:0; font-size:clamp(2.25rem,5vw,4.35rem); letter-spacing:-.065em; line-height:1.03; }
+    .lede { max-width:660px; font-size:1.07rem; margin:16px 0 0; color:var(--muted); }
+    .scope { min-width:255px; padding:13px 16px; border:1px solid var(--line); border-radius:16px; color:var(--muted); font-size:.83rem; background:rgba(255,255,255,.48); }
+    .scope b { color:var(--ink); display:block; font-size:.95rem; }
+    .card { background:var(--paper); border:1px solid var(--line); border-radius:24px; box-shadow:var(--shadow); padding:24px; }
+    .card h2 { margin:0 0 6px; font-size:1.45rem; letter-spacing:-.04em; line-height:1.1; }
+    .card p { margin:0; }
+    .muted { color:var(--muted); }
+    .main-card { padding:28px; }
+    .kicker { display:flex; align-items:center; gap:8px; color:var(--orange-ink); font-size:.8rem; font-weight:850; text-transform:uppercase; letter-spacing:.1em; margin-bottom:10px; }
+    .kicker .num { display:grid; place-items:center; width:23px; height:23px; border-radius:50%; color:#fff; background:var(--orange); letter-spacing:0; }
+    .chips { display:flex; flex-wrap:wrap; gap:8px; margin-top:21px; }
+    .chip { padding:10px 13px; border:1px solid #cbd3c6; background:#fff; border-radius:100px; font-size:.9rem; font-weight:700; opacity:1; color:var(--ink); }
+    .chip.active { background:#293e33; color:#fff; border-color:#293e33; }
+    .formline { display:flex; flex-wrap:wrap; gap:11px; margin-top:19px; }
+    .field { display:flex; flex-direction:column; gap:5px; flex:1; min-width:155px; font-size:.79rem; color:var(--muted); font-weight:750; }
+    .field select { width:100%; background:#fff; color:var(--ink); border:1px solid #cbd3c6; border-radius:12px; min-height:45px; padding:8px 12px; font:inherit; font-size:.93rem; }
+    .answer { background:var(--peach); border:1px solid #f4d6c5; border-radius:19px; margin-top:23px; padding:21px; }
+    .answer-label { color:var(--orange-ink); text-transform:uppercase; letter-spacing:.08em; font-size:.76rem; font-weight:850; }
+    .answer h3 { margin:7px 0 8px; font-size:1.45rem; line-height:1.16; letter-spacing:-.035em; }
+    .answer p { max-width:630px; color:#553f36; }
+    .note { font-size:.8rem; color:var(--muted); margin-top:13px !important; }
+    .strip { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:7px; margin-top:20px; }
+    .hour { border:1px solid #e2e3da; border-radius:14px; padding:11px 7px; text-align:center; background:#fff; }
+    .hour.active { border:2px solid var(--orange); padding:10px 6px; }
+    .hour strong { display:block; font-size:.9rem; }
+    .hour em { display:block; margin:5px auto; font-size:1.3rem; font-style:normal; font-weight:850; line-height:1.1; }
+    .hour small { display:block; color:var(--muted); font-size:.72rem; line-height:1.15; }
+    .side { display:grid; gap:18px; align-content:start; }
+    .prepcard { background:var(--green); border-color:#d9e4bf; box-shadow:none; }
+    .prepcard .kicker { color:var(--green-ink); }
+    .prepcard .num { background:#6d814b; }
+    .steps { padding:0; margin:15px 0 0; list-style:none; display:grid; gap:10px; }
+    .steps li { display:flex; gap:10px; align-items:start; font-size:.91rem; }
+    .steps b { color:var(--green-ink); }
+    .step-icon { display:grid; place-items:center; min-width:24px; width:24px; height:24px; border-radius:50%; background:#fff; color:var(--green-ink); font-size:.78rem; font-weight:900; }
+    .help { background:var(--blue); border-color:#c7dee4; box-shadow:none; }
+    .help .kicker { color:var(--blue-ink); }
+    .help .num { background:#40788b; }
+    .help p { font-size:.91rem; margin:9px 0 17px; }
+    .cta { display:inline-block; background:#263f49; color:#fff; font-weight:800; text-decoration:none; border-radius:11px; padding:12px 15px; font-size:.9rem; }
+    .resource { display:block; color:var(--blue-ink); margin-top:10px; font-size:.83rem; font-weight:700; }
+    .full { grid-column:1/-1; }
+    details { background:var(--paper); border:1px solid var(--line); border-radius:18px; padding:17px 21px; }
+    details summary { cursor:pointer; font-weight:800; }
+    details p { max-width:810px; color:var(--muted); font-size:.88rem; }
+    .fake-table { width:100%; border-collapse:collapse; margin-top:13px; font-size:.86rem; }
+    .fake-table td, .fake-table th { padding:10px 8px; text-align:left; border-bottom:1px solid var(--line); }
+    footer { max-width:910px; margin:30px auto 0; color:var(--muted); font-size:.8rem; }
+    @media (max-width:840px) { main { grid-template-columns:1fr; } .intro { display:block; } .scope { margin-top:20px; max-width:360px; } .full { grid-column:1; } }
+    @media (max-width:500px) { .wrap { padding:16px 15px 55px; } header { align-items:start; padding-bottom:22px; } nav a { font-size:.78rem; padding:8px 10px; } main { gap:14px; padding-top:27px; } .card { padding:20px; border-radius:18px; } .main-card { padding:20px; } .strip { gap:4px; } .hour { padding:10px 3px; } .hour.active { padding:9px 2px; } .hour em { font-size:1.12rem; } .hour small { font-size:.67rem; } }
+  </style>
+</head>
+<body>
+  <div class="study"><strong>Design study</strong> · All weather values below are fictional examples, not live conditions</div>
+  <div class="wrap">
+    <header>
+      <div class="logo"><span class="logo-mark" aria-hidden="true"></span> HeatShift</div>
+      <nav aria-label="Example navigation"><a class="current" href="#plan">For residents</a><a href="#forecast">Forecast details</a></nav>
+    </header>
+    <main>
+      <div class="intro">
+        <div><p class="eyebrow">Miami area · Resident view</p><h1>Make a plan for time outside.</h1><p class="lede">Check the forecast for your outing, prepare for the heat, and find a place to cool off when you need one.</p></div>
+        <div class="scope"><b>About the forecast</b>This concept shows one Miami-area grid point. A live version must show its NWS issue time and actual source.</div>
+      </div>
+      <section class="card main-card" id="plan" aria-labelledby="plan-title">
+        <div class="kicker"><span class="num">1</span> Plan</div>
+        <h2 id="plan-title">What are you heading out for?</h2>
+        <p class="muted">A live version would let you choose a reason and approximate time. These concept controls are illustrative.</p>
+        <div class="chips" role="group" aria-label="Illustrative outing types"><button class="chip active" type="button" aria-pressed="true" disabled>Quick errand</button><button class="chip" type="button" aria-pressed="false" disabled>Walk or transit</button><button class="chip" type="button" aria-pressed="false" disabled>Time outdoors</button><button class="chip" type="button" aria-pressed="false" disabled>Check on someone</button></div>
+        <div class="formline"><label class="field">Around when?<select aria-label="Example outing time" disabled><option>2:00 PM</option><option>9:00 AM</option><option>12:00 PM</option></select></label><label class="field">How long outside?<select aria-label="Example outing duration" disabled><option>About 20 minutes</option><option>About 1 hour</option></select></label></div>
+        <div class="answer"><span class="answer-label">Example outlook · 2:00 PM</span><h3>Compare the morning before you go.</h3><p>In this fictional example, the morning feels less hot than 2 PM. An afternoon thunderstorm is also shown, so temperature alone cannot pick a better time. If your errand is fixed, use the preparation steps and check official alerts before leaving.</p></div>
+        <div class="strip" aria-label="Fictional hourly forecast examples"><div class="hour"><strong>9 AM</strong><em>92°</em><small>Feels like · sample</small></div><div class="hour"><strong>12 PM</strong><em>101°</em><small>Feels like · sample</small></div><div class="hour active"><strong>2 PM</strong><em>105°</em><small>Feels like · sample</small></div><div class="hour"><strong>5 PM</strong><em>98°</em><small>Storms · sample</small></div></div>
+        <p class="note">Illustrative values only. A live recommendation must use a fresh official forecast and show its source and time. No time is guaranteed safe.</p>
+      </section>
+      <div class="side">
+        <section class="card prepcard" aria-labelledby="prepare-title"><div class="kicker"><span class="num">2</span> Prepare</div><h2 id="prepare-title">A few things to take</h2><ul class="steps"><li><span class="step-icon">1</span><span><b>Water</b> to drink and refill when possible.</span></li><li><span class="step-icon">2</span><span><b>Lightweight, loose clothing</b> and sun protection that fit your activity.</span></li><li><span class="step-icon">3</span><span><b>A cooling plan:</b> know where you can go indoors.</span></li></ul><a class="resource" href="https://www.miamidade.gov/initiative/weather-ready/extreme-heat/heat-safety-tips.page">Miami-Dade heat guidance ↗</a></section>
+        <section class="card help" aria-labelledby="help-title"><div class="kicker"><span class="num">3</span> Cool off</div><h2 id="help-title">Need a cooler place?</h2><p>Miami-Dade lists public cooling sites, addresses, and published hours. Check the current hours and access before traveling.</p><a class="cta" href="https://www.miamidade.gov/initiative/weather-ready/extreme-heat/cooling-sites.page">Find county cooling sites ↗</a><a class="resource" href="https://www.weather.gov/safety/lightning-safety-overview">Thunder nearby? Go indoors ↗</a></section>
+      </div>
+      <details class="full" id="forecast"><summary>See the full forecast and how this was decided</summary><p>This prototype illustrates where the live NWS hourly table, issue and retrieval times, location limitation, and direct NWS link should appear. The sample values above are fictional. Any AI explanation should cite the exact forecast and reviewed guidance used.</p><table class="fake-table"><thead><tr><th>Hour</th><th>Feels like</th><th>Condition</th></tr></thead><tbody><tr><td>9 AM</td><td>92°F</td><td>Sample only</td></tr><tr><td>12 PM</td><td>101°F</td><td>Sample only</td></tr><tr><td>2 PM</td><td>105°F</td><td>Sample only</td></tr><tr><td>5 PM</td><td>98°F</td><td>Sample thunderstorm</td></tr></tbody></table></details>
+    </main>
+    <footer>Visual concept for team review, 10 October 2026. It is not connected to HeatShift's live forecast or AI. Read the accompanying <a href="COMMUNITY_EXPERIENCE_RESEARCH.md">research and proposed implementation stages</a>.</footer>
+  </div>
+</body>
+</html>
+
