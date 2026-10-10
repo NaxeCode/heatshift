@@ -237,77 +237,92 @@ export default function Planner() {
         <div className="workspace-grid">
           <aside className="input-panel">
             <div className="panel-heading">
-              <span className="mini-icon">
-                <Trees size={21} />
-              </span>
-              <div>
-                <h2>The work ahead</h2>
-                <p>One crew. One day. Up to four tasks.</p>
+              <div className="panel-heading-kicker">
+                <span>YOUR CREW'S DAY</span>
+                <span className="panel-task-badge">UP TO 4 TASKS</span>
+              </div>
+              <div className="panel-heading-main">
+                <span className="mini-icon" aria-hidden="true">
+                  <Trees size={22} />
+                </span>
+                <div>
+                  <h2>The work ahead</h2>
+                  <p>Set the hours, then describe what the crew needs to do.</p>
+                </div>
               </div>
             </div>
             <fieldset disabled={!!busy} className="input-fieldset">
-              <div className="location-box">
-                <MapPin size={17} />
-                <div>
-                  <strong>Miami, Florida</strong>
-                  <span>National Weather Service forecast</span>
+              <section className="shift-card" aria-labelledby="shift-card-title">
+                <div className="shift-card-heading">
+                  <div>
+                    <span className="shift-card-step">01 / DAY &amp; HOURS</span>
+                    <h3 id="shift-card-title">Set the shift</h3>
+                  </div>
+                  <span className="shift-card-index" aria-hidden="true">01</span>
                 </div>
-                <span className="live-dot" />
-              </div>
-              <label className="field date-field">
-                <span>Work date</span>
-                <input
-                  type="date"
-                  value={date}
-                  min={loaded ? miamiDate() : undefined}
-                  max={loaded ? miamiDate(6) : undefined}
-                  onChange={(e) => {
-                    setDate(e.target.value);
-                    invalidate();
-                  }}
-                />
-              </label>
-              <div className="shift-grid">
-                <TimeField
-                  label="Paid shift starts"
-                  value={shift.shiftStart}
-                  onChange={(v) => {
-                    setShift((s) => ({ ...s, shiftStart: v! }));
-                    invalidate();
-                  }}
-                />
-                <TimeField
-                  label="Paid shift ends"
-                  value={shift.shiftEnd}
-                  onChange={(v) => {
-                    setShift((s) => ({ ...s, shiftEnd: v! }));
-                    invalidate();
-                  }}
-                />
-                <TimeField
-                  label="Fixed break starts"
-                  value={shift.breakStart}
-                  onChange={(v) => {
-                    setShift((s) => ({ ...s, breakStart: v! }));
-                    invalidate();
-                  }}
-                />
-                <TimeField
-                  label="Fixed break ends"
-                  value={shift.breakEnd}
-                  onChange={(v) => {
-                    setShift((s) => ({ ...s, breakEnd: v! }));
-                    invalidate();
-                  }}
-                />
-              </div>
+                <div className="location-box">
+                  <MapPin size={17} />
+                  <div>
+                    <strong>Miami, Florida</strong>
+                    <span>National Weather Service forecast</span>
+                  </div>
+                  <span className="live-dot" />
+                </div>
+                <label className="field date-field">
+                  <span>Work date</span>
+                  <input
+                    type="date"
+                    value={date}
+                    min={loaded ? miamiDate() : undefined}
+                    max={loaded ? miamiDate(6) : undefined}
+                    onChange={(e) => {
+                      setDate(e.target.value);
+                      invalidate();
+                    }}
+                  />
+                </label>
+                <div className="shift-grid">
+                  <TimeField
+                    label="Paid shift starts"
+                    value={shift.shiftStart}
+                    onChange={(v) => {
+                      setShift((s) => ({ ...s, shiftStart: v! }));
+                      invalidate();
+                    }}
+                  />
+                  <TimeField
+                    label="Paid shift ends"
+                    value={shift.shiftEnd}
+                    onChange={(v) => {
+                      setShift((s) => ({ ...s, shiftEnd: v! }));
+                      invalidate();
+                    }}
+                  />
+                  <TimeField
+                    label="Fixed break starts"
+                    value={shift.breakStart}
+                    onChange={(v) => {
+                      setShift((s) => ({ ...s, breakStart: v! }));
+                      invalidate();
+                    }}
+                  />
+                  <TimeField
+                    label="Fixed break ends"
+                    value={shift.breakEnd}
+                    onChange={(v) => {
+                      setShift((s) => ({ ...s, breakEnd: v! }));
+                      invalidate();
+                    }}
+                  />
+                </div>
+              </section>
               <section className="work-order-card" aria-labelledby="work-order-title">
                 <div className="work-order-intro">
                   <span className="work-order-icon" aria-hidden="true">
                     <ClipboardList size={21} />
                   </span>
                   <div>
-                    <span className="work-order-step">01 / THE WORK</span>
+                    <span className="work-order-step">02 / THE WORK</span>
                     <h3 id="work-order-title">Describe the work</h3>
                   </div>
                 </div>
