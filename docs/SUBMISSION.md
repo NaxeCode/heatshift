@@ -1,20 +1,20 @@
 # Submission checklist
 
-Source: [Hack for Humanity Miami Challenge Guide](https://github.com/AI-Collective-Hackathons/hack-for-humanity-miami/blob/main/Challenge%20Guide.md), checked October 10, 2026. Same-day organizer amendments take precedence. Build ends at 3:30 PM Eastern; OrganizerHQ submission closes at 3:45 PM.
+Source: [Hack for Humanity Miami Challenge Guide](https://github.com/AI-Collective-Hackathons/hack-for-humanity-miami/blob/main/Challenge%20Guide.md), checked October 10, 2026. Same-day organizer amendments take precedence. The written guide says build ends at 3:30 PM Eastern and submission closes at 3:45 PM. The live form displayed 5:30 PM EDT at approximately 3:16 PM; this discrepancy needs organizer confirmation. Prepare for 3:45 PM meanwhile.
 
 Prepared handoff: [submission text for team review](SUBMISSION_DRAFT.md) and [two-minute demo runbook](DEMO_RUNBOOK.md). These do not mark registration, rehearsal, recording or submission complete.
 
 ## Required entry details
 
-- [ ] OrganizerHQ check-in verified.
+- [x] Aladdin’s event page displays “You’re checked in!” (October 10, approximately 3:17 PM). Other members’ check-in remains unverified.
 - [ ] Final team roster confirmed within the organizer's team rules.
 - [ ] Project name, specific user, problem and working solution supplied.
 - [x] Public GitHub repository with an MIT license published and verified: https://github.com/NaxeCode/heatshift.
 - [ ] Repository remains public after the event.
 - [ ] README contains final team names, primary track, data sources, exact runtime model and tested run instructions.
 - [ ] Organizer-required AI tooling and model disclosures completed accurately. Development-tool disclosure is pending; keep it in the submission workflow rather than product or team messaging.
-- [ ] Select Four Forces, One City / Fire as the primary Build for Miami track.
-- [ ] Select Best Open-Source AI Project and Best Use of Gemma 4 once their requirements are demonstrated.
+- [x] Four Forces, One City / Fire prepared in the saved draft form.
+- [x] Best Open-Source AI Project and Best Use of Gemma 4 prepared in the saved draft form; implementation evidence verified.
 - [ ] Submission receipt verified.
 
 ## Evidence for the partner challenges

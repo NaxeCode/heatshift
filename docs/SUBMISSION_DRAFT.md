@@ -1,48 +1,46 @@
-# Submission text for team review
+# Kruu submission draft
 
-Status: prepared text, not submitted. **Submission HOLD: do not submit until Aladdin gives a new explicit go-ahead, even if every readiness check passes or the deadline approaches.** Confirm team registration, the registered roster, final name, OrganizerHQ check-in and all required disclosures before submitting. Faye may revise the title and product wording.
+Prepared October 10, 2026. **Saved as a draft; not submitted.** Aladdin must explicitly authorize final submission. The saved browser form has the project name, source, description, technologies, live app and three prize categories prepared. Saving a draft is not a submission receipt.
 
-The public release from main `4751ebf` includes Faye's visual direction, dated briefing exports and the resident Miami heat guide described below. Both routes and actual English/Spanish downloads were inspected at approximately 1:46–1:48 PM Eastern; see [verification evidence](VERIFICATION.md). Technical release verification does not establish organizer acceptance or authorize submission.
+The event page confirms Aladdin is checked in. Other members’ check-in and their association with the entry remain unverified. Aladdin authorized saving the draft and inviting all three teammates. The private invitation was sent in the team group at approximately 3:18 PM; acceptance remains unverified. The published guide locks teams at 10:45 AM; ask the organizer about any unrecorded roster rather than claiming it is approved.
 
-## Entry fields
+## Deadline discrepancy
 
-**Project:** HeatShift (working name)
+The [official guide](https://github.com/AI-Collective-Hackathons/hack-for-humanity-miami/blob/main/Challenge%20Guide.md) and event description say build ends at 3:30 PM and submission closes at **3:45 PM Eastern**. At approximately 3:16 PM, the [live form](https://www.mlh.com/events/hacktoberfest-hack-day-miami-x-the-ai-collective/submissions/new) displayed **5:30 PM EDT**. Prepare for the earlier deadline until an organizer confirms an extension.
 
-**One-line description:** Forecast-informed scheduling for Miami outdoor crews, with a resident guide to today's heat forecast and official cooling resources.
+## Prepared description
 
-**Problem and user:** A Miami landscaping supervisor needs to plan outdoor work around forecast heat while respecting the crew's tasks, appointments, breaks and paid time. A weather forecast alone does not show how a particular work order could be rearranged. A second intended user is a Miami resident checking the day's forecast before an errand or visit and looking for official cooling resources. Both are product hypotheses that still need validation with users.
+## Kruu — Plan the work. Work around the heat.
 
-**Working solution:** HeatShift turns a text work order into editable tasks using Gemma 4 through the Gemini API. After supervisor confirmation, deterministic code compares feasible schedules against live National Weather Service data for Miami. It shows the original and proposed timelines, preserves the reviewed constraints and reports outdoor minutes within the shift's three hottest forecast hours. Gemma then prepares an explanation and crew briefing in English and Spanish. The crew-planner scope is one crew, one location, one day and up to four tasks. An unchanged or infeasible result is valid.
+A Miami landscaping supervisor has a full workday to plan, but the hottest hours may fall in the middle of the outdoor work. Kruu turns that work order into a forecast-informed schedule while keeping the same work, paid shift and fixed break.
 
-**Resident guide and dated exports:** The verified public Miami heat guide at `/community` gives residents today's available remaining forecast hours for the same Miami grid point, visible source and retrieval timestamps, and links to official Miami-Dade heat guidance and cooling sites. Missing hours stay marked; official resource links remain available if weather cannot be retrieved, as checked with a local simulated outage. The route needs no work order or account. It does not provide active alerts, personalized risk advice or confirmation that a cooling site is open. The crew briefing's date and Miami location are also included consistently in display, copy and download.
+**Track 01: Four Forces, One City — Fire.** Built for Miami outdoor crews and their supervisors, with a resident heat guide as a second entry point.
 
-**Community value:** The intended benefit is a clearer planning conversation between a supervisor and crew, with work and paid time kept visible, plus a direct path for residents to dated forecast information and official local resources. This is forecast planning support, not a safety certification. The current crew scenario is fictional; worker/resident interviews and health, productivity or financial outcomes have not been established. Clothing assessment and effort scoring remain proposals.
+### What works
+- Paste a work order. Gemma 4 extracts editable tasks and flags missing details for supervisor review.
+- Compare the confirmed plan against live National Weather Service data for Miami. Deterministic code preserves task durations, appointments, dependencies, breaks and paid time.
+- See the change in outdoor minutes during the shift’s three hottest forecast hours. An unchanged or infeasible result is valid; the app does not manufacture an improvement.
+- Generate an English/Spanish crew briefing, download it, or export the day to iCalendar or a prefilled Google Calendar event.
+- Residents can check today’s available forecast and search Miami-Dade’s official cooling-site directory by name, city, ZIP and type. Source timestamps and missing data stay visible; site access and opening hours need confirmation.
 
-**Original technical contribution:** A complete work-order-to-briefing flow; editable extraction with source references; deterministic constraint checking and schedule comparison; time-zone and forecast-coverage validation; and server-verified comparison data for the briefing. The project includes tests, synthetic evaluation cases, attribution and reproducible setup instructions.
+### AI and open source
+The application calls **Gemma 4 (`gemma-4-26b-a4b-it`) through the Gemini API** for work-order extraction and bilingual explanations. TypeScript computes feasibility and numerical comparisons; server-signed results prevent altered comparison data from reaching the briefing flow. Original code is public under MIT, with model terms, data sources and setup instructions in the README.
 
-**Build for Miami track:** Four Forces, One City — Fire.
+**Entered categories:** Track 01 — Four Forces, One City; Best Open-Source AI Project; Best Use of Gemma 4.
 
-**Additional challenges:** Best Open-Source AI Project; Best Use of Gemma 4. Select these explicitly in OrganizerHQ where available.
+### Evidence and limits
+The production workflow has been exercised with real Gemma calls and live NWS data. Latest implementation CI passes 45 tests, TypeScript checks and production build. This is a one-crew, one-Miami-location, one-day prototype with up to four tasks. It supports planning; it does not certify safety or claim measured health, productivity or financial outcomes.
 
-**Repository:** https://github.com/NaxeCode/heatshift
+**Team:** Aladdin — Engineering; Faye — Creative Direction; Nelson — Community Impact; Nina — Evaluation.
 
 **Live app:** https://heatshift-naxecodes-projects.vercel.app
+**Source:** https://github.com/NaxeCode/heatshift
 
-**Runtime technologies:** Next.js, React, TypeScript, Google Gen AI SDK, Gemini API, Gemma 4 (`gemma-4-26b-a4b-it`), Zod, National Weather Service API and Vercel.
+## Remaining entry checks
 
-**Source license:** MIT for original project code and docs. Dependencies, model and data retain their respective licenses or terms. The repository will need to remain public after the event.
+- Confirm the four-person registered roster and each member’s check-in.
+- Complete organizer-required development-tool/model disclosures accurately in the entry workflow; runtime technologies alone are not the full disclosure. The form labels coding-tool fields optional, while the guide asks teams to list tools used.
+- Review all fields and obtain Aladdin’s separate authorization before submitting.
+- After authorized submission, verify the receipt and final category selections.
 
-**Team roles, pending roster/display-name confirmation:** Aladdin — implementation and integration; Faye — naming, creative direction and marketing; Nelson — worker needs and community impact; Nina — evaluation and product value.
-
-## Required completion outside this draft
-
-- Run a fresh preflight and rehearse the two-minute walkthrough; record and play back a backup. Release verification is recorded, but rehearsal and a usable recording remain unverified.
-- Confirm OrganizerHQ check-in and the registered team of no more than four, including any organizer-approved roster changes.
-- Confirm the public display names. Do not copy private contact details into this repository.
-- Supply the complete, truthful development-tool and model disclosure in the organizer's required fields. The runtime-technology list above is not the full development-tool disclosure.
-- Confirm all three category selections, source/app links and the final project title before final submission.
-- Wait for Aladdin's explicit go-ahead before submitting. After an authorized submission, retain the actual receipt and record the submitted project URL privately if it contains account information.
-
-Build ends at **3:30 PM Eastern on October 10, 2026**; submission is due by **3:45 PM**. The [official challenge guide](https://github.com/AI-Collective-Hackathons/hack-for-humanity-miami/blob/main/Challenge%20Guide.md) and any same-day organizer amendments control eligibility.
-
-The [demo runbook](DEMO_RUNBOOK.md) covers the two-minute product walkthrough and truthful fallback handling. [Verification evidence](VERIFICATION.md) records completed checks; it does not establish organizer acceptance.
+The selected backup video is Faye’s cut with the contributor/link ending: 43.6 seconds, H.264/AAC, with corrected Creative Direction and Community Impact titles. It remains a local team handoff, not a hosted video link or a submitted entry.
