@@ -1,0 +1,1085 @@
+{
+  "model": "gemma-4-26b-a4b-it",
+  "syntheticInputs": true,
+  "realModelCalls": true,
+  "selection": "Final three-run record for each case after refinements. Earlier exploratory and failed provider calls are not included; this is not an overall accuracy or availability rate.",
+  "checkedFields": [
+    "task count",
+    "duration",
+    "environment",
+    "fixed start",
+    "explicit expected original start",
+    "dependencies",
+    "unresolved EVAL-03 rejected by plan schema"
+  ],
+  "results": [
+    {
+      "case": "EVAL-01",
+      "run": 1,
+      "model": "gemma-4-26b-a4b-it",
+      "elapsedMs": 6447,
+      "differences": [],
+      "ready": true,
+      "extraction": {
+        "tasks": [
+          {
+            "id": "t1",
+            "title": "Inventory and tool preparation indoors.",
+            "sourceText": "8:00 AM to 9:30 AM: Inventory and tool preparation indoors.",
+            "sourceLine": 6,
+            "duration": 90,
+            "environment": "indoor",
+            "originalStart": "08:00",
+            "earliestStart": null,
+            "latestFinish": null,
+            "fixedStart": null,
+            "dependencies": []
+          },
+          {
+            "id": "t2",
+            "title": "Load and sort supplies in the indoor storage area.",
+            "sourceText": "9:30 AM to 11:00 AM: Load and sort supplies in the indoor storage area.",
+            "sourceLine": 7,
+            "duration": 90,
+            "environment": "indoor",
+            "originalStart": "09:30",
+            "earliestStart": null,
+            "latestFinish": null,
+            "fixedStart": null,
+            "dependencies": []
+          },
+          {
+            "id": "t3",
+            "title": "title-Prune hedges outdoors.",
+            "sourceText": "11:00 AM to 12:00 PM: Prune hedges outdoors.",
+            "sourceLine": 8,
+            "duration": 60,
+            "environment": "outdoor",
+            "originalStart": "11:00",
+            "earliestStart": null,
+            "latestFinish": null,
+            "fixedStart": null,
+            "dependencies": []
+          },
+          {
+            "id": "t4",
+            "title": "Mow the lawn outdoors.",
+            "sourceText": "9:30 AM to 11:00 AM: Load and sort supplies in the indoor storage area.",
+            "sourceLine": 7,
+            "duration": 90,
+            "environment": "outdoor",
+            "originalStart": "12:30",
+            "earliestStart": null,
+            "latestFinish": null,
+            "fixedStart": null,
+            "dependencies": []
+          }
+        ],
+        "questions": []
+      },
+      "runRecordedAt": "2026-10-10T16:55:27.212Z",
+      "sourceCommit": "6e8ba3e"
+    },
+    {
+      "case": "EVAL-01",
+      "run": 2,
+      "model": "gemma-4-26b-a4b-it",
+      "elapsedMs": 6240,
+      "differences": [],
+      "ready": true,
+      "extraction": {
+        "tasks": [
+          {
+            "id": "t1",
+            "title": "Inventory and tool preparation indoors.",
+            "sourceText": "8:00 AM to 9:30 AM: Inventory and tool preparation indoors.",
+            "sourceLine": 6,
+            "duration": 90,
+            "environment": "indoor",
+            "originalStart": "08:00",
+            "earliestStart": null,
+            "latestFinish": null,
+            "fixedStart": null,
+            "dependencies": []
+          },
+          {
+            "id": "t2",
+            "title": "Load and sort supplies in the indoor storage area.",
+            "sourceText": "9:30 AM to 11:00 AM: Load and sort supplies in the indoor storage area.",
+            "sourceLine": 7,
+            "duration": 90,
+            "environment": "indoor",
+            "originalStart": "09:30",
+            "earliestStart": null,
+            "latestFinish": null,
+            "fixedStart": null,
+            "dependencies": []
+          },
+          {
+            "id": "t3",
+            "title": "title-Prune hedges outdoors.",
+            "sourceText": "11:00 AM to 12:00 PM: Prune hedges outdoors.",
+            "sourceLine": 8,
+            "duration": 60,
+            "environment": "outdoor",
+            "originalStart": "11:00",
+            "earliestStart": null,
+            "latestFinish": null,
+            "fixedStart": null,
+            "dependencies": []
+          },
+          {
+            "id": "t4",
+            "title": "Mow the lawn outdoors.",
+            "sourceText": "9:30 AM to 11:00 AM: Load and sort supplies in the indoor storage area.",
+            "sourceLine": 7,
+            "duration": 90,
+            "environment": "outdoor",
+            "originalStart": "12:30",
+            "earliestStart": null,
+            "latestFinish": null,
+            "fixedStart": null,
+            "dependencies": []
+          }
+        ],
+        "questions": []
+      },
+      "runRecordedAt": "2026-10-10T16:55:27.212Z",
+      "sourceCommit": "6e8ba3e"
+    },
+    {
+      "case": "EVAL-01",
+      "run": 3,
+      "model": "gemma-4-26b-a4b-it",
+      "elapsedMs": 5847,
+      "differences": [],
+      "ready": true,
+      "extraction": {
+        "tasks": [
+          {
+            "id": "t1",
+            "title": "Inventory and tool preparation indoors.",
+            "sourceText": "8:00 AM to 9:30 AM: Inventory and tool preparation indoors.",
+            "sourceLine": 6,
+            "duration": 90,
+            "environment": "indoor",
+            "originalStart": "08:00",
+            "earliestStart": null,
+            "latestFinish": null,
+            "fixedStart": null,
+            "dependencies": []
+          },
+          {
+            "id": "t2",
+            "title": "Load and sort supplies in the indoor storage area.",
+            "sourceText": "9:30 AM to 11:00 AM: Load and sort supplies in the indoor storage area.",
+            "sourceLine": 7,
+            "duration": 90,
+            "environment": "indoor",
+            "originalStart": "09:30",
+            "earliestStart": null,
+            "latestFinish": null,
+            "fixedStart": null,
+            "dependencies": []
+          },
+          {
+            "id": "t3",
+            "title": "title-Prune hedges outdoors.",
+            "sourceText": "11:00 AM to 12:00 PM: Prune hedges outdoors.",
+            "sourceLine": 8,
+            "duration": 60,
+            "environment": "outdoor",
+            "originalStart": "11:00",
+            "earliestStart": null,
+            "latestFinish": null,
+            "fixedStart": null,
+            "dependencies": []
+          },
+          {
+            "id": "t4",
+            "title": "Mow the lawn outdoors.",
+            "sourceText": "9:30 AM to 11:00 AM: Load and sort supplies in the indoor storage area.",
+            "sourceLine": 7,
+            "duration": 90,
+            "environment": "outdoor",
+            "originalStart": "12:30",
+            "earliestStart": null,
+            "latestFinish": null,
+            "fixedStart": null,
+            "dependencies": []
+          }
+        ],
+        "questions": []
+      },
+      "runRecordedAt": "2026-10-10T16:55:27.212Z",
+      "sourceCommit": "6e8ba3e"
+    },
+    {
+      "case": "EVAL-02",
+      "run": 1,
+      "model": "gemma-4-26b-a4b-it",
+      "elapsedMs": 6402,
+      "differences": [],
+      "ready": true,
+      "extraction": {
+        "tasks": [
+          {
+            "id": "t1",
+            "title": "Service the mowers in the shop (indoors)",
+            "sourceText": "7:00 to 8:30 AM - Service the mowers in the shop (indoors).",
+            "sourceLine": 4,
+            "duration": 90,
+            "environment": "indoor",
+            "originalStart": "07:00",
+            "earliestStart": null,
+            "latestFinish": null,
+            "fixedStart": null,
+            "dependencies": []
+          },
+          {
+            "id": "t2",
+            "title": "Plant shrubs in the front bed (outdoors)",
+            "sourceText": "8:30 to 10:30 AM - Plant shrubs in the front bed (outdoors).",
+            "sourceLine": 5,
+            "duration": 120,
+            "environment": "outdoor",
+            "originalStart": "08:30",
+            "earliestStart": null,
+            "latestFinish": null,
+            "fixedStart": null,
+            "dependencies": []
+          },
+          {
+            "id": "t3",
+            "title": "Spread mulch on the new bed (outdoors)",
+            "sourceText": "11:30 AM to 1:00 PM - Spread mulch on the new bed (outdoors). Mulch goes down only after the shrubs are planted.",
+            "sourceLine": 6,
+            "duration": 90,
+            "environment": "outdoor",
+            "originalStart": "11:30",
+            "earliestStart": null,
+            "latestFinish": null,
+            "fixedStart": null,
+            "dependencies": [
+              "t2"
+            ]
+          },
+          {
+            "id": "t4",
+            "title": "Irrigation walkthrough outside with the property manager (appointment)",
+            "sourceText": "1:00 to 2:00 PM - Irrigation walkthrough outside with the property manager. This is an appointment and cannot move.",
+            "sourceLine": 7,
+            "duration": 60,
+            "environment": "outdoor",
+            "originalStart": "13:00",
+            "earliestStart": null,
+            "latestFinish": null,
+            "fixedStart": "13:00",
+            "dependencies": []
+          }
+        ],
+        "questions": []
+      },
+      "runRecordedAt": "2026-10-10T16:54:29.503Z",
+      "sourceCommit": "7d8a2f4"
+    },
+    {
+      "case": "EVAL-02",
+      "run": 2,
+      "model": "gemma-4-26b-a4b-it",
+      "elapsedMs": 6244,
+      "differences": [],
+      "ready": true,
+      "extraction": {
+        "tasks": [
+          {
+            "id": "t1",
+            "title": "Service the mowers in the shop (indoors)",
+            "sourceText": "7:00 to 8:30 AM - Service the mowers in the shop (indoors).",
+            "sourceLine": 4,
+            "duration": 90,
+            "environment": "indoor",
+            "originalStart": "07:00",
+            "earliestStart": null,
+            "latestFinish": null,
+            "fixedStart": null,
+            "dependencies": []
+          },
+          {
+            "id": "t2",
+            "title": "Plant shrubs in the front bed (outdoors)",
+            "sourceText": "8:30 to 10:30 AM - Plant shrubs in the front bed (outdoors).",
+            "sourceLine": 5,
+            "duration": 120,
+            "environment": "outdoor",
+            "originalStart": "08:30",
+            "earliestStart": null,
+            "latestFinish": null,
+            "fixedStart": null,
+            "dependencies": []
+          },
+          {
+            "id": "t3",
+            "title": "Spread mulch on the new bed (outdoors)",
+            "sourceText": "11:30 AM to 1:00 PM - Spread mulch on the new bed (outdoors). Mulch goes down only after the shrubs are planted.",
+            "sourceLine": 6,
+            "duration": 90,
+            "environment": "outdoor",
+            "originalStart": "11:30",
+            "earliestStart": null,
+            "latestFinish": null,
+            "fixedStart": null,
+            "dependencies": [
+              "t2"
+            ]
+          },
+          {
+            "id": "t4",
+            "title": "Irrigation walkthrough outside with the property manager (appointment)",
+            "sourceText": "1:00 to 2:00 PM - Irrigation walkthrough outside with the property manager. This is an appointment and cannot move.",
+            "sourceLine": 7,
+            "duration": 60,
+            "environment": "outdoor",
+            "originalStart": "13:00",
+            "earliestStart": null,
+            "latestFinish": null,
+            "fixedStart": "13:00",
+            "dependencies": []
+          }
+        ],
+        "questions": []
+      },
+      "runRecordedAt": "2026-10-10T16:54:29.503Z",
+      "sourceCommit": "7d8a2f4"
+    },
+    {
+      "case": "EVAL-02",
+      "run": 3,
+      "model": "gemma-4-26b-a4b-it",
+      "elapsedMs": 7976,
+      "differences": [],
+      "ready": true,
+      "extraction": {
+        "tasks": [
+          {
+            "id": "t1",
+            "title": "Service the mowers in the shop (indoors)",
+            "sourceText": "7:00 to 8:30 AM - Service the mowers in the shop (indoors).",
+            "sourceLine": 4,
+            "duration": 90,
+            "environment": "indoor",
+            "originalStart": "07:00",
+            "earliestStart": null,
+            "latestFinish": null,
+            "fixedStart": null,
+            "dependencies": []
+          },
+          {
+            "id": "t2",
+            "title": "Plant shrubs in the front bed (outdoors)",
+            "sourceText": "8:30 to 10:30 AM - Plant shrubs in the front bed (outdoors).",
+            "sourceLine": 5,
+            "duration": 120,
+            "environment": "outdoor",
+            "originalStart": "08:30",
+            "earliestStart": null,
+            "latestFinish": null,
+            "fixedStart": null,
+            "dependencies": []
+          },
+          {
+            "id": "t3",
+            "title": "Spread mulch on the new bed (outdoors)",
+            "sourceText": "11:30 AM to 1:00 PM - Spread mulch on the new bed (outdoors). Mulch goes down only after the shrubs are planted.",
+            "sourceLine": 6,
+            "duration": 90,
+            "environment": "outdoor",
+            "originalStart": "11:30",
+            "earliestStart": null,
+            "latestFinish": null,
+            "fixedStart": null,
+            "dependencies": [
+              "t2"
+            ]
+          },
+          {
+            "id": "t4",
+            "title": "Irrigation walkthrough outside with the property manager (appointment)",
+            "sourceText": "1:00 to 2:00 PM - Irrigation walkthrough outside with the property manager. This is an appointment and cannot move.",
+            "sourceLine": 7,
+            "duration": 60,
+            "environment": "outdoor",
+            "originalStart": "13:00",
+            "earliestStart": null,
+            "latestFinish": null,
+            "fixedStart": "13:00",
+            "dependencies": []
+          }
+        ],
+        "questions": []
+      },
+      "runRecordedAt": "2026-10-10T16:54:29.503Z",
+      "sourceCommit": "7d8a2f4"
+    },
+    {
+      "case": "EVAL-03",
+      "run": 1,
+      "model": "gemma-4-26b-a4b-it",
+      "elapsedMs": 5911,
+      "differences": [],
+      "ready": false,
+      "extraction": {
+        "tasks": [
+          {
+            "id": "t1",
+            "title": "Trim the palms along the entrance",
+            "sourceText": "- Trim the palms along the entrance.",
+            "sourceLine": 2,
+            "duration": null,
+            "environment": "outdoor",
+            "originalStart": null,
+            "earliestStart": null,
+            "latestFinish": null,
+            "fixedStart": null,
+            "dependencies": []
+          },
+          {
+            "id": "t2",
+            "title": "Fertilizer application on the back lawn",
+            "sourceText": "- Fertilizer application on the back lawn, about 45 minutes.",
+            "sourceLine": 3,
+            "duration": 45,
+            "environment": "outdoor",
+            "originalStart": null,
+            "earliestStart": null,
+            "latestFinish": null,
+            "fixedStart": null,
+            "dependencies": []
+          },
+          {
+            "id": "t3",
+            "title": "Repot the lobby planters",
+            "sourceText": "- Repot the lobby planters, 1 hour. Might be on the loading dock or inside, depends on the building manager.",
+            "sourceLine": 4,
+            "duration": 60,
+            "environment": "unknown",
+            "originalStart": null,
+            "earliestStart": null,
+            "latestFinish": null,
+            "fixedStart": null,
+            "dependencies": []
+          },
+          {
+            "id": "t4",
+            "title": "Pool deck pressure washed",
+            "sourceText": "- Client wants the pool deck pressure washed 3:30 to 5:00 PM.",
+            "sourceLine": 5,
+            "duration": 90,
+            "environment": "outdoor",
+            "originalStart": "15:30",
+            "earliestStart": null,
+            "latestFinish": null,
+            "fixedStart": "15:30",
+            "dependencies": []
+          }
+        ],
+        "questions": [
+          "What is the environment for the lobby planters task?",
+          "Trim the palms along the entrance: confirm the original start time; it could not be tied to an explicit time in this task's source.",
+          "Trim the palms along the entrance: how many minutes does this task take?",
+          "Fertilizer application on the back lawn: confirm the original start time; it could not be tied to an explicit time in this task's source.",
+          "Fertilizer application on the back lawn: the stated 45 minutes is unsupported. Confirm a duration in 30-minute steps, up to 480 minutes; nothing was rounded.",
+          "Repot the lobby planters: confirm the original start time; it could not be tied to an explicit time in this task's source.",
+          "Repot the lobby planters: confirm whether the work is indoors or outdoors.",
+          "Pool deck pressure washed: the original task time extends outside the confirmed shift. Resolve the conflict before comparing."
+        ]
+      },
+      "runRecordedAt": "2026-10-10T16:55:27.212Z",
+      "sourceCommit": "6e8ba3e"
+    },
+    {
+      "case": "EVAL-03",
+      "run": 2,
+      "model": "gemma-4-26b-a4b-it",
+      "elapsedMs": 5615,
+      "differences": [],
+      "ready": false,
+      "extraction": {
+        "tasks": [
+          {
+            "id": "t1",
+            "title": "Trim the palms along the entrance",
+            "sourceText": "- Trim the palms along the entrance.",
+            "sourceLine": 2,
+            "duration": null,
+            "environment": "outdoor",
+            "originalStart": null,
+            "earliestStart": null,
+            "latestFinish": null,
+            "fixedStart": null,
+            "dependencies": []
+          },
+          {
+            "id": "t2",
+            "title": "Fertilizer application on the back lawn",
+            "sourceText": "- Fertilizer application on the back lawn, about 45 minutes.",
+            "sourceLine": 3,
+            "duration": 45,
+            "environment": "outdoor",
+            "originalStart": null,
+            "earliestStart": null,
+            "latestFinish": null,
+            "fixedStart": null,
+            "dependencies": []
+          },
+          {
+            "id": "t3",
+            "title": "Repot the lobby planters",
+            "sourceText": "- Repot the lobby planters, 1 hour. Might be on the loading dock or inside, depends on the building manager.",
+            "sourceLine": 4,
+            "duration": 60,
+            "environment": "unknown",
+            "originalStart": null,
+            "earliestStart": null,
+            "latestFinish": null,
+            "fixedStart": null,
+            "dependencies": []
+          },
+          {
+            "id": "t4",
+            "title": "Pool deck pressure washed",
+            "sourceText": "- Client wants the pool deck pressure washed 3:30 to 5:00 PM.",
+            "sourceLine": 5,
+            "duration": 90,
+            "environment": "outdoor",
+            "originalStart": "15:30",
+            "earliestStart": null,
+            "latestFinish": null,
+            "fixedStart": "15:30",
+            "dependencies": []
+          }
+        ],
+        "questions": [
+          "What is the environment for the lobby planters task?",
+          "Trim the palms along the entrance: confirm the original start time; it could not be tied to an explicit time in this task's source.",
+          "Trim the palms along the entrance: how many minutes does this task take?",
+          "Fertilizer application on the back lawn: confirm the original start time; it could not be tied to an explicit time in this task's source.",
+          "Fertilizer application on the back lawn: the stated 45 minutes is unsupported. Confirm a duration in 30-minute steps, up to 480 minutes; nothing was rounded.",
+          "Repot the lobby planters: confirm the original start time; it could not be tied to an explicit time in this task's source.",
+          "Repot the lobby planters: confirm whether the work is indoors or outdoors.",
+          "Pool deck pressure washed: the original task time extends outside the confirmed shift. Resolve the conflict before comparing."
+        ]
+      },
+      "runRecordedAt": "2026-10-10T16:55:27.212Z",
+      "sourceCommit": "6e8ba3e"
+    },
+    {
+      "case": "EVAL-03",
+      "run": 3,
+      "model": "gemma-4-26b-a4b-it",
+      "elapsedMs": 5601,
+      "differences": [],
+      "ready": false,
+      "extraction": {
+        "tasks": [
+          {
+            "id": "t1",
+            "title": "Trim the palms along the entrance",
+            "sourceText": "- Trim the palms along the entrance.",
+            "sourceLine": 2,
+            "duration": null,
+            "environment": "outdoor",
+            "originalStart": null,
+            "earliestStart": null,
+            "latestFinish": null,
+            "fixedStart": null,
+            "dependencies": []
+          },
+          {
+            "id": "t2",
+            "title": "Fertilizer application on the back lawn",
+            "sourceText": "- Fertilizer application on the back lawn, about 45 minutes.",
+            "sourceLine": 3,
+            "duration": 45,
+            "environment": "outdoor",
+            "originalStart": null,
+            "earliestStart": null,
+            "latestFinish": null,
+            "fixedStart": null,
+            "dependencies": []
+          },
+          {
+            "id": "t3",
+            "title": "Repot the lobby planters",
+            "sourceText": "- Repot the lobby planters, 1 hour. Might be on the loading dock or inside, depends on the building manager.",
+            "sourceLine": 4,
+            "duration": 60,
+            "environment": "unknown",
+            "originalStart": null,
+            "earliestStart": null,
+            "latestFinish": null,
+            "fixedStart": null,
+            "dependencies": []
+          },
+          {
+            "id": "t4",
+            "title": "Pool deck pressure washed",
+            "sourceText": "- Client wants the pool deck pressure washed 3:30 to 5:00 PM.",
+            "sourceLine": 5,
+            "duration": 90,
+            "environment": "outdoor",
+            "originalStart": "15:30",
+            "earliestStart": null,
+            "latestFinish": null,
+            "fixedStart": "15:30",
+            "dependencies": []
+          }
+        ],
+        "questions": [
+          "What is the environment for the lobby planters task?",
+          "Trim the palms along the entrance: confirm the original start time; it could not be tied to an explicit time in this task's source.",
+          "Trim the palms along the entrance: how many minutes does this task take?",
+          "Fertilizer application on the back lawn: confirm the original start time; it could not be tied to an explicit time in this task's source.",
+          "Fertilizer application on the back lawn: the stated 45 minutes is unsupported. Confirm a duration in 30-minute steps, up to 480 minutes; nothing was rounded.",
+          "Repot the lobby planters: confirm the original start time; it could not be tied to an explicit time in this task's source.",
+          "Repot the lobby planters: confirm whether the work is indoors or outdoors.",
+          "Pool deck pressure washed: the original task time extends outside the confirmed shift. Resolve the conflict before comparing."
+        ]
+      },
+      "runRecordedAt": "2026-10-10T16:55:27.212Z",
+      "sourceCommit": "6e8ba3e"
+    },
+    {
+      "case": "EVAL-04",
+      "run": 1,
+      "model": "gemma-4-26b-a4b-it",
+      "elapsedMs": 5717,
+      "differences": [],
+      "ready": false,
+      "extraction": {
+        "tasks": [
+          {
+            "id": "t1",
+            "title": "Site prep and staging on the front lawn",
+            "sourceText": "8:00 to 10:30 AM - Site prep and staging on the front lawn, outdoors, 2.5 hours. Must be finished before the inspection.",
+            "sourceLine": 3,
+            "duration": 150,
+            "environment": "outdoor",
+            "originalStart": "08:00",
+            "earliestStart": null,
+            "latestFinish": null,
+            "fixedStart": null,
+            "dependencies": []
+          },
+          {
+            "id": "t2",
+            "title": "City irrigation inspection on site",
+            "sourceText": "10:00 to 11:00 AM - City irrigation inspection on site, outdoors. Fixed time; the inspector cannot move it.",
+            "sourceLine": 4,
+            "duration": 60,
+            "environment": "outdoor",
+            "originalStart": "10:00",
+            "earliestStart": null,
+            "latestFinish": null,
+            "fixedStart": "10:00",
+            "dependencies": [
+              "t1"
+            ]
+          },
+          {
+            "id": "t3",
+            "title": "lay sod",
+            "sourceText": "After the inspection - lay sod, outdoors, 2 hours.",
+            "sourceLine": 5,
+            "duration": 120,
+            "environment": "outdoor",
+            "originalStart": null,
+            "earliestStart": null,
+            "latestFinish": null,
+            "fixedStart": null,
+            "dependencies": [
+              "t2"
+            ]
+          },
+          {
+            "id": "t4",
+            "title": "clean and store equipment in the shop",
+            "sourceText": "Then clean and store equipment in the shop, 1 hour.",
+            "sourceLine": 6,
+            "duration": 60,
+            "environment": "indoor",
+            "originalStart": null,
+            "earliestStart": null,
+            "latestFinish": null,
+            "fixedStart": null,
+            "dependencies": [
+              "t3"
+            ]
+          }
+        ],
+        "questions": [
+          "lay sod: confirm the original start time; it could not be tied to an explicit time in this task's source.",
+          "clean and store equipment in the shop: confirm the original start time; it could not be tied to an explicit time in this task's source.",
+          "Site prep and staging on the front lawn cannot finish before City irrigation inspection on site's fixed start at 10:00. At least 30 more minutes are needed. Change the appointment or confirmed workload."
+        ]
+      },
+      "runRecordedAt": "2026-10-10T16:53:34.204Z",
+      "sourceCommit": "6e8ba3e"
+    },
+    {
+      "case": "EVAL-04",
+      "run": 2,
+      "model": "gemma-4-26b-a4b-it",
+      "elapsedMs": 5695,
+      "differences": [],
+      "ready": false,
+      "extraction": {
+        "tasks": [
+          {
+            "id": "t1",
+            "title": "Site prep and staging on the front lawn",
+            "sourceText": "8:00 to 10:30 AM - Site prep and staging on the front lawn, outdoors, 2.5 hours. Must be finished before the inspection.",
+            "sourceLine": 3,
+            "duration": 150,
+            "environment": "outdoor",
+            "originalStart": "08:00",
+            "earliestStart": null,
+            "latestFinish": null,
+            "fixedStart": null,
+            "dependencies": []
+          },
+          {
+            "id": "t2",
+            "title": "City irrigation inspection on site",
+            "sourceText": "10:00 to 11:00 AM - City irrigation inspection on site, outdoors. Fixed time; the inspector cannot move it.",
+            "sourceLine": 4,
+            "duration": 60,
+            "environment": "outdoor",
+            "originalStart": "10:00",
+            "earliestStart": null,
+            "latestFinish": null,
+            "fixedStart": "10:00",
+            "dependencies": [
+              "t1"
+            ]
+          },
+          {
+            "id": "t3",
+            "title": "lay sod",
+            "sourceText": "After the inspection - lay sod, outdoors, 2 hours.",
+            "sourceLine": 5,
+            "duration": 120,
+            "environment": "outdoor",
+            "originalStart": null,
+            "earliestStart": null,
+            "latestFinish": null,
+            "fixedStart": null,
+            "dependencies": [
+              "t2"
+            ]
+          },
+          {
+            "id": "t4",
+            "title": "clean and store equipment in the shop",
+            "sourceText": "Then clean and store equipment in the shop, 1 hour.",
+            "sourceLine": 6,
+            "duration": 60,
+            "environment": "indoor",
+            "originalStart": null,
+            "earliestStart": null,
+            "latestFinish": null,
+            "fixedStart": null,
+            "dependencies": [
+              "t3"
+            ]
+          }
+        ],
+        "questions": [
+          "lay sod: confirm the original start time; it could not be tied to an explicit time in this task's source.",
+          "clean and store equipment in the shop: confirm the original start time; it could not be tied to an explicit time in this task's source.",
+          "Site prep and staging on the front lawn cannot finish before City irrigation inspection on site's fixed start at 10:00. At least 30 more minutes are needed. Change the appointment or confirmed workload."
+        ]
+      },
+      "runRecordedAt": "2026-10-10T16:53:34.204Z",
+      "sourceCommit": "6e8ba3e"
+    },
+    {
+      "case": "EVAL-04",
+      "run": 3,
+      "model": "gemma-4-26b-a4b-it",
+      "elapsedMs": 5961,
+      "differences": [],
+      "ready": false,
+      "extraction": {
+        "tasks": [
+          {
+            "id": "t1",
+            "title": "Site prep and staging on the front lawn",
+            "sourceText": "8:00 to 10:30 AM - Site prep and staging on the front lawn, outdoors, 2.5 hours. Must be finished before the inspection.",
+            "sourceLine": 3,
+            "duration": 150,
+            "environment": "outdoor",
+            "originalStart": "08:00",
+            "earliestStart": null,
+            "latestFinish": null,
+            "fixedStart": null,
+            "dependencies": []
+          },
+          {
+            "id": "t2",
+            "title": "City irrigation inspection on site",
+            "sourceText": "10:00 to 11:00 AM - City irrigation inspection on site, outdoors. Fixed time; the inspector cannot move it.",
+            "sourceLine": 4,
+            "duration": 60,
+            "environment": "outdoor",
+            "originalStart": "10:00",
+            "earliestStart": null,
+            "latestFinish": null,
+            "fixedStart": "10:00",
+            "dependencies": [
+              "t1"
+            ]
+          },
+          {
+            "id": "t3",
+            "title": "lay sod",
+            "sourceText": "After the inspection - lay sod, outdoors, 2 hours.",
+            "sourceLine": 5,
+            "duration": 120,
+            "environment": "outdoor",
+            "originalStart": null,
+            "earliestStart": null,
+            "latestFinish": null,
+            "fixedStart": null,
+            "dependencies": [
+              "t2"
+            ]
+          },
+          {
+            "id": "t4",
+            "title": "clean and store equipment in the shop",
+            "sourceText": "Then clean and store equipment in the shop, 1 hour.",
+            "sourceLine": 6,
+            "duration": 60,
+            "environment": "indoor",
+            "originalStart": null,
+            "earliestStart": null,
+            "latestFinish": null,
+            "fixedStart": null,
+            "dependencies": [
+              "t3"
+            ]
+          }
+        ],
+        "questions": [
+          "lay sod: confirm the original start time; it could not be tied to an explicit time in this task's source.",
+          "clean and store equipment in the shop: confirm the original start time; it could not be tied to an explicit time in this task's source.",
+          "Site prep and staging on the front lawn cannot finish before City irrigation inspection on site's fixed start at 10:00. At least 30 more minutes are needed. Change the appointment or confirmed workload."
+        ]
+      },
+      "runRecordedAt": "2026-10-10T16:53:34.204Z",
+      "sourceCommit": "6e8ba3e"
+    },
+    {
+      "case": "EVAL-05",
+      "run": 1,
+      "model": "gemma-4-26b-a4b-it",
+      "elapsedMs": 6314,
+      "differences": [],
+      "ready": true,
+      "extraction": {
+        "tasks": [
+          {
+            "id": "t1",
+            "title": "Mow the front and back lawn",
+            "sourceText": "8:00 to 9:30 AM - Mow the front and back lawn, outdoors.",
+            "sourceLine": 3,
+            "duration": 90,
+            "environment": "outdoor",
+            "originalStart": "08:00",
+            "earliestStart": null,
+            "latestFinish": null,
+            "fixedStart": null,
+            "dependencies": []
+          },
+          {
+            "id": "t2",
+            "title": "Trim the hedges along the fence",
+            "sourceText": "9:30 to 11:00 AM - Trim the hedges along the fence, outdoors.",
+            "sourceLine": 4,
+            "duration": 90,
+            "environment": "outdoor",
+            "originalStart": "09:30",
+            "earliestStart": null,
+            "latestFinish": null,
+            "fixedStart": null,
+            "dependencies": []
+          },
+          {
+            "id": "t3",
+            "title": "Program the irrigation controller in the garage",
+            "sourceText": "11:00 AM to 12:00 PM - Program the irrigation controller in the garage, indoors.",
+            "sourceLine": 5,
+            "duration": 60,
+            "environment": "indoor",
+            "originalStart": "11:00",
+            "earliestStart": null,
+            "latestFinish": null,
+            "fixedStart": null,
+            "dependencies": []
+          },
+          {
+            "id": "t4",
+            "title": "Inventory and restock inside the warehouse",
+            "sourceText": "12:30 to 2:00 PM - Inventory and restock inside the warehouse, indoors.",
+            "sourceLine": 6,
+            "duration": 90,
+            "environment": "indoor",
+            "originalStart": "12:30",
+            "earliestStart": null,
+            "latestFinish": null,
+            "fixedStart": null,
+            "dependencies": []
+          }
+        ],
+        "questions": []
+      },
+      "runRecordedAt": "2026-10-10T16:55:27.212Z",
+      "sourceCommit": "6e8ba3e"
+    },
+    {
+      "case": "EVAL-05",
+      "run": 2,
+      "model": "gemma-4-26b-a4b-it",
+      "elapsedMs": 5781,
+      "differences": [],
+      "ready": true,
+      "extraction": {
+        "tasks": [
+          {
+            "id": "t1",
+            "title": "Mow the front and back lawn",
+            "sourceText": "8:00 to 9:30 AM - Mow the front and back lawn, outdoors.",
+            "sourceLine": 3,
+            "duration": 90,
+            "environment": "outdoor",
+            "originalStart": "08:00",
+            "earliestStart": null,
+            "latestFinish": null,
+            "fixedStart": null,
+            "dependencies": []
+          },
+          {
+            "id": "t2",
+            "title": "Trim the hedges along the fence",
+            "sourceText": "9:30 to 11:00 AM - Trim the hedges along the fence, outdoors.",
+            "sourceLine": 4,
+            "duration": 90,
+            "environment": "outdoor",
+            "originalStart": "09:30",
+            "earliestStart": null,
+            "latestFinish": null,
+            "fixedStart": null,
+            "dependencies": []
+          },
+          {
+            "id": "t3",
+            "title": "Program the irrigation controller in the garage",
+            "sourceText": "11:00 AM to 12:00 PM - Program the irrigation controller in the garage, indoors.",
+            "sourceLine": 5,
+            "duration": 60,
+            "environment": "indoor",
+            "originalStart": "11:00",
+            "earliestStart": null,
+            "latestFinish": null,
+            "fixedStart": null,
+            "dependencies": []
+          },
+          {
+            "id": "t4",
+            "title": "Inventory and restock inside the warehouse",
+            "sourceText": "12:30 to 2:00 PM - Inventory and restock inside the warehouse, indoors.",
+            "sourceLine": 6,
+            "duration": 90,
+            "environment": "indoor",
+            "originalStart": "12:30",
+            "earliestStart": null,
+            "latestFinish": null,
+            "fixedStart": null,
+            "dependencies": []
+          }
+        ],
+        "questions": []
+      },
+      "runRecordedAt": "2026-10-10T16:55:27.212Z",
+      "sourceCommit": "6e8ba3e"
+    },
+    {
+      "case": "EVAL-05",
+      "run": 3,
+      "model": "gemma-4-26b-a4b-it",
+      "elapsedMs": 5856,
+      "differences": [],
+      "ready": true,
+      "extraction": {
+        "tasks": [
+          {
+            "id": "t1",
+            "title": "Mow the front and back lawn",
+            "sourceText": "8:00 to 9:30 AM - Mow the front and back lawn, outdoors.",
+            "sourceLine": 3,
+            "duration": 90,
+            "environment": "outdoor",
+            "originalStart": "08:00",
+            "earliestStart": null,
+            "latestFinish": null,
+            "fixedStart": null,
+            "dependencies": []
+          },
+          {
+            "id": "t2",
+            "title": "Trim the hedges along the fence",
+            "sourceText": "9:30 to 11:00 AM - Trim the hedges along the fence, outdoors.",
+            "sourceLine": 4,
+            "duration": 90,
+            "environment": "outdoor",
+            "originalStart": "09:30",
+            "earliestStart": null,
+            "latestFinish": null,
+            "fixedStart": null,
+            "dependencies": []
+          },
+          {
+            "id": "t3",
+            "title": "Program the irrigation controller in the garage",
+            "sourceText": "11:00 AM to 12:00 PM - Program the irrigation controller in the garage, indoors.",
+            "sourceLine": 5,
+            "duration": 60,
+            "environment": "indoor",
+            "originalStart": "11:00",
+            "earliestStart": null,
+            "latestFinish": null,
+            "fixedStart": null,
+            "dependencies": []
+          },
+          {
+            "id": "t4",
+            "title": "Inventory and restock inside the warehouse",
+            "sourceText": "12:30 to 2:00 PM - Inventory and restock inside the warehouse, indoors.",
+            "sourceLine": 6,
+            "duration": 90,
+            "environment": "indoor",
+            "originalStart": "12:30",
+            "earliestStart": null,
+            "latestFinish": null,
+            "fixedStart": null,
+            "dependencies": []
+          }
+        ],
+        "questions": []
+      },
+      "runRecordedAt": "2026-10-10T16:55:27.212Z",
+      "sourceCommit": "6e8ba3e"
+    }
+  ]
+}

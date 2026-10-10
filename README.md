@@ -80,7 +80,7 @@ Work-order text is saved in this browser only and sent to the configured model s
 
 The app is a standard Next.js Node application. On Vercel, link the intended project, select the Next.js framework, and configure `GEMINI_API_KEY` as an encrypted server environment variable. `.vercelignore` excludes local credentials. Use the public production URL for the demo; preview deployments can remain protected.
 
-All changes to `main` require a pull request, including administrator changes. CI runs type checks, focused tests and a production build. Do not disable branch protection to deliver a change.
+All changes to `main` require a pull request, including administrator changes. Passing CI is required before merge and runs type checks, focused tests and a production build. Do not disable branch protection to deliver a change.
 
 ## Hack for Humanity Miami
 
