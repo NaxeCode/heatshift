@@ -14,6 +14,7 @@ Kruu is Faye's approved product name and creative direction. HeatShift was the p
 4. A deterministic scheduler compares feasible placements using live **National Weather Service** data for Miami.
 5. Review the timelines and the computed change in outdoor minutes within the shift's three hottest forecast hours.
 6. Gemma explains the result and prepares a crew briefing in English and Spanish. Review, copy or download it.
+7. Once the briefing exists, download an iCalendar (.ics) file or open a prefilled Google Calendar event. Both cover the full paid shift, with proposed tasks, the fixed break, paid availability and the selected-language briefing in the description. Times use America/New_York, including daylight saving. The user reviews and saves the event; exports are snapshots and do not sync later changes.
 
 **Live prototype:** https://heatshift-naxecodes-projects.vercel.app
 
@@ -23,7 +24,7 @@ The scope is one crew, one Miami forecast location, one date and up to four task
 
 The **Miami heat guide** at `/community` gives residents a second entry point: today's available forecast hours for the same Miami grid point, source timestamps, and official county heat-guidance and cooling-site links. It requires no work order or account. It does not assess personal risk, provide active alerts, or confirm that a cooling site is open. Official resource links remain available if the forecast cannot be retrieved.
 
-The interface implements Faye's [Kruu / Soft Signal design direction](docs/creative/BRIEF.md): warm ivory, white and cream surfaces, soft peach controls, and a coral-to-orange ripple-sun brand. The application mark is a documented geometric reconstruction of the approved mockup, with a Manrope wordmark. The separate temperature-driven forecast gradient illustrates apparent temperature; it is not a safety threshold.
+The interface implements Faye's [Kruu / Soft Signal design direction](docs/creative/BRIEF.md): warm ivory and cream surfaces, apricot controls, cocoa typography, and a coral-to-orange ripple-sun brand. The application mark is a documented geometric reconstruction of the approved mockup, with a Manrope wordmark. The separate temperature-driven forecast gradient illustrates apparent temperature; it is not a safety threshold.
 
 ## Run locally
 
@@ -101,3 +102,5 @@ Team: **Aladdin** leads implementation; **Faye** leads naming, creative directio
 ## License
 
 Original project code and documentation are available under the [MIT License](LICENSE). Gemma 4, dependencies and source data retain their respective licenses and attribution requirements. The public repository and real model integration make the project inspectable and reproducible with your own API key.
+
+Calendar export follows [RFC 5545](https://www.rfc-editor.org/rfc/rfc5545) for UTC timestamps, text escaping and UTF-8 line folding. Google Calendar uses its event-template URL; no calendar account access or automatic event creation is required.
