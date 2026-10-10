@@ -1,10 +1,10 @@
-# HeatShift
+# Kruu
 
 **Plan the work. Work around the heat.**
 
-HeatShift helps a Miami landscaping supervisor turn a work order into a practical crew schedule. It compares the original plan with an alternative that moves flexible outdoor tasks into cooler forecast windows while preserving task duration, appointments, breaks, dependencies and the paid shift.
+Kruu helps a Miami landscaping supervisor turn a work order into a practical crew schedule. It compares the original plan with an alternative that moves flexible outdoor tasks into cooler forecast windows while preserving task duration, appointments, breaks, dependencies and the paid shift.
 
-HeatShift is the prototype name. Faye owns the final naming and creative direction.
+Kruu is Faye's approved product name and creative direction. HeatShift was the prototype name; the repository, deployment URL and existing local-draft storage key retain it for continuity.
 
 ## Working experience
 
@@ -23,7 +23,7 @@ The scope is one crew, one Miami forecast location, one date and up to four task
 
 The **Miami heat guide** at `/community` gives residents a second entry point: today's available forecast hours for the same Miami grid point, source timestamps, and official county heat-guidance and cooling-site links. It requires no work order or account. It does not assess personal risk, provide active alerts, or confirm that a cooling site is open. Official resource links remain available if the forecast cannot be retrieved.
 
-The interface implements Faye's [Soft Signal design direction](docs/creative/BRIEF.md), with readable controls and a temperature-driven forecast panel. Gradient colors illustrate apparent temperature; they are not safety thresholds. The final name and logo remain Faye's decision.
+The interface implements Faye's [Kruu / Soft Signal design direction](docs/creative/BRIEF.md): warm ivory, white and cream surfaces, soft peach controls, and a coral-to-orange ripple-sun brand. The application mark is a documented geometric reconstruction of the approved mockup, with a Manrope wordmark. The separate temperature-driven forecast gradient illustrates apparent temperature; it is not a safety threshold.
 
 ## Run locally
 

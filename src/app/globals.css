@@ -124,14 +124,37 @@ main {
   letter-spacing: -1px;
   text-decoration: none;
 }
+.brand-lockup {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
 .brand-symbol {
-  background: var(--hs-primary);
-  color: var(--hs-on-primary);
-  width: 44px;
-  height: 44px;
-  border-radius: 14px;
-  display: grid;
-  place-items: center;
+  width: 54px;
+  height: 54px;
+}
+.brand-coral {
+  stop-color: var(--hs-brand-coral);
+}
+.brand-orange {
+  stop-color: var(--hs-brand-orange);
+}
+.brand-wordmark {
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -1.7px;
+  color: var(--hs-brand-coral);
+  background: var(--hs-brand-gradient);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+@media (forced-colors: active) {
+  .brand-wordmark {
+    background: none;
+    color: LinkText;
+    -webkit-text-fill-color: currentColor;
+  }
 }
 .prototype {
   font: 500 12px var(--hs-font-body);
@@ -376,6 +399,76 @@ textarea {
 }
 select {
   padding-right: 24px;
+  background: linear-gradient(135deg, rgb(255 255 255 / 82%), rgb(247 242 235 / 68%));
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 95%),
+    0 3px 12px rgb(56 50 46 / 5%);
+  -webkit-backdrop-filter: blur(16px) saturate(125%);
+  backdrop-filter: blur(16px) saturate(125%);
+}
+/* Keep native selection, keyboard behavior and the OS picker as a fallback. */
+@supports (appearance: base-select) {
+  select,
+  select::picker(select) {
+    appearance: base-select;
+  }
+  select {
+    align-items: center;
+    gap: 8px;
+    padding-right: 12px;
+  }
+  select::picker-icon {
+    color: var(--hs-text-secondary);
+  }
+  select::picker(select) {
+    margin-block: 8px;
+    padding: 6px;
+    max-height: min(320px, 60dvh);
+    overflow-y: auto;
+    color: var(--hs-text);
+    background: linear-gradient(135deg, rgb(255 255 255 / 85%), rgb(247 242 235 / 76%));
+    border: 1px solid var(--hs-control-border);
+    border-radius: 16px;
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 95%),
+      0 12px 32px rgb(56 50 46 / 14%);
+    -webkit-backdrop-filter: blur(20px) saturate(130%);
+    backdrop-filter: blur(20px) saturate(130%);
+  }
+  select option {
+    padding: 10px 12px;
+    min-height: 44px;
+    border-radius: 10px;
+    background: transparent;
+  }
+  select option:checked {
+    background: rgb(240 221 201 / 80%);
+    font-weight: 600;
+  }
+  select option:hover,
+  select option:focus-visible {
+    background: var(--hs-primary);
+    outline: 2px solid var(--hs-focus);
+    outline-offset: -2px;
+  }
+}
+@media (prefers-reduced-transparency: reduce), (forced-colors: active) {
+  select {
+    background: Canvas;
+    color: CanvasText;
+    border-color: ButtonText;
+    box-shadow: none;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+  select::picker(select) {
+    background: Canvas;
+    color: CanvasText;
+    border-color: ButtonText;
+    box-shadow: none;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
 }
 input[aria-invalid='true'],
 select[aria-invalid='true'] {
@@ -437,7 +530,7 @@ select[aria-invalid='true'] {
   transition: background var(--hs-duration-feedback) var(--hs-ease);
 }
 .primary:hover:not(:disabled) {
-  background: #d2ddc0;
+  background: color-mix(in srgb, var(--hs-primary) 90%, var(--hs-text));
 }
 .extract-button {
   width: 100%;
@@ -852,10 +945,10 @@ select[aria-invalid='true'] {
   background: var(--hs-warm);
 }
 .legend-indoor {
-  background: #c4d0b6;
+  background: var(--hs-cool);
 }
 .legend-break {
-  background: #d8ddd1;
+  background: var(--hs-divider);
 }
 .chart-scroll {
   overflow-x: auto;
@@ -943,7 +1036,13 @@ select[aria-invalid='true'] {
   position: absolute;
   top: 0;
   bottom: 0;
-  background: repeating-linear-gradient(135deg, #d8ddd1, #d8ddd1 3px, #f8f9f5 3px, #f8f9f5 6px);
+  background: repeating-linear-gradient(
+    135deg,
+    var(--hs-divider),
+    var(--hs-divider) 3px,
+    var(--hs-canvas) 3px,
+    var(--hs-canvas) 6px
+  );
 }
 .time-block {
   position: absolute;
@@ -954,9 +1053,9 @@ select[aria-invalid='true'] {
   display: flex;
   flex-direction: column;
   gap: 4px;
-  border-left: 2px solid #53643e;
+  border-left: 2px solid var(--hs-control-border);
   overflow: hidden;
-  background: #c4d0b6;
+  background: var(--hs-cool);
 }
 .time-block.outdoor {
   background: var(--hs-warm);
@@ -1324,8 +1423,11 @@ td small {
     gap: 8px;
   }
   .brand-symbol {
-    width: 36px;
-    height: 36px;
+    width: 48px;
+    height: 48px;
+  }
+  .brand-wordmark {
+    font-size: 30px;
   }
   .prototype {
     font-size: 12px;

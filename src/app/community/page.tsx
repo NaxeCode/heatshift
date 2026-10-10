@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { connection } from 'next/server';
-import { ArrowLeft, ArrowUpRight, MapPin, RefreshCw, Sun, ThermometerSun } from 'lucide-react';
+import { ArrowLeft, ArrowUpRight, MapPin, RefreshCw, ThermometerSun } from 'lucide-react';
+import Brand from '@/components/brand';
 import ForecastSummary from '@/components/forecast-summary';
 import { displayTime, type Forecast, ZONE } from '@/lib/contracts';
 import { remainingCommunityHours } from '@/lib/community-hours';
@@ -8,7 +9,7 @@ import { getForecast, localTime } from '@/lib/weather';
 import styles from './community.module.css';
 
 export const metadata: Metadata = {
-  title: 'Miami community forecast · HeatShift',
+  title: 'Miami community forecast · Kruu',
   description: 'Today’s available Miami heat forecast and official county cooling resources.',
 };
 export const runtime = 'nodejs';
@@ -52,12 +53,7 @@ export default async function CommunityPage() {
         Skip to the forecast
       </a>
       <header className="topbar">
-        <a className="brand" href="/" aria-label="HeatShift crew planner">
-          <span className="brand-symbol">
-            <Sun size={25} aria-hidden="true" />
-          </span>
-          HeatShift <span className="prototype">PROTOTYPE</span>
-        </a>
+        <Brand />
         <a href="/" className={styles.backLink}>
           <ArrowLeft size={16} aria-hidden="true" /> Crew planner
         </a>
@@ -207,7 +203,7 @@ export default async function CommunityPage() {
               Miami-Dade heat guidance <ArrowUpRight size={16} aria-hidden="true" />
             </a>
             <p className={styles.meta}>
-              These links open official county pages. HeatShift does not verify site availability or
+              These links open official county pages. Kruu does not verify site availability or
               provide a live alert service.
             </p>
           </aside>
