@@ -18,6 +18,8 @@ The shared `src/components/brand.tsx` renders a geometric SVG reconstruction: a 
 
 The brand keeps its fixed coral-to-orange gradient independently of forecast temperatures. `src/app/soft-signal.css` applies the warm-neutral tokens, including warm focus and shadow colors; timeline and hover states also use warm semantic colors. Existing repository and deployment URLs retain `heatshift` for continuity. Historical release evidence remains labeled with the name used at that time. Application visual verification belongs to its integration/release checks; the specimen checks below do not establish that verification.
 
+The runtime and design tokens use `color-scheme: only light` to opt out of automatic browser darkening. In forced-colors accessibility mode, the wordmark uses system link text instead of transparent gradient text so it remains readable.
+
 The foundation values below translate the approved no-green direction into reusable tokens. Keep the brand gradient fixed; temperature-driven colors belong to the forecast component only. Use dark text for small labels and controls rather than extending the logo gradient to operational text.
 
 ## The reference synthesis

@@ -149,6 +149,13 @@ main {
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+@media (forced-colors: active) {
+  .brand-wordmark {
+    background: none;
+    color: LinkText;
+    -webkit-text-fill-color: currentColor;
+  }
+}
 .prototype {
   font: 500 12px var(--hs-font-body);
   letter-spacing: 0.6px;

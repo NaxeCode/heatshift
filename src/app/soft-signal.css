@@ -1,6 +1,6 @@
 /* Kruu warm-neutral direction by Faye. Source: docs/creative/BRIEF.md (PR #20). */
 :root {
-  color-scheme: light;
+  color-scheme: only light;
   --hs-canvas: #fcfaf7;
   --hs-surface: #ffffff;
   --hs-surface-secondary: #f7f2eb;
