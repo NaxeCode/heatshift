@@ -233,17 +233,22 @@ export default function Planner() {
             </div>
           ))}
         </nav>
-        <div className="workspace-grid">
-          <aside className="input-panel">
-            <div className="panel-heading">
+        <div className={`workspace-grid ${envelope ? 'has-result' : ''}`}>
+          <details className="input-panel" open={!envelope}>
+            <summary className="panel-heading">
               <span className="mini-icon">
                 <Trees size={21} />
               </span>
               <div>
-                <h2>The work ahead</h2>
-                <p>One crew. One day. Up to four tasks.</p>
+                <h2>{envelope ? 'Work order & shift' : 'The work ahead'}</h2>
+                <p>
+                  {envelope
+                    ? 'Your inputs are preserved. Open to edit.'
+                    : 'One crew. One day. Up to four tasks.'}
+                </p>
               </div>
-            </div>
+              <ChevronDown className="panel-chevron" size={20} />
+            </summary>
             <fieldset disabled={!!busy} className="input-fieldset">
               <div className="location-box">
                 <MapPin size={17} />
@@ -301,7 +306,7 @@ export default function Planner() {
                 />
               </div>
               <div className="work-order-label">
-                <label htmlFor="work-order">Work order</label>
+                <label htmlFor="work-order">Describe the work</label>
                 <button
                   className="text-button"
                   onClick={() => {
@@ -316,6 +321,7 @@ export default function Planner() {
               </div>
               <textarea
                 id="work-order"
+                aria-describedby="work-order-help work-order-kind"
                 value={workOrder}
                 maxLength={6000}
                 rows={11}
@@ -326,9 +332,15 @@ export default function Planner() {
                   invalidate();
                 }}
               />
-              <p className="input-help">
-                Include each task’s duration, original start, indoor/outdoor setting, and any
-                constraints. Leave out personal details.
+              <div className="work-order-meta" id="work-order-kind">
+                <span>
+                  {workOrder === SAMPLE ? 'Editable fictional example' : 'Your work order'}
+                </span>
+                <span>{workOrder.length.toLocaleString()} / 6,000</span>
+              </div>
+              <p className="input-help" id="work-order-help">
+                Include times, duration, inside or outside, and fixed commitments. Leave out worker
+                and client details.
               </p>
               <button
                 className="primary extract-button"
@@ -356,7 +368,7 @@ export default function Planner() {
               <ShieldCheck size={18} />
               <p>Your crew’s work, break, and paid shift stay intact.</p>
             </div>
-          </aside>
+          </details>
           <div className="main-panel">
             {error && (
               <div role="alert" className="error-box">
