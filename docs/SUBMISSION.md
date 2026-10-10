@@ -2,6 +2,8 @@
 
 Source: [Hack for Humanity Miami Challenge Guide](https://github.com/AI-Collective-Hackathons/hack-for-humanity-miami/blob/main/Challenge%20Guide.md), checked October 10, 2026. Same-day organizer amendments take precedence. Build ends at 3:30 PM Eastern; OrganizerHQ submission closes at 3:45 PM.
 
+Prepared handoff: [submission text for team review](SUBMISSION_DRAFT.md) and [two-minute demo runbook](DEMO_RUNBOOK.md). These do not mark registration, rehearsal, recording or submission complete.
+
 ## Required entry details
 
 - [ ] OrganizerHQ check-in verified.
