@@ -1,6 +1,6 @@
 # Cooling sites inside the resident view — implementation proposal
 
-**Checked:** 2026-10-10. **Status:** Proposal for team review; this document and the accompanying [visual concept](COOLING_SITE_FINDER_CONCEPT.html) do not change the deployed app. The HTML concept uses a small dated snapshot for layout and interaction only.
+**Checked:** 2026-10-10. **Status:** The source parser and on-page finder are staged in PR #21 for review; they are not merged or deployed. The accompanying [visual concept](COOLING_SITE_FINDER_CONCEPT.html) remains a separate four-listing design sample.
 
 ## Why bring the directory into HeatShift?
 
@@ -24,7 +24,7 @@ Show a **“Find a place to cool off”** section above the long hourly forecast
 
 ## Data path for Aladdin to evaluate
 
-The county page is HTML, not a verified public availability API. A browser-only fetch of that page may face cross-origin restrictions and would make schema changes hard to detect. Prefer a **server-side fetch with a short cache**: retrieve the official page, locate the table by its eight header names, parse rows into `{name,address,city,state,zip,phone,hours,type,source_url,checked_at}`, trim/validate required fields, and expose only that narrow schema to the client. Escape all source strings on render. Record fetch and parse failures; do not serve a malformed or empty set as success. Keep the direct county URL as the fallback.
+The county page is HTML, not a verified public availability API. A browser-only fetch of that page may face cross-origin restrictions and would make schema changes hard to detect. The staged implementation **fetches server-side**, requires the observed `locations-table` identifier and eight exact headers, validates every row, and passes only `{name,address,city,state,zip,phone,hours,type}` plus a fetch timestamp to the client. React escapes source strings on render. A successful response is reused for five minutes within a warm server process; failures show the direct county link instead of partial or malformed listings. The production server's ability to reach the county page has not yet been verified.
 
 Before implementation, inspect the county map's actual layer and compare its row count, fields, coordinates and update time with the HTML table. If a current, matching official geospatial feed is confirmed, it could supply points for an optional map and distance sort. **ZIP filtering works without coordinates; “nearest” does not.** Do not geocode or rank by distance from ZIP alone as if it were precise.
 
