@@ -487,31 +487,114 @@ select[aria-invalid='true'] {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 16px 12px;
 }
+.work-order-card {
+  margin-top: 24px;
+  padding: 18px;
+  border: 1px solid var(--hs-divider);
+  border-radius: 20px;
+  background: linear-gradient(150deg, #fffaf6, var(--hs-surface-secondary));
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 85%);
+}
+.work-order-intro {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.work-order-icon {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  flex: none;
+  color: var(--hs-text);
+  background: var(--hs-primary);
+  border-radius: 13px;
+}
+.work-order-step {
+  display: block;
+  color: var(--hs-text-secondary);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+}
+.work-order-card h3 {
+  font: 600 18px/1.35 var(--hs-font-heading);
+}
+.work-order-lead {
+  margin-top: 14px;
+  color: var(--hs-text-secondary);
+  font-size: 13px;
+  line-height: 1.55;
+}
+.work-order-guide {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 16px;
+}
+.work-order-guide span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 9px;
+  border: 1px solid var(--hs-divider);
+  border-radius: var(--hs-radius-pill);
+  background: var(--hs-surface);
+  color: var(--hs-text);
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.25;
+}
+.work-order-guide svg {
+  color: #725238;
+  flex: none;
+}
 .work-order-label {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 8px;
-  margin-top: 24px;
+  margin-top: 18px;
+  font-size: 14px;
+  font-weight: 600;
 }
 .text-button {
-  min-height: 48px;
-  padding: 8px;
+  min-height: 40px;
+  padding: 7px 2px;
   color: var(--hs-text);
   background: transparent;
   text-decoration: underline;
   text-underline-offset: 4px;
-  font-size: 14px;
+  font-size: 13px;
 }
-.input-panel textarea {
+.work-order-card textarea {
   min-height: 240px;
+  margin-top: 4px;
+  padding: 16px;
+  background: var(--hs-surface);
+  border-color: var(--hs-control-border);
+  line-height: 1.65;
+  font-size: 13px;
+}
+.work-order-card textarea::placeholder {
+  color: var(--hs-text-secondary);
+}
+.work-order-meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 4px 12px;
   margin-top: 8px;
+  color: var(--hs-text-secondary);
+  font-size: 11px;
 }
 .input-help {
-  font-size: 14px;
-  line-height: 1.6;
+  font-size: 12px;
+  line-height: 1.55;
   color: var(--hs-text-secondary);
-  margin-top: 12px;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--hs-divider);
 }
 .primary {
   display: flex;
@@ -1374,9 +1457,7 @@ td small {
     gap: 0 24px;
   }
   .location-box,
-  .work-order-label,
-  .input-panel textarea,
-  .input-help,
+  .work-order-card,
   .extract-button,
   .model-credit {
     grid-column: 1/-1;
