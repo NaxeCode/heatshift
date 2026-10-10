@@ -559,12 +559,17 @@ select[aria-invalid='true'] {
   font-weight: 600;
 }
 .text-button {
-  min-height: 40px;
-  padding: 7px 2px;
+  min-height: 48px;
+  padding: 8px;
   color: var(--hs-text);
   background: transparent;
   text-decoration: underline;
   text-underline-offset: 4px;
+  font-size: 14px;
+}
+.work-order-card .text-button {
+  min-height: 40px;
+  padding: 7px 2px;
   font-size: 13px;
 }
 .work-order-card textarea {
@@ -589,6 +594,12 @@ select[aria-invalid='true'] {
   font-size: 11px;
 }
 .input-help {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--hs-text-secondary);
+  margin-top: 12px;
+}
+.work-order-card .input-help {
   font-size: 12px;
   line-height: 1.55;
   color: var(--hs-text-secondary);
