@@ -1,10 +1,30 @@
-# kruu
+[![Kruu — A better time for outdoor work. Watch the 44-second demo.](docs/assets/readme/kruu-demo-cover.png)](https://github.com/NaxeCode/heatshift/releases/download/hackathon-demo-2026-10-10/kruu-faye-final-portraits.mp4)
 
-**Plan the work. Work around the heat.**
+<h1 align="center">Plan the work. Work around the heat.</h1>
+
+<p align="center">
+  <a href="https://heatshift-naxecodes-projects.vercel.app"><strong>Try Kruu</strong></a>
+  &nbsp; · &nbsp;
+  <a href="https://github.com/NaxeCode/heatshift/releases/download/hackathon-demo-2026-10-10/kruu-faye-final-portraits.mp4"><strong>Watch the demo · 44 seconds</strong></a>
+  &nbsp; · &nbsp;
+  <a href="https://heatshift-naxecodes-projects.vercel.app/community">Miami heat guide</a>
+</p>
+
+<p align="center">Built for Miami · Gemma 4 + live NWS forecasts · English + Español · MIT licensed</p>
 
 A clearer workday for Miami's outdoor crews. Kruu turns a work order into a forecast-informed schedule, helping supervisors move flexible outdoor tasks away from the hottest hours while preserving the work, fixed commitments, breaks and paid shift.
 
-[Open Kruu](https://heatshift-naxecodes-projects.vercel.app) · [Miami heat guide](https://heatshift-naxecodes-projects.vercel.app/community) · [Verification](docs/VERIFICATION.md) · [Run locally](#run-locally)
+[Run locally](#run-locally) · [How the AI works](#ai-that-does-specific-work) · [Verification](docs/VERIFICATION.md) · [Submission](https://www.mlh.com/events/hacktoberfest-hack-day-miami-x-the-ai-collective/submissions/01a12746-7786-361e-37ba-fd876d3e6e76)
+
+## Same work. Better timing.
+
+The work stays. The timing can change. Kruu puts the original and proposed day on the same timeline, with appointments, breaks and paid hours preserved.
+
+![Kruu compares the original and proposed crew schedule against the same hourly forecast.](docs/assets/readme/schedule-comparison.png)
+
+*Captured from the production app on October 10, 2026, using a fictional work order and the live forecast available at capture time. The illustrated 150 → 0 comparison measures outdoor minutes in the three hottest forecast hours; it is one example, not a guaranteed result or a health outcome.*
+
+**Watch the story:** [Faye’s final narrated demo, with project links and contributor credits](https://github.com/NaxeCode/heatshift/releases/download/hackathon-demo-2026-10-10/kruu-faye-final-portraits.mp4). [Release page and download](https://github.com/NaxeCode/heatshift/releases/tag/hackathon-demo-2026-10-10).
 
 ## From work order to crew briefing
 
@@ -18,6 +38,25 @@ A clearer workday for Miami's outdoor crews. Kruu turns a work order into a fore
 Calendar exports include the full paid shift, proposed tasks, fixed break, paid availability and selected-language briefing. Times follow `America/New_York`, including daylight saving. Exports are snapshots; later changes do not sync automatically.
 
 The prototype supports **one crew, one Miami forecast location, one date and up to four tasks**. The supervisor makes the final decision. Kruu supports planning; it does not certify that a shift is safe or claim a measured reduction in injuries.
+
+<details>
+<summary><strong>See the planner, bilingual briefing and calendar export</strong></summary>
+
+### Start with the work
+
+The work order sits beside its forecast context. Gemma extracts tasks for the supervisor to review.
+
+![Kruu work-order form beside the Miami forecast, showing a labeled fictional example.](docs/assets/readme/crew-planner.png)
+
+### Bring the crew with you
+
+Switch between English and Español, review the briefing, then copy it, download it or take the plan to your calendar.
+
+![Spanish crew briefing with copy, download, iCalendar and Google Calendar controls.](docs/assets/readme/briefing-and-calendar.png)
+
+*Production captures from October 10, 2026. Forecasts and generated wording reflect that recorded example, not current conditions.*
+
+</details>
 
 ## A heat guide for the community
 
@@ -115,9 +154,11 @@ All changes to `main`, including administrator changes, go through a pull reques
 
 **Hack for Humanity Miami · Track 01 — Four Forces, One City · Fire**
 
-Kruu serves Miami outdoor landscaping crews and their supervisors, with a resident heat guide extending access to local forecast information and cooling-site listings. Its three intended competition categories are **Track 01 — Four Forces, One City**, **Best Open-Source AI Project** and **Best Use of Gemma 4**. Eligibility and submission status are tracked separately in the [submission checklist](docs/SUBMISSION.md), against the [official challenge guide](https://github.com/AI-Collective-Hackathons/hack-for-humanity-miami/blob/main/Challenge%20Guide.md).
+Kruu serves Miami outdoor landscaping crews and their supervisors, with a resident heat guide extending access to local forecast information and cooling-site listings. The [submitted entry](https://www.mlh.com/events/hacktoberfest-hack-day-miami-x-the-ai-collective/submissions/01a12746-7786-361e-37ba-fd876d3e6e76) includes **Track 01 — Four Forces, One City**, **Best Open-Source AI Project** and **Best Use of Gemma 4**. Submission was confirmed on October 10, 2026 at 3:24 PM Eastern. Judging and eligibility remain subject to the [official challenge guide](https://github.com/AI-Collective-Hackathons/hack-for-humanity-miami/blob/main/Challenge%20Guide.md).
 
-### Contributors
+### The crew behind Kruu
+
+![The crew behind Kruu: Aladdin — Engineering; Faye — Creative Direction; Nelson — Community Impact; Nina — Evaluation.](docs/assets/readme/contributors.png)
 
 | Contributor | Contribution |
 | --- | --- |
@@ -126,7 +167,7 @@ Kruu serves Miami outdoor landscaping crews and their supervisors, with a reside
 | **Nelson** | Community Impact and Worker Needs |
 | **Nina** | Evaluation and Product Insight |
 
-Contribution credits are separate from the registered event roster.
+The submitted team is Aladdin, Faye and Nelson. Nina is credited for her evaluation contribution. Her illustration in the end card is a placeholder avatar.
 
 [Build plan](docs/BUILD_PLAN.md) · [Worker scenario](docs/impact/WORKER_SCENARIO.md) · [Evaluation plan](docs/evaluation/EVAL_PLAN.md) · [Demo runbook](docs/DEMO_RUNBOOK.md)
 
