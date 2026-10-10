@@ -2,35 +2,33 @@
 
 Recorded October 10, 2026. This is observed implementation evidence, not event submission or field validation.
 
-## Soft Signal and resident-page integration
-
-Locally verified October 10 at approximately 1:40 PM Eastern; deployment of this integration is still pending:
-
-- Faye's PR #14 supplies the Soft Signal palette, typography and forecast-color direction. The app now applies those tokens, emphasizes the before/after measure, exposes task-field errors and puts the selected work date in both briefing languages and exports. Final name and logo remain Faye's decision.
-- The approved `/community` route renders today's remaining Miami forecast hours at request time, including source/retrieval/check timestamps, explicit gaps, fixed-grid limitations and official county guidance/cooling links. The production build identifies the route as dynamic.
-- **39 tests, TypeScript, formatting and the production build pass.** New tests cover temperature-color mapping, work-date formatting across host timezones, bilingual export headers, and community hours around missing coverage and Miami midnight.
-- The local browser completed real Gemma extraction, live-NWS comparison and bilingual briefing generation. This forecast-dependent example again returned 150 → 0 minutes in the three hottest hours, preserving 150 outdoor minutes and the eight-hour shift. The downloaded Spanish file contains the correct October 11 date and inspected schedule times.
-- Responsive inspection found and corrected a narrow comparison-number selector and a clipped resident table. The resident page fits 320 and 768 CSS-pixel widths; the crew comparison and dated briefing fit 320 pixels. Detailed crew timelines intentionally scroll horizontally.
-- A separate local production process simulated an NWS outage. `/community` returned HTTP 200 with the unavailable state, no forecast number, and both official resource links still present.
-
-This adds a bounded public information view, not a personal safety score, PPE assessment or live site-availability service. Production verification and final rehearsal remain release gates.
-
-## Released build
+## Current released build
 
 - Public app: https://heatshift-naxecodes-projects.vercel.app
-- Production deployment: `dpl_72buFnosaAgsKUgU56CimUjMxzpc`, built from `7d8a2f4` and promoted after verification.
-- Core implementation merged through [PR #10](https://github.com/NaxeCode/heatshift/pull/10) as `b100801`. The merged application files match the tested deployment.
+- Resident guide: https://heatshift-naxecodes-projects.vercel.app/community
+- Production deployment: `dpl_7BgXgb9LZ8tr5YV1vZKtu4q5uqbi`, built from main `4751ebf4ccf6b10727f64c15187d714b1bc18b4b` after [PR #16](https://github.com/NaxeCode/heatshift/pull/16).
+- The deployment command assigned the public alias despite `--skip-domain`. The public release was then verified; it was not a staged-then-promoted deployment.
 - Runtime model: `gemma-4-26b-a4b-it`, through Google's Gemini API. No model substitution or canned-response fallback.
 
-## Complete live flow
+## Public release checks, approximately 1:46–1:48 PM Eastern
 
-The public browser flow and API smoke test exercised real Gemma extraction, task confirmation, live NWS data, deterministic comparison and real bilingual briefing generation. The fictional example's 150 outdoor minutes in the selected three hottest hours became 0; all 150 outdoor work minutes, the eight-hour paid shift and the fixed break were preserved. This is one forecast-dependent example, not a general outcome.
+- The public browser completed real Gemma extraction, task confirmation, live NWS comparison and English/Spanish briefing generation. The fictional example returned **150 → 0 outdoor minutes** in the shift's three hottest forecast hours, preserving all 150 outdoor work minutes, the eight-hour paid shift and the fixed break. This is one forecast-dependent result, not a general outcome.
+- Both actual downloaded briefing files were inspected: October 11 work date, task-to-time assignments, shift and break matched the displayed schedule. Exported evidence copies are retained outside the repository.
+- A separate local production check of a fictional fixed schedule correctly displayed an unchanged **180 → 180** comparison. Its extraction returned the third task's name as `title`; the reviewer corrected it to `Indoor paperwork` before confirmation. The task times and constraints were extracted correctly. This observed error reinforces the review gate and is not included in a new accuracy claim.
+- The public resident guide showed October 10 remaining forecast hours, a 105°F peak apparent temperature in the available hours, source timestamp `2026-10-10T08:06:36Z`, and official county guidance/cooling links. It covers one Miami grid point; it does not assess personal risk, provide active alerts or verify that a cooling site is open.
+- Local crew views were inspected at 320, 768 and 1280 CSS-pixel widths, including the unchanged result. Detailed timelines intentionally scroll horizontally. Local resident checks covered 320 and 768 pixels. No browser console errors were found in the inspected public flow.
+- A Vercel error-log query for a ten-minute window returned no logs. This limited observation is not a general service-health or availability claim.
 
-The observed forecast used Miami grid `MFL/110,50` for October 11. Its older source timestamp was `2026-10-10T08:06:36+00:00`; the interface disclosed its age. No synthetic forecast was passed off as live data.
+## Integration and reproducibility checks
 
-English and Spanish output matched the task times, break, paid shift and 150 → 0 comparison in the inspected run. The public app's Spanish text download completed. Browser inspection found no console errors in the completed final flow. The layout fit a 390-pixel viewport without horizontal page overflow. Styling and naming remain provisional for Faye.
+- Faye's [PR #14](https://github.com/NaxeCode/heatshift/pull/14) supplies the applied Soft Signal palette, typography and forecast-color direction. The release exposes task-field errors and includes the confirmed work date and Miami location in displayed, copied and downloaded briefings. Final name and logo remain Faye's decision.
+- **39 tests, TypeScript, formatting and the production build passed locally.** A separate clean clone passed all 39 tests, TypeScript and the production build. PR and main CI passed.
+- New tests cover temperature-color mapping, work-date formatting across host timezones, bilingual export headers, and community hours around missing coverage and Miami midnight.
+- The resident route is dynamic and includes source/retrieval/check timestamps and explicit forecast gaps. In a separate local production process with a simulated NWS outage, `/community` returned HTTP 200 with the unavailable state, no forecast number and both official resource links retained. This was a local failure simulation, not an observed public outage.
 
-## Deterministic and setup checks
+## Earlier core release (historical evidence)
+
+The earlier deployment `dpl_72buFnosaAgsKUgU56CimUjMxzpc` used source `7d8a2f4`; core implementation merged through [PR #10](https://github.com/NaxeCode/heatshift/pull/10) as `b100801`. Its public browser flow and API smoke test exercised real Gemma calls and live NWS data for October 11 at Miami grid `MFL/110,50`, with a 150 → 0 example and disclosed source age. The following checks belong to that earlier release, which the 39-test integration above supersedes:
 
 - **31 tests passed**, plus TypeScript and the production build in local and CI checks.
 - Tests cover shift capacity, task duration, fixed appointments, dependencies, cycles, breaks, unsupported time precision, no improvement and incomplete forecasts.
@@ -58,4 +56,6 @@ The extraction records span `6e8ba3e` and `7d8a2f4`; the extraction prompt/schem
 
 ## Remaining team and submission work
 
-Faye's final name/creative direction, real worker feedback, full crew-language review, confirmed event roster/check-in, organizer disclosures, demo rehearsal and submission receipt are not completed by these checks. Task effort is documented in Nelson's proposal but is not scored by the scheduler. No health, productivity or cost outcome has been measured. See [submission checklist](SUBMISSION.md).
+Faye's final name and logo, worker/resident feedback, full crew-language review across all evaluation cases, confirmed team roster/check-in, organizer disclosures, demo rehearsal, playable backup recording and submission receipt remain unverified. Task effort and protective gear are not scored by the scheduler. No health, productivity or cost outcome has been measured. See [submission checklist](SUBMISSION.md).
+
+**Submission HOLD:** nothing in this release evidence authorizes submission. Wait for Aladdin's new explicit go-ahead, even if all readiness checks pass or the deadline approaches.

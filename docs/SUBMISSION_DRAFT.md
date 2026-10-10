@@ -2,7 +2,7 @@
 
 Status: prepared text, not submitted. **Submission HOLD: do not submit until Aladdin gives a new explicit go-ahead, even if every readiness check passes or the deadline approaches.** Confirm team registration, the registered roster, final name, OrganizerHQ check-in and all required disclosures before submitting. Faye may revise the title and product wording.
 
-The approved `feat/soft-signal-app` branch implements Faye's visual direction, dated briefing exports and the resident Miami heat guide described below. These additions are pending production verification; this draft is not evidence that they are deployed or accepted by organizers.
+The public release from main `4751ebf` includes Faye's visual direction, dated briefing exports and the resident Miami heat guide described below. Both routes and actual English/Spanish downloads were inspected at approximately 1:46–1:48 PM Eastern; see [verification evidence](VERIFICATION.md). Technical release verification does not establish organizer acceptance or authorize submission.
 
 ## Entry fields
 
@@ -12,9 +12,9 @@ The approved `feat/soft-signal-app` branch implements Faye's visual direction, d
 
 **Problem and user:** A Miami landscaping supervisor needs to plan outdoor work around forecast heat while respecting the crew's tasks, appointments, breaks and paid time. A weather forecast alone does not show how a particular work order could be rearranged. A second intended user is a Miami resident checking the day's forecast before an errand or visit and looking for official cooling resources. Both are product hypotheses that still need validation with users.
 
-**Working solution:** HeatShift turns a text work order into editable tasks using Gemma 4 through the Gemini API. After supervisor confirmation, deterministic code compares feasible schedules against live National Weather Service data for Miami. It shows the original and proposed timelines, preserves the reviewed constraints and reports outdoor minutes within the shift's three hottest forecast hours. Gemma then prepares an explanation and crew briefing in English and Spanish. The scope is one crew, one location, one day and up to four tasks. An unchanged or infeasible result is valid.
+**Working solution:** HeatShift turns a text work order into editable tasks using Gemma 4 through the Gemini API. After supervisor confirmation, deterministic code compares feasible schedules against live National Weather Service data for Miami. It shows the original and proposed timelines, preserves the reviewed constraints and reports outdoor minutes within the shift's three hottest forecast hours. Gemma then prepares an explanation and crew briefing in English and Spanish. The crew-planner scope is one crew, one location, one day and up to four tasks. An unchanged or infeasible result is valid.
 
-**Approved addition, pending production verification:** The Miami heat guide at `/community` gives residents today's available remaining forecast hours for the same Miami grid point, visible source and retrieval timestamps, and links to official Miami-Dade heat guidance and cooling sites. Missing hours stay marked; official resource links remain available if weather cannot be retrieved. The route needs no work order or account. It does not provide active alerts, personalized risk advice or confirmation that a cooling site is open. The crew briefing's date and Miami location are also included consistently in display, copy and download.
+**Resident guide and dated exports:** The verified public Miami heat guide at `/community` gives residents today's available remaining forecast hours for the same Miami grid point, visible source and retrieval timestamps, and links to official Miami-Dade heat guidance and cooling sites. Missing hours stay marked; official resource links remain available if weather cannot be retrieved, as checked with a local simulated outage. The route needs no work order or account. It does not provide active alerts, personalized risk advice or confirmation that a cooling site is open. The crew briefing's date and Miami location are also included consistently in display, copy and download.
 
 **Community value:** The intended benefit is a clearer planning conversation between a supervisor and crew, with work and paid time kept visible, plus a direct path for residents to dated forecast information and official local resources. This is forecast planning support, not a safety certification. The current crew scenario is fictional; worker/resident interviews and health, productivity or financial outcomes have not been established. Clothing assessment and effort scoring remain proposals.
 
@@ -36,7 +36,7 @@ The approved `feat/soft-signal-app` branch implements Faye's visual direction, d
 
 ## Required completion outside this draft
 
-- Verify the integration in production before presenting the resident route, revised interface or dated briefing exports as deployed. Recheck both language exports and the official resource links; record the deployed revision and actual results.
+- Run a fresh preflight and rehearse the two-minute walkthrough; record and play back a backup. Release verification is recorded, but rehearsal and a usable recording remain unverified.
 - Confirm OrganizerHQ check-in and the registered team of no more than four, including any organizer-approved roster changes.
 - Confirm the public display names. Do not copy private contact details into this repository.
 - Supply the complete, truthful development-tool and model disclosure in the organizer's required fields. The runtime-technology list above is not the full development-tool disclosure.
