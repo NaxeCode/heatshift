@@ -1,1 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64"><rect width="64" height="64" rx="18" fill="#163e32"/><path d="M17 37a15 15 0 0 1 30 0" fill="none" stroke="#e5f28b" stroke-width="5"/><path d="M14 44h36M32 10v8M10 23l7 5M54 23l-7 5" stroke="#e5f28b" stroke-width="4" stroke-linecap="round"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+  <title>Kruu ripple sun</title>
+  <defs>
+    <linearGradient id="kruu-brand-gradient" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#e9826d"/>
+      <stop offset="1" stop-color="#f2a34f"/>
+    </linearGradient>
+  </defs>
+  <g fill="url(#kruu-brand-gradient)">
+    <path d="M8 31a24 24 0 0 1 48 0Z"/>
+    <rect x="4" y="34" width="56" height="7" rx="3.5"/>
+    <rect x="11" y="44" width="42" height="7" rx="3.5"/>
+    <rect x="18" y="54" width="28" height="7" rx="3.5"/>
+  </g>
+</svg>

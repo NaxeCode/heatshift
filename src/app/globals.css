@@ -124,14 +124,30 @@ main {
   letter-spacing: -1px;
   text-decoration: none;
 }
+.brand-lockup {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
 .brand-symbol {
-  background: var(--hs-primary);
-  color: var(--hs-on-primary);
-  width: 44px;
-  height: 44px;
-  border-radius: 14px;
-  display: grid;
-  place-items: center;
+  width: 54px;
+  height: 54px;
+}
+.brand-coral {
+  stop-color: var(--hs-brand-coral);
+}
+.brand-orange {
+  stop-color: var(--hs-brand-orange);
+}
+.brand-wordmark {
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -1.7px;
+  color: var(--hs-brand-coral);
+  background: var(--hs-brand-gradient);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 .prototype {
   font: 500 12px var(--hs-font-body);
@@ -437,7 +453,7 @@ select[aria-invalid='true'] {
   transition: background var(--hs-duration-feedback) var(--hs-ease);
 }
 .primary:hover:not(:disabled) {
-  background: #d2ddc0;
+  background: color-mix(in srgb, var(--hs-primary) 90%, var(--hs-text));
 }
 .extract-button {
   width: 100%;
@@ -852,10 +868,10 @@ select[aria-invalid='true'] {
   background: var(--hs-warm);
 }
 .legend-indoor {
-  background: #c4d0b6;
+  background: var(--hs-cool);
 }
 .legend-break {
-  background: #d8ddd1;
+  background: var(--hs-divider);
 }
 .chart-scroll {
   overflow-x: auto;
@@ -943,7 +959,13 @@ select[aria-invalid='true'] {
   position: absolute;
   top: 0;
   bottom: 0;
-  background: repeating-linear-gradient(135deg, #d8ddd1, #d8ddd1 3px, #f8f9f5 3px, #f8f9f5 6px);
+  background: repeating-linear-gradient(
+    135deg,
+    var(--hs-divider),
+    var(--hs-divider) 3px,
+    var(--hs-canvas) 3px,
+    var(--hs-canvas) 6px
+  );
 }
 .time-block {
   position: absolute;
@@ -954,9 +976,9 @@ select[aria-invalid='true'] {
   display: flex;
   flex-direction: column;
   gap: 4px;
-  border-left: 2px solid #53643e;
+  border-left: 2px solid var(--hs-control-border);
   overflow: hidden;
-  background: #c4d0b6;
+  background: var(--hs-cool);
 }
 .time-block.outdoor {
   background: var(--hs-warm);
@@ -1324,8 +1346,11 @@ td small {
     gap: 8px;
   }
   .brand-symbol {
-    width: 36px;
-    height: 36px;
+    width: 48px;
+    height: 48px;
+  }
+  .brand-wordmark {
+    font-size: 30px;
   }
   .prototype {
     font-size: 12px;

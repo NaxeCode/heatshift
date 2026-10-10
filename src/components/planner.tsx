@@ -29,6 +29,7 @@ import TimeField from './time-field';
 import TaskEditor from './task-editor';
 import ComparisonView, { type Envelope } from './comparison-view';
 import { crewBriefText } from '@/lib/presentation';
+import Brand from './brand';
 const initialShift = {
   shiftStart: '08:00',
   shiftEnd: '16:00',
@@ -165,7 +166,7 @@ export default function Planner() {
     );
     const link = document.createElement('a');
     link.href = url;
-    link.download = `heatshift-briefing-${date}-${language}.txt`;
+    link.download = `kruu-briefing-${date}-${language}.txt`;
     link.click();
     URL.revokeObjectURL(url);
   }
@@ -176,12 +177,7 @@ export default function Planner() {
         Skip to planner
       </a>
       <header className="topbar">
-        <a href="/" className="brand">
-          <span className="brand-symbol">
-            <Sunrise size={25} />
-          </span>
-          heatshift<span className="prototype">PROTOTYPE</span>
-        </a>
+        <Brand />
         <div className="header-right">
           <a href="/community">Miami heat guide</a>
           <a

@@ -10,7 +10,13 @@ This is a proposed design system, derived from the five supplied references and 
 
 Use the ripple sun with exactly three separated, progressively shorter reflection bands. Pair it with the smaller lowercase **kruu** wordmark, vertically centered beside the symbol. Match the coral-to-orange treatment in the approved image; keep the icon and wordmark proportions, generous space, and quiet rounded surfaces.
 
-The attached PNG is the approved visual mockup, including its presentation cards and background. It is not a transparent logo or production vector; do not use the whole board as an application header. Its lettering is illustrative rather than a verified font rendering. Manrope remains the heading font direction, with DM Sans for interface copy. A production logo export and application integration are separate work.
+The attached PNG is the approved visual mockup, including its presentation cards and background. It is not a transparent logo or production vector; do not use the whole board as an application header. Its lettering is illustrative rather than a verified font rendering. Manrope remains the heading font direction, with DM Sans for interface copy.
+
+### Application implementation
+
+The shared `src/components/brand.tsx` renders a geometric SVG reconstruction: a half sun and exactly three separated, progressively shorter rounded reflection bands. Both application routes use this mark beside a lowercase Manrope wordmark. `src/app/icon.svg` uses the same sun geometry as the browser icon. These are editable implementations of the approved direction, not a traced production export or an exact reproduction of the mockup's illustrative letterforms. The presentation PNG is not cropped or placed in the application header.
+
+The brand keeps its fixed coral-to-orange gradient independently of forecast temperatures. `src/app/soft-signal.css` applies the warm-neutral tokens, including warm focus and shadow colors; timeline and hover states also use warm semantic colors. Existing repository and deployment URLs retain `heatshift` for continuity. Historical release evidence remains labeled with the name used at that time. Application visual verification belongs to its integration/release checks; the specimen checks below do not establish that verification.
 
 The foundation values below translate the approved no-green direction into reusable tokens. Keep the brand gradient fixed; temperature-driven colors belong to the forecast component only. Use dark text for small labels and controls rather than extending the logo gradient to operational text.
 
