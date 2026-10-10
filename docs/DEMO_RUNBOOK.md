@@ -13,7 +13,7 @@ Working title: HeatShift. Faye owns the final name, logo and narrative. The crew
 - Keep a completed result open in a separate tab and download both briefings. Check the confirmed date and Miami location in each displayed and downloaded language. A completed result is a previously generated live result, not a new model call.
 - Use a separate fresh tab for the on-stage run. Avoid unnecessary model calls immediately before presenting. Keep credentials and private chats off the projected screen.
 - Proposed roles: Faye narrates, Aladdin operates; Nelson answers worker-context questions; Nina answers evaluation questions. Confirm these roles with the team.
-- Record one successful run with narration as backup and check playback. This document does not establish that a recording exists or that the team has rehearsed.
+- A narrated two-minute backup was captured from the public app at approximately 2:03–2:05 PM Eastern on October 10. The local handoff file is `heatshift-demo-backup.mp4`; captions, narration text and recording notes accompany it. It uses actual browser frames with edited pauses and synthetic narration, not a continuous real-time capture. H.264 video, AAC audio and subtitle decoding passed; all six segments were visually checked and QuickTime playback opened successfully. This does not establish a team rehearsal or final approval of the narrative.
 
 ## Script and clicks
 
@@ -47,3 +47,9 @@ If weather is missing or stale, show the visible refusal rather than substitutin
 ## Readiness record
 
 See [verification evidence](VERIFICATION.md) for completed technical checks and [submission checklist](SUBMISSION.md) for unconfirmed team registration, check-in, roster and entry steps. A successful technical run does not mean the team has rehearsed or submitted. The submission hold remains in effect until Aladdin explicitly releases it.
+
+## Recorded backup evidence — October 10, 2026
+
+The recorded app runs implementation `4751ebf`. The work date is October 11; the resident page is dated October 10. Real Gemma extraction produced the four expected tasks; the live forecast comparison was 150 → 0 hottest-hour minutes, preserving 150 outdoor minutes, the 08:00–16:00 paid shift and 12:00–12:30 break. English and Spanish downloaded briefings matched the displayed date, location, task times and comparison. These values describe this run only.
+
+The backup is approximately 120 seconds at 1600 × 1080 with six sections: workday, task review, comparison, bilingual briefing, resident resources and public source/license. It is a local team handoff artifact, not a submitted entry. Faye retains final creative/narrative direction. Team speaking roles and a full live team rehearsal remain to be confirmed.
