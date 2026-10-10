@@ -1829,3 +1829,44 @@ select[aria-invalid='true'] {
 .text-button {
   min-height: 48px;
 }
+
+.calendar-share {
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+.calendar-share h4 {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font:
+    500 18px/1.4 'Manrope',
+    sans-serif;
+  margin: 0 0 8px;
+}
+.calendar-share p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+.calendar-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 18px 0 12px;
+}
+.calendar-actions a {
+  text-decoration: none;
+}
+.calendar-actions a:hover {
+  background: var(--hs-primary-hover);
+}
+.calendar-share .calendar-note {
+  font-size: 12px;
+}
+@media (max-width: 520px) {
+  .calendar-actions > * {
+    width: 100%;
+    text-align: center;
+  }
+}

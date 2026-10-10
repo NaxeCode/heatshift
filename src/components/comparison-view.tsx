@@ -1,3 +1,4 @@
+import CalendarActions from './calendar-actions';
 import {
   ShieldCheck,
   ThermometerSun,
@@ -359,6 +360,7 @@ export default function ComparisonView({
             <span role="status" className="sr-only">
               {copied ? 'Briefing copied' : ''}
             </span>
+            <CalendarActions result={r} briefing={briefing} language={language} />
             <p className="fine-print">
               Prepared by Gemma 4. Review the wording and confirmed schedule before sharing.
             </p>
